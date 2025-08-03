@@ -1,0 +1,1515 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clean eCommerce Practice Site - Premium Wireless Headphones</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+    <style>
+        .product-image {
+            transition: transform 0.3s ease;
+        }
+        .product-image:hover {
+            transform: scale(1.05);
+        }
+        .zoom-container {
+            overflow: hidden;
+            border-radius: 0.5rem;
+        }
+        .page {
+            display: none;
+        }
+        .page.active {
+            display: block;
+        }
+        .form-input:focus {
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+        }
+        .success-animation {
+            animation: bounce 2s infinite;
+        }
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-10px); }
+            60% { transform: translateY(-5px); }
+        }
+        .notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: #10B981;
+            color: white;
+            padding: 12px 24px;
+            border-radius: 8px;
+            z-index: 1000;
+            display: none;
+        }
+        .cart-animation {
+            animation: cartBounce 0.3s ease-in-out;
+        }
+        @keyframes cartBounce {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+        }
+    </style>
+</head>
+<body class="bg-gray-50 font-sans">
+    <!-- Notification -->
+    <div id="notification" class="notification">
+        <i class="fas fa-check-circle mr-2"></i>
+        <span id="notification-text"></span>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="bg-white shadow-sm border-b">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16 items-center">
+                <div class="flex items-center">
+                    <i class="fas fa-headphones text-2xl text-blue-600 mr-2"></i>
+                    <span class="text-xl font-bold text-gray-900">AudioMax Store</span>
+                </div>
+                <div class="flex items-center space-x-6">
+                    <div class="flex items-center space-x-2">
+                        <i class="fas fa-map-marker-alt text-gray-600"></i>
+                        <select id="location-selector" class="text-sm border-none bg-transparent focus:outline-none">
+                            <option value="New York">New York</option>
+                            <option value="Los Angeles">Los Angeles</option>
+                            <option value="Chicago">Chicago</option>
+                            <option value="Houston">Houston</option>
+                            <option value="Miami">Miami</option>
+                            <option value="London">London</option>
+                            <option value="Tokyo">Tokyo</option>
+                            <option value="Mumbai">Mumbai</option>
+                        </select>
+                    </div>
+                    <div class="flex items-center space-x-2">
+                        <i class="fas fa-shopping-cart text-gray-600"></i>
+                        <span id="cart-count" class="bg-blue-600 text-white rounded-full px-2 py-1 text-xs">0</span>
+                    </div>
+                    <div class="flex items-center space-x-2">
+                        <i class="fas fa-user text-gray-600"></i>
+                        <span class="text-sm text-gray-600">Guest</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page 1: Product Page -->
+    <div id="product-page" class="page active">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+            <!-- Breadcrumb -->
+            <nav class="mb-8">
+                <ol class="flex items-center space-x-2 text-sm text-gray-500">
+                    <li><a href="#" class="hover:text-blue-600">Home</a></li>
+                    <li><i class="fas fa-chevron-right text-xs"></i></li>
+                    <li><a href="#" class="hover:text-blue-600">Electronics</a></li>
+                    <li><i class="fas fa-chevron-right text-xs"></i></li>
+                    <li><a href="#" class="hover:text-blue-600">Audio</a></li>
+                    <li><i class="fas fa-chevron-right text-xs"></i></li>
+                    <li class="text-gray-900">Headphones</li>
+                </ol>
+            </nav>
+
+            <div class="lg:grid lg:grid-cols-2 lg:gap-x-8 lg:items-start">
+                <!-- Product Image -->
+                <div class="flex flex-col-reverse">
+                    <div class="w-full aspect-w-1 aspect-h-1">
+                        <div class="zoom-container">
+                            <img id="main-product-image" 
+                                 src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=600&h=600&fit=crop" 
+                                 alt="Premium Wireless Headphones" 
+                                 class="product-image w-full h-96 object-cover object-center rounded-lg">
+                        </div>
+                    </div>
+                    
+                    <!-- Image Gallery -->
+                    <div class="mt-6 w-full max-w-2xl mx-auto sm:block lg:max-w-none">
+                        <div class="grid grid-cols-4 gap-4">
+                            <button class="aspect-w-1 aspect-h-1 rounded-lg overflow-hidden">
+                                <img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=150&h=150&fit=crop" 
+                                     alt="View 1" class="w-full h-full object-center object-cover">
+                            </button>
+                            <button class="aspect-w-1 aspect-h-1 rounded-lg overflow-hidden">
+                                <img src="https://images.unsplash.com/photo-1484704849700-f032a568e944?w=150&h=150&fit=crop" 
+                                     alt="View 2" class="w-full h-full object-center object-cover">
+                            </button>
+                            <button class="aspect-w-1 aspect-h-1 rounded-lg overflow-hidden">
+                                <img src="https://images.unsplash.com/photo-1583394838336-acd977736f90?w=150&h=150&fit=crop" 
+                                     alt="View 3" class="w-full h-full object-center object-cover">
+                            </button>
+                            <button class="aspect-w-1 aspect-h-1 rounded-lg overflow-hidden">
+                                <img src="https://images.unsplash.com/photo-1487215078519-e21cc028cb29?w=150&h=150&fit=crop" 
+                                     alt="View 4" class="w-full h-full object-center object-cover">
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product Info -->
+                <div class="mt-10 px-4 sm:px-0 sm:mt-16 lg:mt-0">
+                    <!-- Product metadata -->
+                    <div class="mb-4 text-sm text-gray-500 flex items-center space-x-4">
+                        <span>SKU: <span id="product-id">WH-001</span></span>
+                        <span>Brand: <span id="product-brand">AudioMax</span></span>
+                        <span>Category: <span id="product-category">Electronics > Audio > Headphones</span></span>
+                    </div>
+
+                    <h1 id="product-name" class="text-3xl font-extrabold tracking-tight text-gray-900">
+                        Premium Wireless Headphones
+                    </h1>
+                    
+                    <!-- Rating -->
+                    <div class="mt-3 flex items-center">
+                        <div class="flex items-center">
+                            <i class="fas fa-star text-yellow-400"></i>
+                            <i class="fas fa-star text-yellow-400"></i>
+                            <i class="fas fa-star text-yellow-400"></i>
+                            <i class="fas fa-star text-yellow-400"></i>
+                            <i class="fas fa-star text-gray-300"></i>
+                        </div>
+                        <span class="ml-2 text-sm text-gray-600">(4.2 out of 5 stars)</span>
+                        <span class="ml-2 text-sm text-blue-600">1,247 reviews</span>
+                    </div>
+                    
+                    <div class="mt-3">
+                        <h2 class="sr-only">Product information</h2>
+                        <div class="flex items-center space-x-3">
+                            <div class="text-3xl text-gray-900">
+                                $<span id="product-price">199.99</span>
+                            </div>
+                            <div id="original-price" class="text-xl text-gray-500 line-through hidden">
+                                $<span id="original-price-value">249.99</span>
+                            </div>
+                            <div id="discount-badge" class="hidden bg-green-100 text-green-800 text-sm px-2 py-1 rounded-full">
+                                <span id="discount-percent">20</span>% OFF
+                            </div>
+                        </div>
+                        <div class="mt-2 text-sm text-green-600">
+                            <i class="fas fa-truck mr-1"></i>
+                            Free shipping on orders over $150
+                        </div>
+                    </div>
+
+                    <!-- Stock Status -->
+                    <div class="mt-4 flex items-center">
+                        <div class="flex items-center">
+                            <div class="w-3 h-3 bg-green-400 rounded-full mr-2"></div>
+                            <span class="text-sm text-green-600 font-medium">In Stock</span>
+                        </div>
+                        <span class="ml-4 text-sm text-gray-500">Only 12 left - order soon!</span>
+                    </div>
+
+                    <!-- Product Description -->
+                    <div class="mt-6">
+                        <h3 class="text-lg font-medium text-gray-900 mb-3">Description</h3>
+                        <div class="text-base text-gray-700 space-y-4">
+                            <p>Experience premium sound quality with our flagship wireless headphones. Featuring advanced noise cancellation technology, 30-hour battery life, and premium materials for ultimate comfort during extended listening sessions.</p>
+                            
+                            <div class="grid grid-cols-2 gap-4 mt-4">
+                                <div class="bg-gray-50 p-3 rounded-lg">
+                                    <h4 class="font-medium text-gray-900 mb-2">Key Features</h4>
+                                    <ul class="text-sm text-gray-600 space-y-1">
+                                        <li><i class="fas fa-check text-green-500 mr-1"></i> Active Noise Cancellation</li>
+                                        <li><i class="fas fa-check text-green-500 mr-1"></i> 30-hour battery life</li>
+                                        <li><i class="fas fa-check text-green-500 mr-1"></i> Premium leather padding</li>
+                                        <li><i class="fas fa-check text-green-500 mr-1"></i> Bluetooth 5.0</li>
+                                    </ul>
+                                </div>
+                                <div class="bg-gray-50 p-3 rounded-lg">
+                                    <h4 class="font-medium text-gray-900 mb-2">What's Included</h4>
+                                    <ul class="text-sm text-gray-600 space-y-1">
+                                        <li><i class="fas fa-box mr-1"></i> Headphones</li>
+                                        <li><i class="fas fa-box mr-1"></i> USB-C Charging Cable</li>
+                                        <li><i class="fas fa-box mr-1"></i> Carrying Case</li>
+                                        <li><i class="fas fa-box mr-1"></i> User Manual</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <form class="mt-8">
+                        <!-- Color Selector -->
+                        <div class="mb-6">
+                            <label class="block text-sm font-medium text-gray-700 mb-3">
+                                Color
+                            </label>
+                            <div class="flex space-x-3">
+                                <button type="button" class="color-option w-8 h-8 bg-gray-900 rounded-full border-2 border-transparent focus:border-blue-500 selected" data-color="Black"></button>
+                                <button type="button" class="color-option w-8 h-8 bg-white border-2 border-gray-300 rounded-full focus:border-blue-500" data-color="White"></button>
+                                <button type="button" class="color-option w-8 h-8 bg-blue-600 rounded-full border-2 border-transparent focus:border-blue-500" data-color="Blue"></button>
+                                <button type="button" class="color-option w-8 h-8 bg-red-600 rounded-full border-2 border-transparent focus:border-blue-500" data-color="Red"></button>
+                            </div>
+                            <span id="selected-color" class="text-sm text-gray-600 mt-2 block">Selected: Black</span>
+                        </div>
+
+                        <!-- Size Selector -->
+                        <div class="mb-6">
+                            <label for="size-selector" class="block text-sm font-medium text-gray-700 mb-2">
+                                Size
+                            </label>
+                            <select id="size-selector" class="form-input block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500">
+                                <option value="S">Small (S) - Fits head circumference 20-21 inches</option>
+                                <option value="M" selected>Medium (M) - Fits head circumference 21-22 inches</option>
+                                <option value="L">Large (L) - Fits head circumference 22-23 inches</option>
+                            </select>
+                        </div>
+
+                        <!-- Quantity Selector -->
+                        <div class="mb-6">
+                            <label for="quantity-selector" class="block text-sm font-medium text-gray-700 mb-2">
+                                Quantity
+                            </label>
+                            <div class="flex items-center space-x-3">
+                                <button type="button" id="qty-decrease" class="w-10 h-10 border border-gray-300 rounded-md flex items-center justify-center hover:bg-gray-50">
+                                    <i class="fas fa-minus text-sm"></i>
+                                </button>
+                                <input type="number" id="quantity-selector" value="1" min="1" max="10" class="form-input w-20 text-center px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500">
+                                <button type="button" id="qty-increase" class="w-10 h-10 border border-gray-300 rounded-md flex items-center justify-center hover:bg-gray-50">
+                                    <i class="fas fa-plus text-sm"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Total Price Display -->
+                        <div class="mb-6 p-4 bg-blue-50 rounded-lg border border-blue-200">
+                            <div class="flex justify-between items-center">
+                                <span class="text-lg font-medium text-gray-700">Subtotal:</span>
+                                <span id="subtotal-price" class="text-2xl font-bold text-blue-600">$199.99</span>
+                            </div>
+                            <div id="savings-display" class="hidden mt-2 flex justify-between items-center text-green-600">
+                                <span class="text-sm">You save:</span>
+                                <span id="savings-amount" class="text-sm font-medium">$0.00</span>
+                            </div>
+                        </div>
+
+                        <!-- Coupon Code -->
+                        <div class="mb-6 border border-gray-200 rounded-lg p-4">
+                            <label for="coupon-input" class="block text-sm font-medium text-gray-700 mb-2">
+                                <i class="fas fa-ticket-alt mr-1"></i>
+                                Have a promo code?
+                            </label>
+                            <div class="flex">
+                                <input type="text" 
+                                       id="coupon-input" 
+                                       placeholder="Enter coupon code"
+                                       class="form-input flex-1 px-3 py-2 border border-gray-300 rounded-l-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500">
+                                <button type="button" 
+                                        id="apply-coupon-btn" 
+                                        class="px-6 py-2 bg-blue-600 text-white rounded-r-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
+                                    Apply
+                                </button>
+                            </div>
+                            <div id="coupon-message" class="mt-2 text-sm hidden"></div>
+                            <div class="mt-3 text-xs text-gray-500">
+                                <strong>Available codes:</strong> WELCOME20 (20% off), SAVE50 ($50 off), FREESHIP (free shipping)
+                            </div>
+                        </div>
+
+                        <!-- Wishlist -->
+                        <div class="mb-6">
+                            <button type="button" id="wishlist-btn" class="flex items-center text-sm text-gray-600 hover:text-red-500">
+                                <i class="far fa-heart mr-2"></i>
+                                Add to Wishlist
+                            </button>
+                        </div>
+
+                        <!-- Action Buttons -->
+                        <div class="flex flex-col sm:flex-row gap-4">
+                            <button type="button" 
+                                    id="add-to-cart-btn" 
+                                    class="flex-1 bg-blue-600 border border-transparent rounded-md py-3 px-8 flex items-center justify-center text-base font-medium text-white hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-colors">
+                                <i class="fas fa-shopping-cart mr-2"></i>
+                                Add to Cart
+                            </button>
+                            
+                            <button type="button" 
+                                    id="buy-now-btn" 
+                                    class="flex-1 bg-green-600 border border-transparent rounded-md py-3 px-8 flex items-center justify-center text-base font-medium text-white hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 transition-colors">
+                                <i class="fas fa-bolt mr-2"></i>
+                                Buy Now
+                            </button>
+                        </div>
+
+                        <!-- Social Share -->
+                        <div class="mt-6 flex items-center space-x-4">
+                            <span class="text-sm text-gray-600">Share:</span>
+                            <button type="button" id="share-facebook" class="text-blue-600 hover:text-blue-800">
+                                <i class="fab fa-facebook-f"></i>
+                            </button>
+                            <button type="button" id="share-twitter" class="text-blue-400 hover:text-blue-600">
+                                <i class="fab fa-twitter"></i>
+                            </button>
+                            <button type="button" id="share-pinterest" class="text-red-600 hover:text-red-800">
+                                <i class="fab fa-pinterest-p"></i>
+                            </button>
+                            <button type="button" id="share-whatsapp" class="text-green-600 hover:text-green-800">
+                                <i class="fab fa-whatsapp"></i>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Related Products -->
+            <div class="mt-16">
+                <h2 class="text-2xl font-bold text-gray-900 mb-8">You might also like</h2>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <div class="bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow p-4">
+                        <img src="https://images.unsplash.com/photo-1484704849700-f032a568e944?w=300&h=300&fit=crop" 
+                             alt="Wireless Earbuds" class="w-full h-48 object-cover rounded-lg mb-3">
+                        <h3 class="font-medium text-gray-900">Wireless Earbuds Pro</h3>
+                        <p class="text-sm text-gray-600 mb-2">Premium sound quality</p>
+                        <div class="flex items-center justify-between">
+                            <span class="text-lg font-bold text-blue-600">$129.99</span>
+                            <button class="related-product-btn text-blue-600 hover:text-blue-800" data-product="earbuds-pro" data-price="129.99">
+                                <i class="fas fa-plus-circle"></i>
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow p-4">
+                        <img src="https://images.unsplash.com/photo-1583394838336-acd977736f90?w=300&h=300&fit=crop" 
+                             alt="Gaming Headset" class="w-full h-48 object-cover rounded-lg mb-3">
+                        <h3 class="font-medium text-gray-900">Gaming Headset X1</h3>
+                        <p class="text-sm text-gray-600 mb-2">RGB lighting & surround sound</p>
+                        <div class="flex items-center justify-between">
+                            <span class="text-lg font-bold text-blue-600">$89.99</span>
+                            <button class="related-product-btn text-blue-600 hover:text-blue-800" data-product="gaming-x1" data-price="89.99">
+                                <i class="fas fa-plus-circle"></i>
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow p-4">
+                        <img src="https://images.unsplash.com/photo-1487215078519-e21cc028cb29?w=300&h=300&fit=crop" 
+                             alt="Studio Monitor" class="w-full h-48 object-cover rounded-lg mb-3">
+                        <h3 class="font-medium text-gray-900">Studio Monitor S5</h3>
+                        <p class="text-sm text-gray-600 mb-2">Professional audio monitoring</p>
+                        <div class="flex items-center justify-between">
+                            <span class="text-lg font-bold text-blue-600">$299.99</span>
+                            <button class="related-product-btn text-blue-600 hover:text-blue-800" data-product="studio-s5" data-price="299.99">
+                                <i class="fas fa-plus-circle"></i>
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow p-4">
+                        <img src="https://images.unsplash.com/photo-1505751172876-fa1923c5c528?w=300&h=300&fit=crop" 
+                             alt="Bluetooth Speaker" class="w-full h-48 object-cover rounded-lg mb-3">
+                        <h3 class="font-medium text-gray-900">Portable Speaker Mini</h3>
+                        <p class="text-sm text-gray-600 mb-2">Compact with powerful bass</p>
+                        <div class="flex items-center justify-between">
+                            <span class="text-lg font-bold text-blue-600">$49.99</span>
+                            <button class="related-product-btn text-blue-600 hover:text-blue-800" data-product="speaker-mini" data-price="49.99">
+                                <i class="fas fa-plus-circle"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Page 2: Checkout Page -->
+    <div id="checkout-page" class="page">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+            <div class="text-center mb-8">
+                <h1 class="text-3xl font-extrabold text-gray-900">Secure Checkout</h1>
+                <p class="mt-2 text-gray-600">Complete your order safely and securely</p>
+                
+                <!-- Progress Indicator -->
+                <div class="mt-6 flex items-center justify-center space-x-4">
+                    <div class="flex items-center">
+                        <div class="w-8 h-8 bg-blue-600 text-white rounded-full flex items-center justify-center text-sm">1</div>
+                        <span class="ml-2 text-sm text-blue-600 font-medium">Cart</span>
+                    </div>
+                    <div class="w-8 h-px bg-blue-600"></div>
+                    <div class="flex items-center">
+                        <div class="w-8 h-8 bg-blue-600 text-white rounded-full flex items-center justify-center text-sm">2</div>
+                        <span class="ml-2 text-sm text-blue-600 font-medium">Checkout</span>
+                    </div>
+                    <div class="w-8 h-px bg-gray-300"></div>
+                    <div class="flex items-center">
+                        <div class="w-8 h-8 bg-gray-300 text-gray-600 rounded-full flex items-center justify-center text-sm">3</div>
+                        <span class="ml-2 text-sm text-gray-400">Complete</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="lg:grid lg:grid-cols-3 lg:gap-x-8">
+                <!-- Checkout Form -->
+                <div class="lg:col-span-2">
+                    <form id="checkout-form" class="space-y-8">
+                        <!-- Contact Information -->
+                        <div class="bg-white p-6 rounded-lg shadow-sm border">
+                            <h2 class="text-xl font-semibold text-gray-900 mb-6 flex items-center">
+                                <i class="fas fa-user mr-2 text-blue-600"></i>
+                                Contact Information
+                            </h2>
+                            
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                <div>
+                                    <label for="checkout-firstname" class="block text-sm font-medium text-gray-700 mb-1">
+                                        First Name *
+                                    </label>
+                                    <input type="text" 
+                                           id="checkout-firstname" 
+                                           name="firstName"
+                                           required
+                                           class="form-input block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500">
+                                </div>
+                                
+                                <div>
+                                    <label for="checkout-lastname" class="block text-sm font-medium text-gray-700 mb-1">
+                                        Last Name *
+                                    </label>
+                                    <input type="text" 
+                                           id="checkout-lastname" 
+                                           name="lastName"
+                                           required
+                                           class="form-input block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500">
+                                </div>
+                                
+                                <div>
+                                    <label for="checkout-email" class="block text-sm font-medium text-gray-700 mb-1">
+                                        Email Address *
+                                    </label>
+                                    <input type="email" 
+                                           id="checkout-email" 
+                                           name="email"
+                                           required
+                                           class="form-input block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500">
+                                </div>
+                                
+                                <div>
+                                    <label for="checkout-phone" class="block text-sm font-medium text-gray-700 mb-1">
+                                        Phone Number *
+                                    </label>
+                                    <input type="tel" 
+                                           id="checkout-phone" 
+                                           name="phone"
+                                           required
+                                           class="form-input block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500">
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Shipping Address -->
+                        <div class="bg-white p-6 rounded-lg shadow-sm border">
+                            <h2 class="text-xl font-semibold text-gray-900 mb-6 flex items-center">
+                                <i class="fas fa-truck mr-2 text-blue-600"></i>
+                                Shipping Address
+                            </h2>
+                            
+                            <div class="space-y-6">
+                                <div>
+                                    <label for="checkout-address" class="block text-sm font-medium text-gray-700 mb-1">
+                                        Street Address *
+                                    </label>
+                                    <input type="text" 
+                                           id="checkout-address" 
+                                           name="address"
+                                           required
+                                           class="form-input block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500">
+                                </div>
+                                
+                                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                                    <div>
+                                        <label for="checkout-city" class="block text-sm font-medium text-gray-700 mb-1">
+                                            City *
+                                        </label>
+                                        <input type="text" 
+                                               id="checkout-city" 
+                                               name="city"
+                                               required
+                                               class="form-input block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500">
+                                    </div>
+                                    
+                                    <div>
+                                        <label for="checkout-state" class="block text-sm font-medium text-gray-700 mb-1">
+                                            State/Province *
+                                        </label>
+                                        <select id="checkout-state" 
+                                                name="state"
+                                                required
+                                                class="form-input block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500">
+                                            <option value="">Select State</option>
+                                            <option value="NY">New York</option>
+                                            <option value="CA">California</option>
+                                            <option value="TX">Texas</option>
+                                            <option value="FL">Florida</option>
+                                            <option value="IL">Illinois</option>
+                                        </select>
+                                    </div>
+                                    
+                                    <div>
+                                        <label for="checkout-zip" class="block text-sm font-medium text-gray-700 mb-1">
+                                            ZIP Code *
+                                        </label>
+                                        <input type="text" 
+                                               id="checkout-zip" 
+                                               name="zipCode"
+                                               required
+                                               class="form-input block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Shipping Method -->
+                        <div class="bg-white p-6 rounded-lg shadow-sm border">
+                            <h2 class="text-xl font-semibold text-gray-900 mb-6 flex items-center">
+                                <i class="fas fa-shipping-fast mr-2 text-blue-600"></i>
+                                Shipping Method
+                            </h2>
+                            
+                            <div class="space-y-4">
+                                <label class="flex items-center p-4 border border-gray-200 rounded-lg cursor-pointer hover:bg-gray-50">
+                                    <input type="radio" name="shipping" value="standard" class="text-blue-600" checked>
+                                    <div class="ml-3 flex-1">
+                                        <div class="flex justify-between items-center">
+                                            <div>
+                                                <p class="text-sm font-medium text-gray-900">Standard Shipping</p>
+                                                <p class="text-sm text-gray-500">5-7 business days</p>
+                                            </div>
+                                            <span class="text-sm font-medium text-gray-900">Free</span>
+                                        </div>
+                                    </div>
+                                </label>
+                                
+                                <label class="flex items-center p-4 border border-gray-200 rounded-lg cursor-pointer hover:bg-gray-50">
+                                    <input type="radio" name="shipping" value="express" class="text-blue-600">
+                                    <div class="ml-3 flex-1">
+                                        <div class="flex justify-between items-center">
+                                            <div>
+                                                <p class="text-sm font-medium text-gray-900">Express Shipping</p>
+                                                <p class="text-sm text-gray-500">2-3 business days</p>
+                                            </div>
+                                            <span class="text-sm font-medium text-gray-900">$15.00</span>
+                                        </div>
+                                    </div>
+                                </label>
+                                
+                                <label class="flex items-center p-4 border border-gray-200 rounded-lg cursor-pointer hover:bg-gray-50">
+                                    <input type="radio" name="shipping" value="overnight" class="text-blue-600">
+                                    <div class="ml-3 flex-1">
+                                        <div class="flex justify-between items-center">
+                                            <div>
+                                                <p class="text-sm font-medium text-gray-900">Overnight Shipping</p>
+                                                <p class="text-sm text-gray-500">Next business day</p>
+                                            </div>
+                                            <span class="text-sm font-medium text-gray-900">$29.99</span>
+                                        </div>
+                                    </div>
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- Payment Information -->
+                        <div class="bg-white p-6 rounded-lg shadow-sm border">
+                            <h2 class="text-xl font-semibold text-gray-900 mb-6 flex items-center">
+                                <i class="fas fa-credit-card mr-2 text-blue-600"></i>
+                                Payment Information
+                            </h2>
+                            
+                            <div class="space-y-6">
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-3">
+                                        Payment Method *
+                                    </label>
+                                    <div class="space-y-3">
+                                        <label class="flex items-center p-3 border border-gray-200 rounded-lg cursor-pointer hover:bg-gray-50">
+                                            <input type="radio" name="paymentMethod" value="credit-card" class="text-blue-600" checked>
+                                            <i class="fas fa-credit-card ml-3 mr-2 text-gray-600"></i>
+                                            <span class="text-sm text-gray-900">Credit/Debit Card</span>
+                                        </label>
+                                        
+                                        <label class="flex items-center p-3 border border-gray-200 rounded-lg cursor-pointer hover:bg-gray-50">
+                                            <input type="radio" name="paymentMethod" value="paypal" class="text-blue-600">
+                                            <i class="fab fa-paypal ml-3 mr-2 text-blue-500"></i>
+                                            <span class="text-sm text-gray-900">PayPal</span>
+                                        </label>
+                                        
+                                        <label class="flex items-center p-3 border border-gray-200 rounded-lg cursor-pointer hover:bg-gray-50">
+                                            <input type="radio" name="paymentMethod" value="cash" class="text-blue-600">
+                                            <i class="fas fa-money-bill-wave ml-3 mr-2 text-green-600"></i>
+                                            <span class="text-sm text-gray-900">Cash on Delivery</span>
+                                            <span class="ml-auto text-xs text-gray-500">+$5.00 fee</span>
+                                        </label>
+                                    </div>
+                                </div>
+                                
+                                <div id="card-details" class="space-y-4">
+                                    <div>
+                                        <label for="card-number" class="block text-sm font-medium text-gray-700 mb-1">
+                                            Card Number *
+                                        </label>
+                                        <input type="text" 
+                                               id="card-number" 
+                                               name="cardNumber"
+                                               placeholder="1234 5678 9012 3456"
+                                               class="form-input block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500">
+                                    </div>
+                                    
+                                    <div class="grid grid-cols-2 gap-4">
+                                        <div>
+                                            <label for="expiry-date" class="block text-sm font-medium text-gray-700 mb-1">
+                                                Expiry Date *
+                                            </label>
+                                            <input type="text" 
+                                                   id="expiry-date" 
+                                                   name="expiryDate"
+                                                   placeholder="MM/YY"
+                                                   class="form-input block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500">
+                                        </div>
+                                        
+                                        <div>
+                                            <label for="cvv" class="block text-sm font-medium text-gray-700 mb-1">
+                                                CVV *
+                                            </label>
+                                            <input type="text" 
+                                                   id="cvv" 
+                                                   name="cvv"
+                                                   placeholder="123"
+                                                   class="form-input block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500">
+                                        </div>
+                                    </div>
+                                    
+                                    <div>
+                                        <label for="cardholder-name" class="block text-sm font-medium text-gray-700 mb-1">
+                                            Cardholder Name *
+                                        </label>
+                                        <input type="text" 
+                                               id="cardholder-name" 
+                                               name="cardholderName"
+                                               class="form-input block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- Order Summary -->
+                <div class="mt-10 lg:mt-0">
+                    <div class="bg-white p-6 rounded-lg shadow-sm border sticky top-8">
+                        <h2 class="text-xl font-semibold text-gray-900 mb-6">Order Summary</h2>
+                        
+                        <div class="space-y-4">
+                            <!-- Cart Items -->
+                            <div id="checkout-items" class="space-y-4">
+                                <div class="flex items-center space-x-4 pb-4 border-b border-gray-200">
+                                    <img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=80&h=80&fit=crop" 
+                                         alt="Premium Wireless Headphones" 
+                                         class="w-16 h-16 object-cover rounded-md">
+                                    <div class="flex-1">
+                                        <h3 class="text-sm font-medium text-gray-900" id="checkout-item-name">Premium Wireless Headphones</h3>
+                                        <p class="text-sm text-gray-500">
+                                            <span id="checkout-item-color">Black</span> / 
+                                            <span id="checkout-item-size">M</span>
+                                        </p>
+                                        <p class="text-sm text-gray-500">Qty: <span id="checkout-item-quantity">1</span></p>
+                                    </div>
+                                    <div class="text-right">
+                                        <p class="text-sm font-medium text-gray-900" id="checkout-item-price">$199.99</p>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Price Breakdown -->
+                            <div class="space-y-3 pt-4">
+                                <div class="flex justify-between text-sm">
+                                    <span class="text-gray-600">Subtotal</span>
+                                    <span id="checkout-subtotal">$199.99</span>
+                                </div>
+                                
+                                <div id="checkout-discount-row" class="flex justify-between text-sm text-green-600 hidden">
+                                    <span>Discount (<span id="checkout-coupon-code"></span>)</span>
+                                    <span id="checkout-discount">-$0.00</span>
+                                </div>
+                                
+                                <div class="flex justify-between text-sm">
+                                    <span class="text-gray-600">Shipping</span>
+                                    <span id="checkout-shipping">Free</span>
+                                </div>
+                                
+                                <div class="flex justify-between text-sm">
+                                    <span class="text-gray-600">Tax</span>
+                                    <span id="checkout-tax">$16.00</span>
+                                </div>
+                                
+                                <div class="border-t pt-3 flex justify-between text-lg font-semibold">
+                                    <span class="text-gray-900">Total</span>
+                                    <span id="checkout-total" class="text-gray-900">$215.99</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Trust Badges -->
+                        <div class="mt-6 pt-6 border-t border-gray-200">
+                            <div class="flex items-center justify-center space-x-4 text-xs text-gray-500">
+                                <div class="flex items-center">
+                                    <i class="fas fa-lock mr-1"></i>
+                                    Secure Checkout
+                                </div>
+                                <div class="flex items-center">
+                                    <i class="fas fa-undo mr-1"></i>
+                                    30-Day Returns
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <button type="button" 
+                                id="place-order-btn" 
+                                class="w-full mt-6 bg-blue-600 border border-transparent rounded-md py-4 px-4 text-lg font-semibold text-white shadow-sm hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-colors">
+                            <i class="fas fa-lock mr-2"></i>
+                            Place Secure Order
+                        </button>
+                        
+                        <p class="mt-3 text-xs text-gray-500 text-center">
+                            By placing your order, you agree to our Terms of Service and Privacy Policy.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Page 3: Thank You Page -->
+    <div id="thankyou-page" class="page">
+        <div class="min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-blue-50 to-green-50">
+            <div class="max-w-2xl w-full text-center">
+                <!-- Success Animation -->
+                <div class="success-animation mb-8">
+                    <div class="mx-auto h-32 w-32 bg-green-100 rounded-full flex items-center justify-center">
+                        <i class="fas fa-check text-6xl text-green-600"></i>
+                    </div>
+                </div>
+                
+                <div class="mb-8">
+                    <h1 class="text-4xl font-extrabold text-gray-900 mb-4">Order Confirmed!</h1>
+                    <p class="text-xl text-gray-600">Thank you for your purchase</p>
+                    <p class="text-gray-500 mt-2">Your order has been successfully placed and is being processed.</p>
+                </div>
+                
+                <!-- Order Details Card -->
+                <div class="bg-white p-8 rounded-2xl shadow-lg mb-8">
+                    <h2 class="text-2xl font-semibold text-gray-900 mb-6">Order Details</h2>
+                    
+                    <div class="space-y-4 text-left">
+                        <div class="flex justify-between items-center py-2 border-b border-gray-100">
+                            <span class="text-gray-600 font-medium">Order ID:</span>
+                            <span id="order-id" class="font-bold text-blue-600 text-lg">ORD-2024-001</span>
+                        </div>
+                        
+                        <div class="flex justify-between items-center py-2 border-b border-gray-100">
+                            <span class="text-gray-600 font-medium">Order Date:</span>
+                            <span id="order-date" class="font-medium text-gray-900"></span>
+                        </div>
+                        
+                        <div class="flex justify-between items-center py-2 border-b border-gray-100">
+                            <span class="text-gray-600 font-medium">Customer:</span>
+                            <span id="customer-name" class="font-medium text-gray-900">Guest Customer</span>
+                        </div>
+                        
+                        <div class="flex justify-between items-center py-2 border-b border-gray-100">
+                            <span class="text-gray-600 font-medium">Email:</span>
+                            <span id="customer-email" class="font-medium text-gray-900">guest@example.com</span>
+                        </div>
+                        
+                        <div class="flex justify-between items-center py-2 border-b border-gray-100">
+                            <span class="text-gray-600 font-medium">Payment Method:</span>
+                            <span id="payment-method-display" class="font-medium text-gray-900">Credit Card</span>
+                        </div>
+                        
+                        <div class="flex justify-between items-center py-2 border-b border-gray-100">
+                            <span class="text-gray-600 font-medium">Shipping Method:</span>
+                            <span id="shipping-method-display" class="font-medium text-gray-900">Standard Shipping</span>
+                        </div>
+                    </div>
+                    
+                    <!-- Product Details -->
+                    <div class="mt-8 pt-6 border-t border-gray-200">
+                        <h3 class="text-lg font-semibold text-gray-900 mb-4">Items Ordered</h3>
+                        <div class="flex items-center space-x-4 bg-gray-50 p-4 rounded-lg">
+                            <img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=80&h=80&fit=crop" 
+                                 alt="Premium Wireless Headphones" 
+                                 class="w-20 h-20 object-cover rounded-lg">
+                            <div class="flex-1">
+                                <h4 class="font-medium text-gray-900" id="thankyou-item-name">Premium Wireless Headphones</h4>
+                                <p class="text-sm text-gray-500">
+                                    <span id="thankyou-item-color">Black</span> / 
+                                    <span id="thankyou-item-size">M</span>
+                                </p>
+                                <p class="text-sm text-gray-500">Quantity: <span id="thankyou-item-quantity">1</span></p>
+                            </div>
+                            <div class="text-right">
+                                <p class="font-medium text-gray-900" id="thankyou-item-price">$199.99</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Price Summary -->
+                    <div class="mt-6 pt-6 border-t border-gray-200 space-y-3">
+                        <div class="flex justify-between text-sm">
+                            <span class="text-gray-600">Subtotal:</span>
+                            <span id="thankyou-subtotal">$199.99</span>
+                        </div>
+                        
+                        <div id="thankyou-discount-row" class="flex justify-between text-sm text-green-600 hidden">
+                            <span>Discount Applied:</span>
+                            <span id="thankyou-discount">-$0.00</span>
+                        </div>
+                        
+                        <div class="flex justify-between text-sm">
+                            <span class="text-gray-600">Shipping:</span>
+                            <span id="thankyou-shipping">Free</span>
+                        </div>
+                        
+                        <div class="flex justify-between text-sm">
+                            <span class="text-gray-600">Tax:</span>
+                            <span id="thankyou-tax">$16.00</span>
+                        </div>
+                        
+                        <div class="border-t pt-3 flex justify-between text-xl font-bold">
+                            <span class="text-gray-900">Total Paid:</span>
+                            <span id="thankyou-total" class="text-blue-600">$215.99</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Next Steps -->
+                <div class="bg-blue-50 p-6 rounded-xl mb-8">
+                    <h3 class="text-lg font-semibold text-blue-900 mb-3">What happens next?</h3>
+                    <div class="space-y-2 text-sm text-blue-800">
+                        <p><i class="fas fa-envelope mr-2"></i>A confirmation email has been sent to your email address</p>
+                        <p><i class="fas fa-box mr-2"></i>Your order will be processed within 1-2 business days</p>
+                        <p><i class="fas fa-truck mr-2"></i>You'll receive tracking information once your order ships</p>
+                        <p><i class="fas fa-headset mr-2"></i>Our support team is available 24/7 if you need assistance</p>
+                    </div>
+                </div>
+                
+                <!-- Action Buttons -->
+                <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                    <button type="button" 
+                            id="continue-shopping-btn" 
+                            class="px-8 py-3 bg-blue-600 border border-transparent rounded-md text-base font-medium text-white shadow-sm hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-colors"
+                            onclick="showPage('product-page')">
+                        <i class="fas fa-shopping-bag mr-2"></i>
+                        Continue Shopping
+                    </button>
+                    
+                    <button type="button" 
+                            id="track-order-btn"
+                            class="px-8 py-3 bg-green-600 border border-transparent rounded-md text-base font-medium text-white shadow-sm hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 transition-colors">
+                        <i class="fas fa-search mr-2"></i>
+                        Track Order
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Global state management
+        const state = {
+            product: {
+                id: 'WH-001',
+                name: 'Premium Wireless Headphones',
+                brand: 'AudioMax',
+                category: 'Electronics > Audio > Headphones',
+                basePrice: 199.99,
+                color: 'Black',
+                size: 'M',
+                quantity: 1
+            },
+            cart: {
+                items: [],
+                total: 0,
+                count: 0
+            },
+            checkout: {
+                shipping: 'standard',
+                shippingCost: 0,
+                tax: 0,
+                discount: 0,
+                couponCode: '',
+                total: 0
+            },
+            user: {
+                location: 'New York',
+                isLoggedIn: false
+            },
+            order: {
+                id: '',
+                date: '',
+                status: 'pending'
+            }
+        };
+
+        // Coupon codes database
+        const coupons = {
+            'WELCOME20': { type: 'percent', value: 20, description: '20% off your order' },
+            'SAVE50': { type: 'fixed', value: 50, description: '$50 off your order' },
+            'FREESHIP': { type: 'shipping', value: 0, description: 'Free shipping' }
+        };
+
+        // Initialize application
+        document.addEventListener('DOMContentLoaded', function() {
+            initializeEventListeners();
+            updatePricing();
+            updateLocationDisplay();
+            setCurrentDate();
+        });
+
+        // Event listener setup
+        function initializeEventListeners() {
+            // Product page events
+            document.getElementById('quantity-selector').addEventListener('change', handleQuantityChange);
+            document.getElementById('qty-decrease').addEventListener('click', () => adjustQuantity(-1));
+            document.getElementById('qty-increase').addEventListener('click', () => adjustQuantity(1));
+            document.getElementById('size-selector').addEventListener('change', handleSizeChange);
+            document.getElementById('apply-coupon-btn').addEventListener('click', applyCoupon);
+            document.getElementById('add-to-cart-btn').addEventListener('click', addToCart);
+            document.getElementById('buy-now-btn').addEventListener('click', buyNow);
+            document.getElementById('wishlist-btn').addEventListener('click', toggleWishlist);
+            document.getElementById('location-selector').addEventListener('change', handleLocationChange);
+
+            // Color selection
+            document.querySelectorAll('.color-option').forEach(btn => {
+                btn.addEventListener('click', (e) => handleColorChange(e.target.dataset.color));
+            });
+
+            // Related products
+            document.querySelectorAll('.related-product-btn').forEach(btn => {
+                btn.addEventListener('click', (e) => handleRelatedProductClick(e.target));
+            });
+
+            // Social sharing
+            document.getElementById('share-facebook').addEventListener('click', () => shareProduct('facebook'));
+            document.getElementById('share-twitter').addEventListener('click', () => shareProduct('twitter'));
+            document.getElementById('share-pinterest').addEventListener('click', () => shareProduct('pinterest'));
+            document.getElementById('share-whatsapp').addEventListener('click', () => shareProduct('whatsapp'));
+
+            // Checkout page events
+            document.getElementById('place-order-btn').addEventListener('click', placeOrder);
+            document.querySelectorAll('input[name="shipping"]').forEach(radio => {
+                radio.addEventListener('change', handleShippingChange);
+            });
+            document.querySelectorAll('input[name="paymentMethod"]').forEach(radio => {
+                radio.addEventListener('change', handlePaymentMethodChange);
+            });
+
+            // Form field events for checkout
+            const checkoutFields = ['checkout-firstname', 'checkout-lastname', 'checkout-email', 'checkout-phone', 
+                                   'checkout-address', 'checkout-city', 'checkout-state', 'checkout-zip'];
+            checkoutFields.forEach(fieldId => {
+                const field = document.getElementById(fieldId);
+                if (field) {
+                    field.addEventListener('blur', validateCheckoutField);
+                    field.addEventListener('input', handleFormProgress);
+                }
+            });
+
+            // Thank you page events
+            document.getElementById('track-order-btn').addEventListener('click', trackOrder);
+        }
+
+        // Product interaction handlers
+        function handleQuantityChange() {
+            state.product.quantity = parseInt(document.getElementById('quantity-selector').value);
+            updatePricing();
+        }
+
+        function adjustQuantity(delta) {
+            const newQuantity = Math.max(1, Math.min(10, state.product.quantity + delta));
+            state.product.quantity = newQuantity;
+            document.getElementById('quantity-selector').value = newQuantity;
+            updatePricing();
+        }
+
+        function handleSizeChange() {
+            state.product.size = document.getElementById('size-selector').value;
+        }
+
+        function handleColorChange(color) {
+            state.product.color = color;
+            document.querySelectorAll('.color-option').forEach(btn => btn.classList.remove('selected'));
+            event.target.classList.add('selected');
+            document.getElementById('selected-color').textContent = `Selected: ${color}`;
+        }
+
+        function handleLocationChange() {
+            state.user.location = document.getElementById('location-selector').value;
+            updateLocationDisplay();
+        }
+
+        function updateLocationDisplay() {
+            // This is where you might update shipping estimates, taxes, etc. based on location
+            calculateTax();
+        }
+
+        function calculateTax() {
+            // Simple tax calculation based on location
+            const taxRates = {
+                'New York': 0.08,
+                'California': 0.0725,
+                'Texas': 0.0625,
+                'Florida': 0.06,
+                'Chicago': 0.0975,
+                'London': 0.20,
+                'Tokyo': 0.10,
+                'Mumbai': 0.18
+            };
+            
+            const subtotal = calculateSubtotal();
+            const taxRate = taxRates[state.user.location] || 0.08;
+            state.checkout.tax = subtotal * taxRate;
+        }
+
+        // Coupon handling
+        function applyCoupon() {
+            const couponCode = document.getElementById('coupon-input').value.trim().toUpperCase();
+            const messageEl = document.getElementById('coupon-message');
+            
+            if (!couponCode) {
+                showCouponMessage('Please enter a coupon code.', 'error');
+                return;
+            }
+
+            if (coupons[couponCode]) {
+                const coupon = coupons[couponCode];
+                state.checkout.couponCode = couponCode;
+                
+                if (coupon.type === 'percent') {
+                    state.checkout.discount = calculateSubtotal() * (coupon.value / 100);
+                } else if (coupon.type === 'fixed') {
+                    state.checkout.discount = Math.min(coupon.value, calculateSubtotal());
+                } else if (coupon.type === 'shipping') {
+                    state.checkout.shippingCost = 0;
+                    state.checkout.discount = 15; // Assuming standard shipping was $15
+                }
+                
+                showCouponMessage(`Success! ${coupon.description} applied.`, 'success');
+                updatePricing();
+            } else {
+                showCouponMessage('Invalid coupon code. Check available codes below.', 'error');
+            }
+        }
+
+        function showCouponMessage(message, type) {
+            const messageEl = document.getElementById('coupon-message');
+            messageEl.textContent = message;
+            messageEl.className = `mt-2 text-sm ${type === 'success' ? 'text-green-600' : 'text-red-600'}`;
+            messageEl.classList.remove('hidden');
+        }
+
+        // Cart operations
+        function addToCart() {
+            const cartItem = {
+                id: state.product.id,
+                name: state.product.name,
+                price: state.product.basePrice,
+                quantity: state.product.quantity,
+                color: state.product.color,
+                size: state.product.size,
+                image: document.getElementById('main-product-image').src
+            };
+
+            state.cart.items.push(cartItem);
+            state.cart.count += state.product.quantity;
+            
+            updateCartDisplay();
+            showNotification('Product added to cart successfully!');
+            
+            // Animate cart icon
+            document.getElementById('cart-count').classList.add('cart-animation');
+            setTimeout(() => {
+                document.getElementById('cart-count').classList.remove('cart-animation');
+            }, 300);
+        }
+
+        function updateCartDisplay() {
+            document.getElementById('cart-count').textContent = state.cart.count;
+        }
+
+        function buyNow() {
+            addToCart();
+            showPage('checkout-page');
+        }
+
+        function toggleWishlist() {
+            const btn = document.getElementById('wishlist-btn');
+            const icon = btn.querySelector('i');
+            
+            if (icon.classList.contains('far')) {
+                icon.classList.remove('far');
+                icon.classList.add('fas');
+                btn.classList.add('text-red-500');
+                showNotification('Added to wishlist!');
+            } else {
+                icon.classList.remove('fas');
+                icon.classList.add('far');
+                btn.classList.remove('text-red-500');
+                showNotification('Removed from wishlist!');
+            }
+        }
+
+        // Related products
+        function handleRelatedProductClick(button) {
+            const productId = button.dataset.product;
+            const price = parseFloat(button.dataset.price);
+            
+            // In a real application, this would navigate to the product page
+            showNotification(`Viewing ${productId.replace('-', ' ')} - $${price}`);
+        }
+
+        // Social sharing
+        function shareProduct(platform) {
+            const url = window.location.href;
+            const text = `Check out this ${state.product.name} for only $${state.product.basePrice}!`;
+            
+            let shareUrl = '';
+            switch(platform) {
+                case 'facebook':
+                    shareUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`;
+                    break;
+                case 'twitter':
+                    shareUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent(url)}`;
+                    break;
+                case 'pinterest':
+                    shareUrl = `https://pinterest.com/pin/create/button/?url=${encodeURIComponent(url)}&description=${encodeURIComponent(text)}`;
+                    break;
+                case 'whatsapp':
+                    shareUrl = `https://wa.me/?text=${encodeURIComponent(text + ' ' + url)}`;
+                    break;
+            }
+            
+            if (shareUrl) {
+                window.open(shareUrl, '_blank', 'width=600,height=400');
+            }
+        }
+
+        // Pricing calculations
+        function calculateSubtotal() {
+            return state.product.basePrice * state.product.quantity;
+        }
+
+        function calculateFinalPrice() {
+            const subtotal = calculateSubtotal();
+            return Math.max(0, subtotal - state.checkout.discount);
+        }
+
+        function updatePricing() {
+            const subtotal = calculateSubtotal();
+            const finalPrice = calculateFinalPrice();
+            
+            // Update product page pricing
+            document.getElementById('subtotal-price').textContent = `$${finalPrice.toFixed(2)}`;
+            
+            // Show/hide discount information
+            if (state.checkout.discount > 0) {
+                document.getElementById('original-price').classList.remove('hidden');
+                document.getElementById('original-price-value').textContent = subtotal.toFixed(2);
+                document.getElementById('discount-badge').classList.remove('hidden');
+                document.getElementById('discount-percent').textContent = Math.round((state.checkout.discount / subtotal) * 100);
+                
+                document.getElementById('savings-display').classList.remove('hidden');
+                document.getElementById('savings-amount').textContent = `$${state.checkout.discount.toFixed(2)}`;
+            } else {
+                document.getElementById('original-price').classList.add('hidden');
+                document.getElementById('discount-badge').classList.add('hidden');
+                document.getElementById('savings-display').classList.add('hidden');
+            }
+
+            // Update checkout page if visible
+            if (document.getElementById('checkout-page').classList.contains('active')) {
+                updateCheckoutSummary();
+            }
+        }
+
+        // Checkout handling
+        function handleShippingChange(event) {
+            state.checkout.shipping = event.target.value;
+            
+            // Update shipping cost
+            const shippingCosts = {
+                'standard': 0,
+                'express': 15.00,
+                'overnight': 29.99
+            };
+            
+            if (state.checkout.couponCode !== 'FREESHIP') {
+                state.checkout.shippingCost = shippingCosts[state.checkout.shipping];
+            }
+            
+            updateCheckoutSummary();
+        }
+
+        function handlePaymentMethodChange(event) {
+            const paymentMethod = event.target.value;
+            const cardDetails = document.getElementById('card-details');
+            
+            if (paymentMethod === 'credit-card') {
+                cardDetails.style.display = 'block';
+            } else {
+                cardDetails.style.display = 'none';
+            }
+        }
+
+        function validateCheckoutField(event) {
+            const field = event.target;
+            const isValid = field.checkValidity();
+            
+            if (!isValid) {
+                field.classList.add('border-red-300');
+                field.classList.remove('border-gray-300');
+            } else {
+                field.classList.remove('border-red-300');
+                field.classList.add('border-gray-300');
+            }
+            
+            return isValid;
+        }
+
+        function handleFormProgress() {
+            // Calculate form completion percentage
+            const requiredFields = document.querySelectorAll('#checkout-form [required]');
+            let completedFields = 0;
+            
+            requiredFields.forEach(field => {
+                if (field.value.trim() !== '') {
+                    completedFields++;
+                }
+            });
+            
+            const progress = Math.round((completedFields / requiredFields.length) * 100);
+            // You could show a progress indicator here
+        }
+
+        function updateCheckoutSummary() {
+            const subtotal = calculateSubtotal();
+            calculateTax(); // Recalculate tax
+            
+            const shipping = state.checkout.shippingCost;
+            const tax = state.checkout.tax;
+            const discount = state.checkout.discount;
+            const total = subtotal + shipping + tax - discount;
+            
+            // Update checkout display
+            document.getElementById('checkout-subtotal').textContent = `$${subtotal.toFixed(2)}`;
+            document.getElementById('checkout-shipping').textContent = shipping === 0 ? 'Free' : `$${shipping.toFixed(2)}`;
+            document.getElementById('checkout-tax').textContent = `$${tax.toFixed(2)}`;
+            document.getElementById('checkout-total').textContent = `$${total.toFixed(2)}`;
+            
+            // Update item details
+            document.getElementById('checkout-item-color').textContent = state.product.color;
+            document.getElementById('checkout-item-size').textContent = state.product.size;
+            document.getElementById('checkout-item-quantity').textContent = state.product.quantity;
+            document.getElementById('checkout-item-price').textContent = `$${subtotal.toFixed(2)}`;
+            
+            // Show/hide discount
+            if (discount > 0) {
+                document.getElementById('checkout-discount-row').classList.remove('hidden');
+                document.getElementById('checkout-discount').textContent = `-$${discount.toFixed(2)}`;
+                document.getElementById('checkout-coupon-code').textContent = state.checkout.couponCode;
+            } else {
+                document.getElementById('checkout-discount-row').classList.add('hidden');
+            }
+            
+            state.checkout.total = total;
+        }
+
+        function placeOrder() {
+            // Validate form
+            const form = document.getElementById('checkout-form');
+            if (!form.checkValidity()) {
+                form.reportValidity();
+                return;
+            }
+            
+            // Generate order details
+            generateOrderId();
+            
+            // Collect customer information
+            const customerData = {
+                firstName: document.getElementById('checkout-firstname').value,
+                lastName: document.getElementById('checkout-lastname').value,
+                email: document.getElementById('checkout-email').value,
+                phone: document.getElementById('checkout-phone').value,
+                address: document.getElementById('checkout-address').value,
+                city: document.getElementById('checkout-city').value,
+                state: document.getElementById('checkout-state').value,
+                zipCode: document.getElementById('checkout-zip').value
+            };
+            
+            // Store order data
+            state.order.customer = customerData;
+            state.order.status = 'confirmed';
+            
+            // Show thank you page
+            showPage('thankyou-page');
+        }
+
+        function generateOrderId() {
+            const timestamp = Date.now();
+            const randomNum = Math.floor(Math.random() * 1000);
+            state.order.id = `ORD-2024-${timestamp.toString().slice(-6)}${randomNum.toString().padStart(3, '0')}`;
+            state.order.date = new Date().toLocaleDateString();
+        }
+
+        function setCurrentDate() {
+            document.getElementById('order-date').textContent = new Date().toLocaleDateString('en-US', {
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric'
+            });
+        }
+
+        function updateThankYouPage() {
+            const subtotal = calculateSubtotal();
+            const total = state.checkout.total;
+            
+            // Update order information
+            document.getElementById('order-id').textContent = state.order.id;
+            
+            // Update customer information if available
+            if (state.order.customer) {
+                document.getElementById('customer-name').textContent = 
+                    `${state.order.customer.firstName} ${state.order.customer.lastName}`;
+                document.getElementById('customer-email').textContent = state.order.customer.email;
+            }
+            
+            // Update payment and shipping method
+            const selectedPayment = document.querySelector('input[name="paymentMethod"]:checked');
+            const selectedShipping = document.querySelector('input[name="shipping"]:checked');
+            
+            if (selectedPayment) {
+                const paymentLabels = {
+                    'credit-card': 'Credit Card',
+                    'paypal': 'PayPal',
+                    'cash': 'Cash on Delivery'
+                };
+                document.getElementById('payment-method-display').textContent = 
+                    paymentLabels[selectedPayment.value] || 'Credit Card';
+            }
+            
+            if (selectedShipping) {
+                const shippingLabels = {
+                    'standard': 'Standard Shipping (5-7 days)',
+                    'express': 'Express Shipping (2-3 days)',
+                    'overnight': 'Overnight Shipping (Next day)'
+                };
+                document.getElementById('shipping-method-display').textContent = 
+                    shippingLabels[selectedShipping.value] || 'Standard Shipping';
+            }
+            
+            // Update item details
+            document.getElementById('thankyou-item-color').textContent = state.product.color;
+            document.getElementById('thankyou-item-size').textContent = state.product.size;
+            document.getElementById('thankyou-item-quantity').textContent = state.product.quantity;
+            document.getElementById('thankyou-item-price').textContent = `$${subtotal.toFixed(2)}`;
+            
+            // Update pricing
+            document.getElementById('thankyou-subtotal').textContent = `$${subtotal.toFixed(2)}`;
+            document.getElementById('thankyou-shipping').textContent = 
+                state.checkout.shippingCost === 0 ? 'Free' : `$${state.checkout.shippingCost.toFixed(2)}`;
+            document.getElementById('thankyou-tax').textContent = `$${state.checkout.tax.toFixed(2)}`;
+            document.getElementById('thankyou-total').textContent = `$${total.toFixed(2)}`;
+            
+            // Show/hide discount
+            if (state.checkout.discount > 0) {
+                document.getElementById('thankyou-discount-row').classList.remove('hidden');
+                document.getElementById('thankyou-discount').textContent = `-$${state.checkout.discount.toFixed(2)}`;
+            } else {
+                document.getElementById('thankyou-discount-row').classList.add('hidden');
+            }
+        }
+
+        function trackOrder() {
+            showNotification(`Tracking order ${state.order.id}. You will receive updates via email.`);
+            // In a real application, this would open a tracking page or modal
+        }
+
+        // Page navigation
+        function showPage(pageId) {
+            // Hide all pages
+            document.querySelectorAll('.page').forEach(page => {
+                page.classList.remove('active');
+            });
+            
+            // Show selected page
+            document.getElementById(pageId).classList.add('active');
+            
+            // Page-specific setup
+            switch(pageId) {
+                case 'checkout-page':
+                    updateCheckoutSummary();
+                    break;
+                case 'thankyou-page':
+                    updateThankYouPage();
+                    break;
+            }
+            
+            // Scroll to top
+            window.scrollTo(0, 0);
+        }
+
+        // Utility functions
+        function showNotification(message) {
+            const notification = document.getElementById('notification');
+            const text = document.getElementById('notification-text');
+            
+            text.textContent = message;
+            notification.style.display = 'block';
+            
+            setTimeout(() => {
+                notification.style.display = 'none';
+            }, 3000);
+        }
+
+        // Advanced tracking scenarios to implement:
+
+        /*
+        SCENARIO 1: ADVANCED USER JOURNEY TRACKING
+        Challenge: Track complete user journey from first visit to purchase completion
+        Required Events: page_view, scroll_depth, time_on_page, session_start, form_start, form_progress, form_abandon, purchase_intent, purchase_complete
+        Advanced Metrics: User engagement score, conversion funnel, drop-off points
+        */
+
+        /*
+        SCENARIO 2: DYNAMIC PRODUCT PERFORMANCE ANALYTICS  
+        Challenge: Track product performance across different user segments and behaviors
+        Required Events: product_view, product_interaction (color/size changes), add_to_cart, cart_abandonment, related_product_clicks, wishlist_actions
+        Advanced Metrics: Product affinity, cross-sell effectiveness, inventory optimization
+        */
+
+        /*
+        SCENARIO 3: REVENUE ATTRIBUTION & COUPON ANALYTICS
+        Challenge: Track all revenue sources, coupon usage patterns, and discount effectiveness
+        Required Events: coupon_view, coupon_attempt, coupon_success, coupon_failure, revenue_source, discount_impact
+        Advanced Metrics: Coupon ROI, discount abuse detection, customer lifetime value impact
+        */
+
+        /*
+        SCENARIO 4: CHECKOUT OPTIMIZATION & ABANDONMENT ANALYSIS
+        Challenge: Track detailed checkout behavior to optimize conversion rates
+        Required Events: checkout_start, shipping_info_start, shipping_info_complete, payment_info_start, payment_info_complete, checkout_error, checkout_abandon
+        Advanced Metrics: Field-level completion rates, error analysis, payment method performance
+        */
+
+        /*
+        SCENARIO 5: CROSS-PLATFORM USER IDENTIFICATION & BEHAVIOR SYNC
+        Challenge: Track users across devices and sessions, maintain user identity and behavior history
+        Required Events: user_login, user_register, cross_device_sync, returning_user, user_properties_update
+        Advanced Metrics: Cross-device conversion paths, user behavior consistency, lifetime engagement
+        */
+
+    </script>
+</body>
+</html>
+
+
