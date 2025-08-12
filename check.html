@@ -263,21 +263,75 @@
   letter-spacing: 0.5px;
 }
 
-footer a {
-  transition: color 0.3s ease, text-decoration 0.3s ease;
+.footer {
+  background-color: var(--dark);
+  color: #fff;
 }
 
-footer a:hover {
+.footer-top {
+  border-top: 4px solid var(--primary);
+  padding: 3rem 0;
+}
+
+.footer-columns {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 2rem;
+}
+
+.footer-col h3 {
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  color: var(--primary);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.footer-col ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footer-col ul li {
+  margin-bottom: 0.6rem;
+}
+
+.footer-col ul li a {
+  color: #bbb;
+  text-decoration: none;
+  transition: color 0.3s ease, border-bottom 0.3s ease;
+}
+
+.footer-col ul li a:hover {
+  color: var(--primary);
+  border-bottom: 1px solid var(--primary);
+}
+
+.footer-col .two-column {
+  columns: 2;
+  column-gap: 1.5rem;
+}
+
+.footer-bottom {
+  background: #0d1325;
+  padding: 1rem 0;
+  border-top: 1px solid rgba(255,255,255,0.1);
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  font-size: 0.9rem;
+}
+
+.footer-bottom a {
   color: var(--primary);
 }
 
-.bg-dark {
-  background-color: var(--dark);
+.footer-bottom a:hover {
+  text-decoration: underline;
 }
 
-.border-primary {
-  border-color: var(--primary);
-}
 
     </style>
 
@@ -2085,64 +2139,64 @@ footer a:hover {
         </div>
     </section>
 
-<!-- Main Footer -->
-<footer class="bg-dark text-white pt-12 pb-8">
-  <div class="container mx-auto px-4 grid grid-cols-1 md:grid-cols-3 gap-8">
-    
-    <!-- Blogs -->
-    <div>
-      <h3 class="text-lg font-semibold mb-4 border-b border-primary pb-2">Blogs</h3>
-      <ul class="space-y-2 text-sm">
-        <li><a href="..." class="hover:underline hover:text-primary transition">Everything You Need To Know About Physiotherapy</a></li>
-        <li><a href="..." class="hover:underline hover:text-primary transition">Top 10 Physiotherapists In Kolkata</a></li>
-        <li><a href="..." class="hover:underline hover:text-primary transition">Blood Flow Restriction Therapy</a></li>
-        <li><a href="..." class="hover:underline hover:text-primary transition">Hijama in Kolkata: Complete Guide</a></li>
-        <li><a href="..." class="hover:underline hover:text-primary transition">Read More Blogs</a></li>
-      </ul>
-    </div>
+<footer class="footer">
+  <div class="footer-top">
+    <div class="container">
+      <div class="footer-columns">
+        
+        <!-- Blogs -->
+        <div class="footer-col">
+          <h3>Blogs</h3>
+          <ul>
+            <li><a href="#">Everything You Need To Know About Physiotherapy</a></li>
+            <li><a href="#">Top 10 Physiotherapists In Kolkata</a></li>
+            <li><a href="#">Blood Flow Restriction Therapy</a></li>
+            <li><a href="#">Hijama in Kolkata: Complete Guide</a></li>
+            <li><a href="#">Read More Blogs</a></li>
+          </ul>
+        </div>
 
-    <!-- Quick Links -->
-    <div>
-      <h3 class="text-lg font-semibold mb-4 border-b border-primary pb-2">Quick Links</h3>
-      <ul class="space-y-2 text-sm">
-        <li><a href="/" class="hover:underline hover:text-primary transition">Home</a></li>
-        <li><a href="/About" class="hover:underline hover:text-primary transition">About</a></li>
-        <li><a href="/Services" class="hover:underline hover:text-primary transition">Services</a></li>
-        <li><a href="#contact" class="hover:underline hover:text-primary transition">Contact</a></li>
-      </ul>
-    </div>
+        <!-- Quick Links -->
+        <div class="footer-col">
+          <h3>Quick Links</h3>
+          <ul>
+            <li><a href="#">Home</a></li>
+            <li><a href="#">About</a></li>
+            <li><a href="#">Services</a></li>
+            <li><a href="#">Contact</a></li>
+          </ul>
+        </div>
 
-    <!-- Other Pages -->
-    <div>
-      <h3 class="text-lg font-semibold mb-4 border-b border-primary pb-2">Other Pages</h3>
-      <div class="grid grid-cols-1 sm:grid-cols-2 gap-x-4">
-        <ul class="space-y-2 text-sm">
-          <li><a href="..." class="hover:underline hover:text-primary transition">Stroke Rehabilitation</a></li>
-          <li><a href="..." class="hover:underline hover:text-primary transition">Knee Pain Treatment</a></li>
-          <li><a href="..." class="hover:underline hover:text-primary transition">Back Pain Physiotherapy</a></li>
-          <li><a href="..." class="hover:underline hover:text-primary transition">Neck Pain Physiotherapy</a></li>
-          <li><a href="..." class="hover:underline hover:text-primary transition">Physiotherapy Near Me</a></li>
-        </ul>
-        <ul class="space-y-2 text-sm">
-          <li><a href="..." class="hover:underline hover:text-primary transition">Sports Injury Recovery</a></li>
-          <li><a href="..." class="hover:underline hover:text-primary transition">Physiotherapy in Kolkata</a></li>
-          <li><a href="..." class="hover:underline hover:text-primary transition">Chiropractic Treatment</a></li>
-          <li><a href="..." class="hover:underline hover:text-primary transition">Sports Injury in Kolkata</a></li>
-          <li><a href="..." class="hover:underline hover:text-primary transition">Knee Pain in Kolkata</a></li>
-        </ul>
+        <!-- Other Pages -->
+        <div class="footer-col">
+          <h3>Other Pages</h3>
+          <ul class="two-column">
+            <li><a href="#">Stroke Rehabilitation</a></li>
+            <li><a href="#">Sports Injury Recovery</a></li>
+            <li><a href="#">Knee Pain Treatment</a></li>
+            <li><a href="#">Physiotherapy in Kolkata</a></li>
+            <li><a href="#">Back Pain Physiotherapy</a></li>
+            <li><a href="#">Chiropractic Treatment</a></li>
+            <li><a href="#">Neck Pain Physiotherapy</a></li>
+            <li><a href="#">Sports Injury in Kolkata</a></li>
+            <li><a href="#">Physiotherapy Near Me</a></li>
+            <li><a href="#">Knee Pain in Kolkata</a></li>
+          </ul>
+        </div>
+
       </div>
     </div>
+  </div>
 
+  <!-- Bottom strip -->
+  <div class="footer-bottom">
+    <div class="container">
+      <p>&copy; Biswanath Chowdhury. All rights reserved.</p>
+      <p>Website Developed By – <a href="#" target="_blank">Ritam Debnath</a></p>
+    </div>
   </div>
 </footer>
 
-<!-- Sub-Footer -->
-<div class="bg-gray-100 py-4 border-t border-primary">
-  <div class="container mx-auto px-4 flex flex-col md:flex-row justify-between text-sm text-gray-600">
-    <p>&copy; <span id="currentYear"></span> Biswanath Chowdhury. All rights reserved.</p>
-    <p>Website Developed By – <a href="https://www.linkedin.com/in/ritam-debnath-179330203/" target="_blank" class="text-primary hover:underline">Ritam Debnath</a></p>
-  </div>
-</div>
 
 </body>
 </html>
