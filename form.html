@@ -83,6 +83,39 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
         <button type="submit">Submit</button>
     </form>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    const steps = [
+        document.getElementById('first_name'),
+        document.getElementById('last_name'),
+        document.getElementById('email'),
+        document.getElementById('phone'),
+        document.getElementById('company')
+    ];
+
+    // Initially disable all except first field
+    for (let i = 1; i < steps.length; i++) {
+        steps[i].disabled = true;
+    }
+
+    // Unlock next field when current one is filled
+    steps.forEach((field, index) => {
+        field.addEventListener('input', function () {
+            if (field.value.trim() !== "" && steps[index + 1]) {
+                steps[index + 1].disabled = false;
+            }
+        });
+
+        // Show warning if trying to click a locked field
+        field.addEventListener('focus', function () {
+            if (field.disabled) {
+                alert(`Please complete Step ${index} before continuing.`);
+                steps[index - 1]?.focus();
+            }
+        });
+    });
+});
+</script>
 
 </body>
 </html>
