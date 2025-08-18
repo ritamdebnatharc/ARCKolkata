@@ -7,7 +7,7 @@
     <title>Why Patients Call Dr. B. Chowdhury(PT) Kolkata's Best Physio - Expert Care with 25+ Years Experience</title>
     <meta name="description" content="Discover why Dr. Biswanath Chowdhury (PT) is Kolkata's most trusted physiotherapist with 25+ years experience, 5000+ patients treated, and proven expertise in pain management and rehabilitation.">
     <link rel="canonical" href="https://www.physiobiswanath.in/why-patients-call-dr-b-chowdhury-kolkatas-best-physio" />
-    <meta name="robots" content="noindex, nofollow">
+    <meta name="robots" content="noindex, follow">
     <link rel="icon" href="/favicon.ico" type="image/x-icon">
 
     <!-- Open Graph / Facebook -->
@@ -259,80 +259,72 @@
         tr:hover td {
             background-color: var(--light);
         }
-        footer h3 {
-  letter-spacing: 0.5px;
-}
 
-.footer {
-  background-color: var(--dark);
-  color: #fff;
-}
+        /* Footer Styling */
+        .footer {
+            background: linear-gradient(135deg, #1f2937, #111827);
+            color: #fff;
+        }
 
-.footer-top {
-  border-top: 4px solid var(--primary);
-  padding: 3rem 0;
-}
+        .footer h3 {
+            color: var(--primary);
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
 
-.footer-columns {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 2rem;
-}
+        .footer ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
 
-.footer-col h3 {
-  font-size: 1.1rem;
-  font-weight: 700;
-  margin-bottom: 1rem;
-  color: var(--primary);
-  text-transform: uppercase;
-  letter-spacing: 1px;
-}
+        .footer ul li {
+            margin-bottom: 0.75rem;
+        }
 
-.footer-col ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
+        .footer ul li a {
+            color: #d1d5db;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+        }
 
-.footer-col ul li {
-  margin-bottom: 0.6rem;
-}
+        .footer ul li a:hover {
+            color: var(--primary);
+            padding-left: 5px;
+        }
 
-.footer-col ul li a {
-  color: #bbb;
-  text-decoration: none;
-  transition: color 0.3s ease, border-bottom 0.3s ease;
-}
+        .footer-bottom {
+            background: #0f172a;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            padding: 1.5rem 0;
+        }
 
-.footer-col ul li a:hover {
-  color: var(--primary);
-  border-bottom: 1px solid var(--primary);
-}
+        .author-bio {
+            background: var(--light);
+            border-left: 5px solid var(--primary);
+            padding: 2rem;
+            margin: 2rem 0;
+            border-radius: 0 10px 10px 0;
+        }
 
-.footer-col .two-column {
-  columns: 2;
-  column-gap: 1.5rem;
-}
+        .mobile-menu {
+            transform: translateX(-100%);
+            transition: transform 0.3s ease;
+        }
 
-.footer-bottom {
-  background: #0d1325;
-  padding: 1rem 0;
-  border-top: 1px solid rgba(255,255,255,0.1);
-  display: flex;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  font-size: 0.9rem;
-}
+        .mobile-menu.show {
+            transform: translateX(0);
+        }
 
-.footer-bottom a {
-  color: var(--primary);
-}
-
-.footer-bottom a:hover {
-  text-decoration: underline;
-}
-
-
+        /* Mobile navigation toggle */
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobileMenu');
+            menu.classList.toggle('hidden');
+        }
     </style>
 
     <!-- Advanced Article Schema with Complete Content Structure -->
@@ -883,6 +875,38 @@
 
         <div class="section-divider"></div>
 
+        <!-- Author Bio Section -->
+        <section class="author-bio rounded-lg shadow-lg mb-8">
+            <div class="flex flex-col md:flex-row items-center gap-6">
+                <div class="flex-shrink-0">
+                    <img src="https://res.cloudinary.com/dkwdrzobk/image/upload/v1745149825/image-2_n6hevn.avif" 
+                         alt="Dr. Biswanath Chowdhury (PT) - Professional physiotherapist" 
+                         class="w-32 h-32 rounded-full object-cover border-4 border-primary">
+                </div>
+                <div class="text-center md:text-left">
+                    <h3 class="text-2xl font-bold text-primary mb-2">About the Author</h3>
+                    <h4 class="text-xl font-semibold text-gray-800 mb-3">Dr. Biswanath Chowdhury (PT)</h4>
+                    <p class="text-gray-700 mb-4 leading-relaxed">
+                        Dr. Biswanath Chowdhury is a highly experienced physiotherapist with over 25 years of clinical practice in Kolkata. He holds a Bachelor of Physiotherapy (BPT) degree and has successfully treated more than 5000 patients across various specializations including orthopedic rehabilitation, sports injury recovery, neurological physiotherapy, and geriatric care.
+                    </p>
+                    <p class="text-gray-700 mb-4">
+                        His expertise spans multiple treatment modalities including manual therapy, electrotherapy, exercise prescription, and patient education. Dr. B. Chowdhury (PT) is known for his patient-centered approach and commitment to evidence-based practice.
+                    </p>
+                    <div class="flex justify-center md:justify-start space-x-4">
+                        <a href="https://www.facebook.com/biswanath.chowdhury.370/" class="text-blue-600 hover:text-blue-800 transition duration-300" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-facebook-f text-xl"></i>
+                        </a>
+                        <a href="https://www.instagram.com/biswanath.chowdhury.370/" class="text-pink-600 hover:text-pink-800 transition duration-300" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-instagram text-xl"></i>
+                        </a>
+                        <a href="https://www.youtube.com/@Swasthatirtha-Naihati-kolkata" class="text-red-600 hover:text-red-800 transition duration-300" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-youtube text-xl"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <!-- Who is Dr. B. Chowdhury Section -->
         <section id="who-is-dr-chowdhury" class="bg-white rounded-lg shadow-lg p-8 mb-8">
             <h2 class="text-3xl font-bold mb-6 text-primary">Who is Dr. B. Chowdhury (PT)? A Legacy of Healing and Excellence</h2>
@@ -1275,6 +1299,28 @@
             <p class="text-gray-700 mb-6 text-lg">
                 In a city with numerous healthcare providers, distinguishing exceptional physiotherapy care requires evaluating multiple factors. Dr. Biswanath Chowdhury exemplifies the qualities that define excellence in physiotherapy practice.
             </p>
+
+            <div class="bg-gradient-light p-8 rounded-lg mb-8">
+                <h3 class="text-2xl font-semibold mb-4 text-gray-800">What Sets Dr. B. Chowdhury (PT) Apart from Others</h3>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                        <h4 class="font-semibold text-primary mb-3">Experience and Expertise</h4>
+                        <p class="text-gray-700 mb-4">With 25+ years of clinical practice and over 5000 patients treated, Dr. Biswanath Chowdhury brings unmatched depth of knowledge and hands-on experience to every treatment session.</p>
+                        
+                        <h4 class="font-semibold text-primary mb-3">Personalized Treatment Approach</h4>
+                        <p class="text-gray-700 mb-4">Every patient receives a customized treatment plan based on comprehensive assessment, individual goals, and specific condition requirements.</p>
+                    </div>
+                    
+                    <div>
+                        <h4 class="font-semibold text-primary mb-3">Evidence-Based Practice</h4>
+                        <p class="text-gray-700 mb-4">All treatments are grounded in the latest research and clinical evidence, ensuring patients receive the most effective and up-to-date care available.</p>
+                        
+                        <h4 class="font-semibold text-primary mb-3">Comprehensive Care Model</h4>
+                        <p class="text-gray-700 mb-4">Beyond treatment, Dr. B. Chowdhury (PT) focuses on patient education, prevention strategies, and long-term wellness planning.</p>
+                    </div>
+                </div>
+            </div>
 
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
                 <div>
@@ -1883,338 +1929,547 @@
         </section>
 
         <div class="section-divider"></div>
-
-        <!-- FAQs Section -->
-        <section id="faqs" class="bg-white rounded-lg shadow-lg p-8 mb-8">
-            <h2 class="text-3xl font-bold mb-6 text-primary">Frequently Asked Questions About Dr. B. Chowdhury (PT) and Physiotherapy</h2>
-            
-            <p class="text-gray-700 mb-8 text-lg">
-                Based on Dr. Biswanath Chowdhury's 25+ years of experience treating 5000+ patients, here are the most commonly asked questions and comprehensive answers.
-            </p>
-
-            <div class="space-y-6">
-                <div class="bg-gray-50 p-6 rounded-lg">
-                    <h3 class="text-xl font-semibold mb-3 text-gray-800">
-                        <i class="fas fa-question-circle text-primary mr-2"></i>
-                        Why is Dr. B. Chowdhury (PT) considered Kolkata's best physiotherapist?
-                    </h3>
-                    <p class="text-gray-700 mb-4">
-                        Dr. Biswanath Chowdhury (PT) is considered Kolkata's best physiotherapist due to his exceptional combination of <strong>25+ years of clinical experience</strong>, successful treatment of <strong>over 5000 patients</strong>, and consistent <strong>95% success rate</strong> across all treatment categories.
-                    </p>
-                    <p class="text-gray-700">
-                        His expertise spans multiple specializations including orthopedic, neurological, and sports physiotherapy, supported by modern treatment techniques and a patient-centered approach that has earned the trust of patients across Kolkata and beyond.
-                    </p>
-                </div>
-
-                <div class="bg-gray-50 p-6 rounded-lg">
-                    <h3 class="text-xl font-semibold mb-3 text-gray-800">
-                        <i class="fas fa-question-circle text-secondary mr-2"></i>
-                        What makes Dr. Biswanath Chowdhury's treatment approach unique?
-                    </h3>
-                    <p class="text-gray-700 mb-4">
-                        Dr. B. Chowdhury (PT) combines traditional physiotherapy wisdom gained from treating 5000+ patients over 25+ years with cutting-edge, evidence-based practices. His approach includes:
-                    </p>
-                    <ul class="list-disc pl-6 text-gray-700 space-y-1">
-                        <li>Comprehensive patient assessment and individualized treatment planning</li>
-                        <li>Integration of manual therapy, exercise prescription, and modern modalities</li>
-                        <li>Patient education and home exercise programs for sustainable recovery</li>
-                        <li>Regular progress monitoring and treatment plan adjustments</li>
-                        <li>Focus on both immediate relief and long-term prevention</li>
-                    </ul>
-                </div>
-
-                <div class="bg-gray-50 p-6 rounded-lg">
-                    <h3 class="text-xl font-semibold mb-3 text-gray-800">
-                        <i class="fas fa-question-circle text-accent mr-2"></i>
-                        What conditions does Dr. B. Chowdhury (PT) specialize in treating?
-                    </h3>
-                    <p class="text-gray-700 mb-4">
-                        With 25+ years of experience, Dr. Biswanath Chowdhury specializes in a comprehensive range of conditions:
-                    </p>
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                        <ul class="list-disc pl-6 text-gray-700 space-y-1">
-                            <li><strong><a href="https://www.physiobiswanath.in/physiotherapy-for-back-pain-naihati" class="text-primary hover:text-secondary">Back pain and sciatica</a></strong></li>
-                            <li><strong><a href="https://www.physiobiswanath.in/physiotherapy-for-neck-pain-naihati" class="text-primary hover:text-secondary">Neck pain and cervical issues</a></strong></li>
-                            <li><strong><a href="https://www.physiobiswanath.in/sports-injury-physiotherapy-naihati" class="text-primary hover:text-secondary">Sports injuries and rehabilitation</a></strong></li>
-                            <li><strong><a href="https://www.physiobiswanath.in/Knee-Pain-Physiotherapy-in-Naihati" class="text-primary hover:text-secondary">Knee and joint pain</a></strong></li>
-                        </ul>
-                        <ul class="list-disc pl-6 text-gray-700 space-y-1">
-                            <li>Post-surgical rehabilitation</li>
-                            <li><strong><a href="https://www.physiobiswanath.in/Stroke-Rehabilitation-Services-in-Naihati" class="text-primary hover:text-secondary">Stroke recovery and neurological conditions</a></strong></li>
-                            <li>Frozen shoulder and arthritis</li>
-                            <li>Geriatric physiotherapy and fall prevention</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="bg-gray-50 p-6 rounded-lg">
-                    <h3 class="text-xl font-semibold mb-3 text-gray-800">
-                        <i class="fas fa-question-circle text-primary mr-2"></i>
-                        How many patients has Dr. Biswanath Chowdhury treated successfully?
-                    </h3>
-                    <p class="text-gray-700 mb-4">
-                        Dr. B. Chowdhury (PT) has successfully treated <strong>over 5000 patients</strong> during his 25+ years of clinical practice. This extensive patient experience includes:
-                    </p>
-                    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
-                        <div class="bg-white p-3 rounded">
-                            <div class="text-xl font-bold text-primary">1800+</div>
-                            <div class="text-xs text-gray-600">Back Pain Cases</div>
-                        </div>
-                        <div class="bg-white p-3 rounded">
-                            <div class="text-xl font-bold text-secondary">1200+</div>
-                            <div class="text-xs text-gray-600">Sports Injuries</div>
-                        </div>
-                        <div class="bg-white p-3 rounded">
-                            <div class="text-xl font-bold text-accent">900+</div>
-                            <div class="text-xs text-gray-600">Post-Surgery</div>
-                        </div>
-                        <div class="bg-white p-3 rounded">
-                            <div class="text-xl font-bold text-primary">600+</div>
-                            <div class="text-xs text-gray-600">Stroke Recovery</div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="bg-gray-50 p-6 rounded-lg">
-                    <h3 class="text-xl font-semibold mb-3 text-gray-800">
-                        <i class="fas fa-question-circle text-secondary mr-2"></i>
-                        How long does physiotherapy treatment take with Dr. B. Chowdhury (PT)?
-                    </h3>
-                    <p class="text-gray-700 mb-4">
-                        Treatment duration varies based on the condition, severity, and individual patient factors. Based on Dr. B. Chowdhury (PT)'s experience with 5000+ patients:
-                    </p>
-                    <ul class="list-disc pl-6 text-gray-700 space-y-2">
-                        <li><strong>Acute conditions:</strong> 4-8 weeks (sports injuries, minor strains)</li>
-                        <li><strong>Chronic pain conditions:</strong> 8-16 weeks (back pain, arthritis)</li>
-                        <li><strong>Post-surgical recovery:</strong> 6-12 weeks (joint replacements, fractures)</li>
-                        <li><strong>Neurological rehabilitation:</strong> 12-24+ weeks (stroke, spinal cord injuries)</li>
-                    </ul>
-                    <p class="text-gray-700 mt-3 text-sm">
-                        Dr. Biswanath Chowdhury provides realistic timelines during initial assessment and adjusts treatment plans based on individual progress.
-                    </p>
-                </div>
-
-                <div class="bg-gray-50 p-6 rounded-lg">
-                    <h3 class="text-xl font-semibold mb-3 text-gray-800">
-                        <i class="fas fa-question-circle text-accent mr-2"></i>
-                        What can I expect during my first visit with Dr. B. Chowdhury (PT)?
-                    </h3>
-                    <p class="text-gray-700 mb-4">
-                        Your initial consultation with Dr. Biswanath Chowdhury is comprehensive and typically lasts 60+ minutes, including:
-                    </p>
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                        <ul class="list-disc pl-6 text-gray-700 space-y-1">
-                            <li>Detailed medical history review</li>
-                            <li>Physical examination and movement assessment</li>
-                            <li>Pain and functional limitation evaluation</li>
-                            <li>Review of imaging studies and medical reports</li>
-                        </ul>
-                        <ul class="list-disc pl-6 text-gray-700 space-y-1">
-                            <li>Diagnosis explanation in understandable terms</li>
-                            <li>Customized treatment plan development</li>
-                            <li>Goal setting and timeline discussion</li>
-                            <li>Initial treatment session if appropriate</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="bg-gray-50 p-6 rounded-lg">
-                    <h3 class="text-xl font-semibold mb-3 text-gray-800">
-                        <i class="fas fa-question-circle text-primary mr-2"></i>
-                        Does Dr. B. Chowdhury (PT) provide home visit services?
-                    </h3>
-                    <p class="text-gray-700 mb-4">
-                        Yes, Dr. Biswanath Chowdhury provides selective home visit services for patients who cannot travel to the clinic due to mobility limitations or medical conditions. Home visits are available for:
-                    </p>
-                    <ul class="list-disc pl-6 text-gray-700 space-y-1">
-                        <li>Post-surgical patients with severe mobility restrictions</li>
-                        <li>Stroke rehabilitation patients in early recovery phases</li>
-                        <li>Elderly patients with significant transportation challenges</li>
-                        <li>Patients with chronic conditions affecting mobility</li>
-                    </ul>
-                    <p class="text-gray-700 mt-3 text-sm">
-                        Home visit services are subject to prior arrangement and clinical assessment. Contact the clinic for availability and scheduling.
-                    </p>
+<!-- Author Bio Section -->
+<section class="bg-white rounded-lg shadow-lg p-8 mb-8">
+    <div class="container mx-auto px-4">
+        <h2 class="text-3xl font-bold mb-6 text-primary">About the Author</h2>
+        
+        <div class="flex flex-col lg:flex-row items-start gap-8">
+            <!-- Author Image -->
+            <div class="lg:w-1/3">
+                <div class="relative">
+                    <div class="absolute inset-0 bg-primary rounded-lg transform rotate-3"></div>
+                    <img src="https://res.cloudinary.com/dkwdrzobk/image/upload/v1745149825/image-2_n6hevn.avif" 
+                         alt="Dr. Biswanath Chowdhury (PT) - Leading Physiotherapist in Kolkata" 
+                         class="relative rounded-lg shadow-lg w-full object-cover h-80">
                 </div>
             </div>
-        </section>
-
-        <div class="section-divider"></div>
-
-        <!-- Conclusion Section -->
-        <section id="conclusion" class="bg-white rounded-lg shadow-lg p-8 mb-8">
-            <h2 class="text-3xl font-bold mb-6 text-primary">Conclusion: Your Journey to Recovery Starts Here</h2>
             
-            <p class="text-gray-700 mb-6 text-lg leading-relaxed">
-                After exploring the extensive qualifications, proven track record, and comprehensive expertise of Dr. Biswanath Chowdhury (PT), it becomes clear why thousands of patients consider him Kolkata's best physiotherapist. His remarkable journey of 25+ years treating over 5000 patients speaks to a level of dedication and excellence that sets the gold standard for physiotherapy care in the region.
-            </p>
- 
+            <!-- Author Details -->
+            <div class="lg:w-2/3">
+                <div class="mb-4">
+                    <h3 class="text-2xl font-bold text-gray-800 mb-2">Dr. Biswanath Chowdhury (PT)</h3>
+                    <p class="text-primary font-semibold text-lg">Leading Physiotherapist in Kolkata | 25+ Years Experience</p>
+                </div>
                 
-               
-    
-     <!-- Contact Section -->
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
+                    <div class="text-center p-3 bg-gray-50 rounded-lg">
+                        <div class="text-2xl font-bold text-primary">25+</div>
+                        <div class="text-xs text-gray-600">Years Experience</div>
+                    </div>
+                    <div class="text-center p-3 bg-gray-50 rounded-lg">
+                        <div class="text-2xl font-bold text-secondary">5000+</div>
+                        <div class="text-xs text-gray-600">Patients Treated</div>
+                    </div>
+                    <div class="text-center p-3 bg-gray-50 rounded-lg">
+                        <div class="text-2xl font-bold text-accent">95%</div>
+                        <div class="text-xs text-gray-600">Success Rate</div>
+                    </div>
+                    <div class="text-center p-3 bg-gray-50 rounded-lg">
+                        <div class="text-2xl font-bold text-primary">BPT</div>
+                        <div class="text-xs text-gray-600">Qualified</div>
+                    </div>
+                </div>
+                
+                <p class="text-gray-700 mb-4">
+                    Dr. Biswanath Chowdhury (PT) is a highly experienced and compassionate physiotherapist with over 25 years of clinical expertise in pain management, post-surgical recovery, and mobility restoration. His unique blend of traditional techniques and modern physiotherapy practices ensures every patient receives the highest level of care.
+                </p>
+                
+                <p class="text-gray-700 mb-4">
+                    Specializing in orthopedic rehabilitation, sports injury recovery, neurological physiotherapy, and geriatric care, Dr. B. Chowdhury (PT) has successfully treated over 5000 patients throughout his distinguished career. When it comes to physiotherapy service in Kolkata, his name stands for trust, experience, and lasting results.
+                </p>
+                
+                <div class="bg-gradient-light p-4 rounded-lg mb-4">
+                    <h4 class="font-semibold mb-2 text-gray-800">Specializations:</h4>
+                    <div class="grid grid-cols-2 gap-2">
+                        <span class="expertise-badge">Orthopedic Physiotherapy</span>
+                        <span class="expertise-badge">Sports Injury Rehabilitation</span>
+                        <span class="expertise-badge">Neurological Physiotherapy</span>
+                        <span class="expertise-badge">Post-Surgical Recovery</span>
+                        <span class="expertise-badge">Chronic Pain Management</span>
+                        <span class="expertise-badge">Geriatric Care</span>
+                    </div>
+                </div>
+                
+                <!-- Social Links -->
+                <div class="flex space-x-4">
+                    <a href="https://www.facebook.com/biswanath.chowdhury.370/" 
+                       class="bg-blue-600 text-white p-3 rounded-full hover:bg-blue-700 transition duration-300" 
+                       target="_blank" rel="noopener noreferrer">
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
+                    <a href="https://www.instagram.com/biswanath.chowdhury.370/" 
+                       class="bg-pink-600 text-white p-3 rounded-full hover:bg-pink-700 transition duration-300" 
+                       target="_blank" rel="noopener noreferrer">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="https://www.youtube.com/@Swasthatirtha-Naihati-kolkata" 
+                       class="bg-red-600 text-white p-3 rounded-full hover:bg-red-700 transition duration-300" 
+                       target="_blank" rel="noopener noreferrer">
+                        <i class="fab fa-youtube"></i>
+                    </a>
+                    <a href="mailto:chowdhurybiswanath28@gmail.com" 
+                       class="bg-gray-600 text-white p-3 rounded-full hover:bg-gray-700 transition duration-300">
+                        <i class="fas fa-envelope"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Contact Section -->
 <section id="contact" class="section bg-gradient-primary text-white">
-  <div class="container mx-auto px-4">
-    <div class="text-center mb-12">
-      <h2 class="text-3xl md:text-4xl font-bold mb-4">Contact Dr. Biswanath Chowdhury (PT)</h2>
-      <p class="text-xl opacity-90">Start your journey to recovery with Kolkata's most trusted physiotherapist</p>
-      <div class="w-24 h-1 bg-white mx-auto mt-4"></div>
-    </div>
-
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-      <!-- Contact Info -->
-      <div>
-        <h3 class="text-2xl font-semibold mb-4">Get in Touch Today</h3>
-        <p class="mb-6 opacity-90">Take the first step towards pain-free living and improved mobility. Dr. B. Chowdhury (PT) and his team are ready to help you achieve your recovery goals.</p>
-        <div class="space-y-4">
-          <div class="flex items-center">
-            <i class="fas fa-phone-alt text-white mr-4 text-xl"></i> 
-            <div>
-              <p class="font-semibold">Primary: +917003647770</p>
-              <p class="opacity-80">Secondary: +919331912115</p>
-            </div>
-          </div>
-          <div class="flex items-center">
-            <i class="fas fa-envelope text-white mr-4 text-xl"></i>
-            <p>chowdhurybiswanath28@gmail.com</p>
-          </div>
-          <div class="flex items-start">
-            <i class="fas fa-map-marker-alt text-white mr-4 text-xl mt-1"></i>
-            <div>
-              <p class="font-semibold">Naihati Clinic:</p>
-              <p class="opacity-80">Swastha Tirtha, Agragami Sangha Club, Near Yellow Water Tank Road, East Prasad Nagar, Naihati – 743135</p>
-            </div>
-          </div>
-          <div class="flex items-start">
-            <i class="fas fa-map-marker-alt text-white mr-4 text-xl mt-1"></i>
-            <div>
-              <p class="font-semibold">Barasat Clinic:</p>
-              <p class="opacity-80">Swastha Tirtha Physiotherapy Centre, Old Kalibari Road, Noapara, Barasat – 700125</p>
-            </div>
-          </div>
-          <div class="flex items-center">
-            <i class="fas fa-clock text-white mr-4 text-xl"></i>
-            <div>
-              <p class="font-semibold">Working Hours:</p>
-              <p class="opacity-80">Mon-Sat: 9:00 AM - 7:00 PM | Sun: 10:00 AM - 4:00 PM</p>
-            </div>
-          </div>
+    <div class="container mx-auto px-4">
+        <div class="text-center mb-12">
+            <h2 class="text-3xl md:text-4xl font-bold mb-4">Contact Dr. Biswanath Chowdhury (PT)</h2>
+            <p class="text-xl opacity-90">Start your journey to recovery with Kolkata's most trusted physiotherapist</p>
+            <div class="w-24 h-1 bg-white mx-auto mt-4"></div>
         </div>
-      </div>
 
-      <!-- Contact Form -->
-      <div>
-        <div class="bg-white p-6 rounded-lg shadow-lg text-gray-800">
-          <h4 class="text-xl font-semibold mb-4">Quick Contact Form</h4>
-          <div class="space-y-4">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <!-- Contact Info -->
             <div>
-              <label for="name" class="block text-sm font-medium mb-1">Full Name</label>
-              <input type="text" id="name" class="w-full p-3 border border-gray-300 rounded-lg focus:border-primary focus:outline-none" placeholder="Enter your full name" required>
+                <h3 class="text-2xl font-semibold mb-4">Get in Touch Today</h3>
+                <p class="mb-6 opacity-90">Take the first step towards pain-free living and improved mobility. Dr. B. Chowdhury (PT) and his team are ready to help you achieve your recovery goals.</p>
+                <div class="space-y-4">
+                    <div class="flex items-center">
+                        <i class="fas fa-phone-alt text-white mr-4 text-xl"></i> 
+                        <div>
+                            <p class="font-semibold">Primary: +917003647770</p>
+                            <p class="opacity-80">Secondary: +919331912115</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center">
+                        <i class="fas fa-envelope text-white mr-4 text-xl"></i>
+                        <p>chowdhurybiswanath28@gmail.com</p>
+                    </div>
+                    <div class="flex items-start">
+                        <i class="fas fa-map-marker-alt text-white mr-4 text-xl mt-1"></i>
+                        <div>
+                            <p class="font-semibold">Naihati Clinic:</p>
+                            <p class="opacity-80">Swastha Tirtha, Agragami Sangha Club, Near Yellow Water Tank Road, East Prasad Nagar, Naihati – 743135</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start">
+                        <i class="fas fa-map-marker-alt text-white mr-4 text-xl mt-1"></i>
+                        <div>
+                            <p class="font-semibold">Barasat Clinic:</p>
+                            <p class="opacity-80">Swastha Tirtha Physiotherapy Centre, Old Kalibari Road, Noapara, Barasat – 700125</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center">
+                        <i class="fas fa-clock text-white mr-4 text-xl"></i>
+                        <div>
+                            <p class="font-semibold">Working Hours:</p>
+                            <p class="opacity-80">Mon-Sat: 9:00 AM - 8:00 PM | Sun: 10:00 AM - 4:00 PM</p>
+                        </div>
+                    </div>
+                </div>
             </div>
+
+            <!-- Contact Form -->
             <div>
-              <label for="phone" class="block text-sm font-medium mb-1">Phone Number</label>
-              <input type="tel" id="phone" class="w-full p-3 border border-gray-300 rounded-lg focus:border-primary focus:outline-none" placeholder="Enter your phone number" required>
+                <div class="bg-white p-6 rounded-lg shadow-lg text-gray-800">
+                    <h4 class="text-xl font-semibold mb-4">Quick Contact Form</h4>
+                    <div class="space-y-4">
+                        <div>
+                            <label for="name" class="block text-sm font-medium mb-1">Full Name</label>
+                            <input type="text" id="name" class="w-full p-3 border border-gray-300 rounded-lg focus:border-primary focus:outline-none" placeholder="Enter your full name" required>
+                        </div>
+                        <div>
+                            <label for="phone" class="block text-sm font-medium mb-1">Phone Number</label>
+                            <input type="tel" id="phone" class="w-full p-3 border border-gray-300 rounded-lg focus:border-primary focus:outline-none" placeholder="Enter your phone number" required>
+                        </div>
+                        <div>
+                            <label for="condition" class="block text-sm font-medium mb-1">Condition/Concern</label>
+                            <select id="condition" class="w-full p-3 border border-gray-300 rounded-lg focus:border-primary focus:outline-none">
+                                <option value="">Select your condition</option>
+                                <option value="back-pain">Back Pain</option>
+                                <option value="neck-pain">Neck Pain</option>
+                                <option value="knee-pain">Knee Pain</option>
+                                <option value="sports-injury">Sports Injury</option>
+                                <option value="stroke-rehab">Stroke Rehabilitation</option>
+                                <option value="post-surgery">Post-Surgery Recovery</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label for="message" class="block text-sm font-medium mb-1">Message (Optional)</label>
+                            <textarea id="message" class="w-full p-3 border border-gray-300 rounded-lg focus:border-primary focus:outline-none" rows="3" placeholder="Brief description of your condition"></textarea>
+                        </div>
+                        <a href="https://wa.me/919038303107" target="_blank" class="btn-primary w-full py-3 rounded-lg font-medium text-center block">
+                            <i class="fab fa-whatsapp mr-2"></i>Send Message via WhatsApp
+                        </a>
+                        <p class="text-xs text-center text-gray-600">We'll respond within 24 hours | Emergency cases: Call directly</p>
+                    </div>
+                </div>
             </div>
-            <div>
-              <label for="condition" class="block text-sm font-medium mb-1">Condition/Concern</label>
-              <select id="condition" class="w-full p-3 border border-gray-300 rounded-lg focus:border-primary focus:outline-none">
-                <option value="">Select your condition</option>
-                <option value="back-pain">Back Pain</option>
-                <option value="neck-pain">Neck Pain</option>
-                <option value="knee-pain">Knee Pain</option>
-                <option value="sports-injury">Sports Injury</option>
-                <option value="stroke-rehab">Stroke Rehabilitation</option>
-                <option value="post-surgery">Post-Surgery Recovery</option>
-                <option value="other">Other</option>
-              </select>
-            </div>
-            <div>
-              <label for="message" class="block text-sm font-medium mb-1">Message (Optional)</label>
-              <textarea id="message" class="w-full p-3 border border-gray-300 rounded-lg focus:border-primary focus:outline-none" rows="3" placeholder="Brief description of your condition"></textarea>
-            </div>
-            <a href="https://wa.me/919038303107" target="_blank" class="btn-primary w-full py-3 rounded-lg font-medium text-center block">
-              <i class="fab fa-whatsapp mr-2"></i>Send Message via WhatsApp
-            </a>
-            <p class="text-xs text-center text-gray-600">We'll respond within 24 hours | Emergency cases: Call directly</p>
-          </div>
         </div>
-      </div>
     </div>
-  </div>
 </section>
 
 <!-- Footer Section -->
-<section id="footer" class="w-full bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900 text-white mt-[50px]">
-  <div class="container mx-auto px-4">
+<footer class="bg-gray-900 text-white">
+    <div class="container mx-auto px-4 py-12">
+        <!-- Main Footer Content -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
+            
+            <!-- Blogs Column -->
+            <div>
+                <h3 class="text-lg font-semibold mb-4 text-primary uppercase tracking-wide flex items-center">
+                    <i class="fas fa-blog mr-2"></i> Latest Blogs
+                </h3>
+                <ul class="space-y-3">
+                    <li>
+                        <a href="https://www.physiobiswanath.in/everything-you-need-to-know-about-physiotherapy-treatment-in-naihati-kolkata" 
+                           class="text-gray-300 hover:text-white transition-colors flex items-center group">
+                            <i class="fas fa-chevron-right text-xs mr-2 group-hover:translate-x-1 transition-transform"></i> 
+                            Everything You Need To Know About Physiotherapy
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.physiobiswanath.in/Top-10-Physiotherapists-In-Kolkata" 
+                           class="text-gray-300 hover:text-white transition-colors flex items-center group">
+                            <i class="fas fa-chevron-right text-xs mr-2 group-hover:translate-x-1 transition-transform"></i> 
+                            Top 10 Physiotherapists In Kolkata
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.physiobiswanath.in/bfr-therapy-rehab" 
+                           class="text-gray-300 hover:text-white transition-colors flex items-center group">
+                            <i class="fas fa-chevron-right text-xs mr-2 group-hover:translate-x-1 transition-transform"></i> 
+                            Blood Flow Restriction Therapy Guide
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.physiobiswanath.in/hijama-cupping-therapy-kolkata" 
+                           class="text-gray-300 hover:text-white transition-colors flex items-center group">
+                            <i class="fas fa-chevron-right text-xs mr-2 group-hover:translate-x-1 transition-transform"></i> 
+                            Hijama Cupping Therapy in Kolkata
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.physiobiswanath.in/how-to-become-physiotherapist-after-12th" 
+                           class="text-gray-300 hover:text-white transition-colors flex items-center group">
+                            <i class="fas fa-chevron-right text-xs mr-2 group-hover:translate-x-1 transition-transform"></i> 
+                            How to Become Physiotherapist After 12th
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.physiobiswanath.in/blogs" 
+                           class="text-primary hover:text-white transition-colors flex items-center group font-semibold">
+                            <i class="fas fa-arrow-right text-xs mr-2 group-hover:translate-x-1 transition-transform"></i> 
+                            View All Blogs
+                        </a>
+                    </li>
+                </ul>
+            </div>
 
-    <!-- Title + Tagline -->
-    <div class="text-center mb-12">
-      <h2 class="text-3xl md:text-4xl font-bold mb-4">Stay Connected with PhysioBiswanath</h2>
-      <p class="text-xl opacity-90">Trusted physiotherapy care in Naihati & Barasat – your journey to recovery starts here</p>
-      <div class="w-24 h-1 bg-primary mx-auto mt-4"></div>
+            <!-- Services Column -->
+            <div>
+                <h3 class="text-lg font-semibold mb-4 text-primary uppercase tracking-wide flex items-center">
+                    <i class="fas fa-hands-helping mr-2"></i> Our Services
+                </h3>
+                <ul class="space-y-3">
+                    <li>
+                        <a href="https://www.physiobiswanath.in/Stroke-Rehabilitation-Services-in-Naihati" 
+                           class="text-gray-300 hover:text-white transition-colors flex items-center group">
+                            <i class="fas fa-chevron-right text-xs mr-2 group-hover:translate-x-1 transition-transform"></i> 
+                            Stroke Rehabilitation Services
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.physiobiswanath.in/Knee-Pain-Physiotherapy-in-Naihati" 
+                           class="text-gray-300 hover:text-white transition-colors flex items-center group">
+                            <i class="fas fa-chevron-right text-xs mr-2 group-hover:translate-x-1 transition-transform"></i> 
+                            Knee Pain Treatment
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.physiobiswanath.in/physiotherapy-for-back-pain-naihati" 
+                           class="text-gray-300 hover:text-white transition-colors flex items-center group">
+                            <i class="fas fa-chevron-right text-xs mr-2 group-hover:translate-x-1 transition-transform"></i> 
+                            Back Pain Physiotherapy
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.physiobiswanath.in/physiotherapy-for-neck-pain-naihati" 
+                           class="text-gray-300 hover:text-white transition-colors flex items-center group">
+                            <i class="fas fa-chevron-right text-xs mr-2 group-hover:translate-x-1 transition-transform"></i> 
+                            Neck Pain Physiotherapy
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.physiobiswanath.in/sports-injury-physiotherapy-naihati" 
+                           class="text-gray-300 hover:text-white transition-colors flex items-center group">
+                            <i class="fas fa-chevron-right text-xs mr-2 group-hover:translate-x-1 transition-transform"></i> 
+                            Sports Injury Recovery
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.physiobiswanath.in/Services" 
+                           class="text-primary hover:text-white transition-colors flex items-center group font-semibold">
+                            <i class="fas fa-arrow-right text-xs mr-2 group-hover:translate-x-1 transition-transform"></i> 
+                            View All Services
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Quick Links & Contact Column -->
+            <div>
+                <h3 class="text-lg font-semibold mb-4 text-primary uppercase tracking-wide flex items-center">
+                    <i class="fas fa-link mr-2"></i> Quick Links
+                </h3>
+                <ul class="space-y-3 mb-6">
+                    <li>
+                        <a href="https://www.physiobiswanath.in/" 
+                           class="text-gray-300 hover:text-white transition-colors flex items-center group">
+                            <i class="fas fa-chevron-right text-xs mr-2 group-hover:translate-x-1 transition-transform"></i> 
+                            Home
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.physiobiswanath.in/About" 
+                           class="text-gray-300 hover:text-white transition-colors flex items-center group">
+                            <i class="fas fa-chevron-right text-xs mr-2 group-hover:translate-x-1 transition-transform"></i> 
+                            About Dr. Biswanath Chowdhury
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.physiobiswanath.in/kolkata/physiotherapy-clinic-kolkata" 
+                           class="text-gray-300 hover:text-white transition-colors flex items-center group">
+                            <i class="fas fa-chevron-right text-xs mr-2 group-hover:translate-x-1 transition-transform"></i> 
+                            Physiotherapy Clinic Kolkata
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#contact" 
+                           class="text-gray-300 hover:text-white transition-colors flex items-center group">
+                            <i class="fas fa-chevron-right text-xs mr-2 group-hover:translate-x-1 transition-transform"></i> 
+                            Contact Us
+                        </a>
+                    </li>
+                </ul>
+
+                <!-- Contact Info -->
+                <div class="bg-gray-800 p-4 rounded-lg">
+                    <h4 class="font-semibold mb-3 text-primary">Contact Info</h4>
+                    <div class="space-y-2 text-sm">
+                        <div class="flex items-center">
+                            <i class="fas fa-phone text-primary mr-2"></i>
+                            <span class="text-gray-300">+91 7003647770</span>
+                        </div>
+                        <div class="flex items-center">
+                            <i class="fas fa-envelope text-primary mr-2"></i>
+                            <span class="text-gray-300">chowdhurybiswanath28@gmail.com</span>
+                        </div>
+                        <div class="flex items-start">
+                            <i class="fas fa-map-marker-alt text-primary mr-2 mt-1"></i>
+                            <span class="text-gray-300">Naihati & Barasat, Kolkata</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Social Media Section -->
+        <div class="border-t border-gray-700 pt-6 mb-6">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-4 md:mb-0">
+                    <h4 class="text-lg font-semibold text-primary mb-2">Follow Dr. Biswanath Chowdhury</h4>
+                    <div class="flex space-x-4">
+                        <a href="https://www.facebook.com/biswanath.chowdhury.370/" 
+                           class="bg-blue-600 text-white p-3 rounded-full hover:bg-blue-700 transition duration-300" 
+                           target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="https://www.instagram.com/biswanath.chowdhury.370/" 
+                           class="bg-pink-600 text-white p-3 rounded-full hover:bg-pink-700 transition duration-300" 
+                           target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="https://www.youtube.com/@Swasthatirtha-Naihati-kolkata" 
+                           class="bg-red-600 text-white p-3 rounded-full hover:bg-red-700 transition duration-300" 
+                           target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-youtube"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Call to Action -->
+                <div class="text-center">
+                    <p class="text-gray-300 mb-2">Ready to Start Your Recovery?</p>
+                    <a href="https://wa.me/919038303107" 
+                       target="_blank"
+                       class="btn-primary px-6 py-3 rounded-full font-medium inline-flex items-center">
+                        <i class="fab fa-whatsapp mr-2"></i>Book Appointment Now
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer Bottom -->
+        <div class="border-t border-gray-700 pt-6">
+            <div class="flex flex-col md:flex-row justify-between items-center text-sm">
+                <div class="mb-4 md:mb-0">
+                    <p class="text-gray-400">
+                        © <span id="currentYear">2025</span> Dr. Biswanath Chowdhury (PT). All rights reserved.
+                    </p>
+                </div>
+                <div class="flex flex-col md:flex-row items-center space-y-2 md:space-y-0 md:space-x-4">
+                    <p class="text-gray-400">
+                        Website Developed By – 
+                        <a href="https://www.linkedin.com/in/ritam-debnath-179330203/" 
+                           class="text-primary hover:text-white transition-colors" 
+                           target="_blank" rel="noopener noreferrer">
+                            Ritam Debnath
+                        </a>
+                    </p>
+                    <div class="flex items-center space-x-2 text-gray-400">
+                        <span>•</span>
+                        <span>25+ Years Experience</span>
+                        <span>•</span>
+                        <span>5000+ Patients Treated</span>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
+</footer>
+        <script>
+// Mobile menu toggle functionality
+function toggleMobileMenu() {
+    const mobileMenu = document.getElementById('mobileMenu');
+    if (mobileMenu) {
+        mobileMenu.classList.toggle('hidden');
+    }
+}
 
-    <!-- Footer Grid -->
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+// Update current year
+document.addEventListener('DOMContentLoaded', function() {
+    const yearSpan = document.getElementById('currentYear');
+    if (yearSpan) {
+        yearSpan.textContent = new Date().getFullYear();
+    }
+});
 
-      <!-- Column 1: Quick Links -->
-      <div>
-        <h3 class="text-lg font-semibold mb-4 text-primary uppercase tracking-wide">Quick Links</h3>
-        <ul class="space-y-3">
-          <li><a href="/" class="text-gray-300 hover:text-white transition">Home</a></li>
-          <li><a href="/About" class="text-gray-300 hover:text-white transition">About</a></li>
-          <li><a href="/Services" class="text-gray-300 hover:text-white transition">Services</a></li>
-          <li><a href="#contact" class="text-gray-300 hover:text-white transition">Contact</a></li>
-        </ul>
-      </div>
+// Smooth scrolling for anchor links
+document.addEventListener('DOMContentLoaded', function() {
+    const links = document.querySelectorAll('a[href^="#"]');
+    
+    links.forEach(link => {
+        link.addEventListener('click', function(e) {
+            e.preventDefault();
+            
+            const targetId = this.getAttribute('href').substring(1);
+            const targetElement = document.getElementById(targetId);
+            
+            if (targetElement) {
+                const headerOffset = 100;
+                const elementPosition = targetElement.getBoundingClientRect().top;
+                const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+                
+                window.scrollTo({
+                    top: offsetPosition,
+                    behavior: 'smooth'
+                });
+            }
+        });
+    });
+});
 
-      <!-- Column 2: Treatments -->
-      <div>
-        <h3 class="text-lg font-semibold mb-4 text-primary uppercase tracking-wide">Treatments</h3>
-        <ul class="space-y-3">
-          <li><a href="https://www.physiobiswanath.in/Stroke-Rehabilitation-Services-in-Naihati" class="text-gray-300 hover:text-white transition">Stroke Rehabilitation</a></li>
-          <li><a href="https://www.physiobiswanath.in/Knee-Pain-Physiotherapy-in-Naihati" class="text-gray-300 hover:text-white transition">Knee Pain Treatment</a></li>
-          <li><a href="https://www.physiobiswanath.in/physiotherapy-for-back-pain-naihati" class="text-gray-300 hover:text-white transition">Back Pain Physiotherapy</a></li>
-          <li><a href="https://www.physiobiswanath.in/physiotherapy-for-neck-pain-naihati" class="text-gray-300 hover:text-white transition">Neck Pain Relief</a></li>
-          <li><a href="https://www.physiobiswanath.in/sports-injury-physiotherapy-naihati" class="text-gray-300 hover:text-white transition">Sports Injury Recovery</a></li>
-        </ul>
-      </div>
+// Contact form functionality
+document.addEventListener('DOMContentLoaded', function() {
+    const whatsappLink = document.querySelector('a[href*="wa.me"]');
+    
+    if (whatsappLink) {
+        whatsappLink.addEventListener('click', function(e) {
+            const name = document.getElementById('name')?.value || '';
+            const phone = document.getElementById('phone')?.value || '';
+            const condition = document.getElementById('condition')?.value || '';
+            const message = document.getElementById('message')?.value || '';
+            
+            if (name || phone || condition || message) {
+                let whatsappMessage = 'Hello Dr. Biswanath Chowdhury (PT),%0A%0A';
+                if (name) whatsappMessage += `Name: ${encodeURIComponent(name)}%0A`;
+                if (phone) whatsappMessage += `Phone: ${encodeURIComponent(phone)}%0A`;
+                if (condition) whatsappMessage += `Condition: ${encodeURIComponent(condition)}%0A`;
+                if (message) whatsappMessage += `Message: ${encodeURIComponent(message)}%0A`;
+                whatsappMessage += '%0AI would like to book an appointment for physiotherapy treatment.';
+                
+                this.href = `https://wa.me/919038303107?text=${whatsappMessage}`;
+            }
+        });
+    }
+});
 
-      <!-- Column 3: Contact Info -->
-      <div>
-        <h3 class="text-lg font-semibold mb-4 text-primary uppercase tracking-wide">Contact Info</h3>
-        <ul class="space-y-3">
-          <li class="flex items-start">
-            <i class="fas fa-map-marker-alt text-primary mr-3 mt-1"></i>
-            <span>Naihati Clinic: Swastha Tirtha, Near Yellow Water Tank Road, East Prasad Nagar, Naihati – 743135</span>
-          </li>
-          <li class="flex items-start">
-            <i class="fas fa-map-marker-alt text-primary mr-3 mt-1"></i>
-            <span>Barasat Clinic: Swastha Tirtha Physiotherapy Centre, Old Kalibari Road, Noapara, Barasat – 700125</span>
-          </li>
-          <li class="flex items-center">
-            <i class="fas fa-phone-alt text-primary mr-3"></i>
-            <span>+91 70036 47770 / +91 93319 12115</span>
-          </li>
-          <li class="flex items-center">
-            <i class="fas fa-envelope text-primary mr-3"></i>
-            <span>chowdhurybiswanath28@gmail.com</span>
-          </li>
-        </ul>
-      </div>
+// Reveal animation on scroll
+function reveal() {
+    const reveals = document.querySelectorAll('.reveal');
+    
+    reveals.forEach(element => {
+        const windowHeight = window.innerHeight;
+        const elementTop = element.getBoundingClientRect().top;
+        const elementVisible = 150;
+        
+        if (elementTop < windowHeight - elementVisible) {
+            element.classList.add('active');
+        }
+    });
+}
 
-    </div>
+// Add scroll event listener
+window.addEventListener('scroll', reveal);
 
-    <!-- Footer Bottom -->
-    <div class="mt-12 border-t border-gray-700 pt-6 flex flex-col md:flex-row justify-between items-center text-gray-400 text-sm">
-      <p>© 2025 PhysioBiswanath. All Rights Reserved.</p>
-      <p>Made with ❤️ in Kolkata</p>
-    </div>
-  </div>
-</section>
+// Social media link tracking (optional)
+document.addEventListener('DOMContentLoaded', function() {
+    const socialLinks = document.querySelectorAll('a[href*="facebook.com"], a[href*="instagram.com"], a[href*="youtube.com"]');
+    
+    socialLinks.forEach(link => {
+        link.addEventListener('click', function() {
+            const platform = this.href.includes('facebook') ? 'Facebook' : 
+                           this.href.includes('instagram') ? 'Instagram' : 'YouTube';
+            console.log(`Social media click: ${platform}`);
+            // Add analytics tracking here if needed
+        });
+    });
+});
 
+// Expertise badge hover effects
+document.addEventListener('DOMContentLoaded', function() {
+    const badges = document.querySelectorAll('.expertise-badge');
+    
+    badges.forEach(badge => {
+        badge.addEventListener('mouseenter', function() {
+            this.style.transform = 'scale(1.05)';
+            this.style.boxShadow = '0 4px 8px rgba(0, 160, 160, 0.3)';
+        });
+        
+        badge.addEventListener('mouseleave', function() {
+            this.style.transform = 'scale(1)';
+            this.style.boxShadow = 'none';
+        });
+    });
+});
 
-
+// Footer animation on load
+document.addEventListener('DOMContentLoaded', function() {
+    const footerElements = document.querySelectorAll('footer ul li');
+    
+    footerElements.forEach((element, index) => {
+        element.style.opacity = '0';
+        element.style.transform = 'translateY(20px)';
+        
+        setTimeout(() => {
+            element.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+            element.style.opacity = '1';
+            element.style.transform = 'translateY(0)';
+        }, index * 100);
+    });
+});
+</script>
 
 </body>
 </html>
