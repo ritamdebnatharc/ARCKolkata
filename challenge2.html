@@ -1,350 +1,174 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>Only 1% Can Pass This Strange IQ Test — Hard Version</title>
-<style>
-  :root{
-    --bg1:#071226; --bg2:#081730;
-    --accent:#ff7a5a; --muted:#9fb0c8; --good:#2dd4bf; --bad:#ff7a5a;
-  }
-  *{box-sizing:border-box}
-  body{margin:0;min-height:100vh;background:linear-gradient(180deg,var(--bg1),var(--bg2));color:#e8f0fb;font-family:Inter,system-ui,Segoe UI,Roboto,Arial;padding:20px;display:flex;align-items:center;justify-content:center}
-  .wrap{width:100%;max-width:980px}
-  .card{background:rgba(255,255,255,0.03);border-radius:14px;padding:18px;border:1px solid rgba(255,255,255,0.03);box-shadow:0 12px 40px rgba(2,6,23,0.6)}
-  header{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:14px}
-  h1{font-size:20px;margin:0}
-  .lead{color:var(--muted);font-size:13px;margin-top:6px}
-  .controls{display:flex;gap:10px;align-items:center}
-  .btn{background:linear-gradient(90deg,var(--accent),#ffa08a);border:none;color:#071022;padding:10px 14px;border-radius:10px;font-weight:700;cursor:pointer}
-  .ghost{background:transparent;border:1px solid rgba(255,255,255,0.04);color:var(--muted);padding:8px 12px;border-radius:8px;cursor:pointer}
-  .stage{display:grid;grid-template-columns:1fr 320px;gap:14px}
-  @media (max-width:900px){.stage{grid-template-columns:1fr;}}
-  .main{padding:12px;border-radius:10px;background:linear-gradient(180deg,rgba(255,255,255,0.01),transparent);border:1px solid rgba(255,255,255,0.02)}
-  .meta{display:flex;justify-content:space-between;align-items:center}
-  .progress{height:10px;background:rgba(255,255,255,0.03);border-radius:8px;overflow:hidden;width:60%}
-  .progress > i{display:block;height:100%;background:linear-gradient(90deg,var(--accent),#ffbe9e);width:0%}
-  .question{font-size:20px;font-weight:800;margin:12px 0}
-  .visual{height:260px;display:flex;align-items:center;justify-content:center;background:rgba(255,255,255,0.01);border-radius:8px;border:1px solid rgba(255,255,255,0.02);overflow:hidden}
-  .timer{font-size:56px;font-weight:900;color:var(--accent);text-align:center;margin:6px 0}
-  .options{display:flex;flex-direction:column;gap:10px;margin-top:12px}
-  .opt{background:transparent;border:1px solid rgba(255,255,255,0.06);padding:12px;border-radius:10px;text-align:left;cursor:pointer;color:#e8f0fb;font-size:16px}
-  .opt:hover{border-color:rgba(255,255,255,0.12)}
-  .opt.correct{background:rgba(45,212,191,0.08);border-color:rgba(45,212,191,0.18)}
-  .opt.wrong{background:rgba(255,122,90,0.06);border-color:rgba(255,122,90,0.18)}
-  .status{margin-top:10px;font-weight:800}
-  .side{padding:12px;border-radius:10px;background:rgba(255,255,255,0.01);border:1px solid rgba(255,255,255,0.02);display:flex;flex-direction:column;align-items:center;gap:12px}
-  .bigTimer{font-size:48px;font-weight:900;color:var(--accent)}
-  .hint{color:var(--muted);font-size:13px;text-align:center}
-  .shape{width:70px;height:70px;display:flex;align-items:center;justify-content:center;border-radius:12px;font-weight:800;color:#071022}
-  .circle{background:linear-gradient(90deg,#ffd6a5,#ffafbd);border-radius:50%}
-  .square{background:linear-gradient(90deg,#bde0fe,#a0e7e5)}
-  .triangle{width:0;height:0;border-left:36px solid transparent;border-right:36px solid transparent;border-bottom:70px solid #cdb4db;border-radius:6px}
-  .spinner{width:120px;height:120px;border-radius:50%;border:12px solid rgba(255,255,255,0.04);border-top-color:var(--accent);animation:spin 2s linear infinite}
-  @keyframes spin{to{transform:rotate(360deg)}}
-  .dots{display:flex;gap:12px;align-items:center}
-  .dot{width:22px;height:22px;border-radius:50%;background:rgba(255,255,255,0.15)}
-  .rot{animation:rot 1.8s linear infinite}
-  @keyframes rot{0%{transform:rotate(0)}100%{transform:rotate(360deg)}}
-  footer{margin-top:12px;color:var(--muted);font-size:13px;display:flex;justify-content:space-between;align-items:center}
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Most Confusing Challenge</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      background: #111;
+      color: #fff;
+    }
+    #app {
+      max-width: 700px;
+      margin: 40px auto;
+      padding: 20px;
+      background: #222;
+      border-radius: 12px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.5);
+    }
+    .question {
+      font-size: 1.5rem;
+      margin: 20px 0;
+    }
+    .options button {
+      display: block;
+      width: 100%;
+      padding: 12px;
+      margin: 10px 0;
+      border: none;
+      border-radius: 8px;
+      background: #333;
+      color: #fff;
+      font-size: 1.2rem;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+    .options button:hover {
+      background: #444;
+    }
+    #timer {
+      font-size: 1.8rem;
+      margin: 15px 0;
+      color: #ff5252;
+    }
+    #nextBtn {
+      margin-top: 20px;
+      padding: 12px 20px;
+      font-size: 1.2rem;
+      border: none;
+      border-radius: 8px;
+      background: #ff5252;
+      color: white;
+      cursor: pointer;
+      display: none;
+    }
+  </style>
 </head>
 <body>
-  <div class="wrap">
-    <div class="card">
-      <header>
-        <div>
-          <h1>Only 1% Can Pass This Strange IQ Test — HARD 🔥</h1>
-          <div class="lead">15 brutal puzzles: visual illusions, paradoxes, and lateral traps. 10 seconds each. Record your reaction!</div>
-        </div>
-        <div class="controls">
-          <div style="color:var(--muted)">Q: <strong id="qtot">15</strong></div>
-          <div style="color:var(--muted)">Score: <strong id="score">0</strong></div>
-          <button id="startBtn" class="btn">Start</button>
-          <button id="restartBtn" class="ghost" style="display:none">Restart</button>
-        </div>
-      </header>
-
-      <div class="stage">
-        <div class="main">
-          <div class="meta">
-            <div>Question <strong id="qidx">0</strong> / <strong id="qTotal">15</strong></div>
-            <div style="display:flex;align-items:center;gap:10px">
-              <div class="hint" id="miniHint">Press Start</div>
-              <div class="progress"><i id="bar"></i></div>
-            </div>
-          </div>
-
-          <div class="question" id="questionText">Press Start to begin the hardest round</div>
-          <div class="visual" id="visualArea"><div style="color:var(--muted)">Visuals appear here</div></div>
-
-          <div class="options" id="optionsArea"></div>
-          <div class="status" id="statusArea"></div>
-
-        </div>
-
-        <aside class="side">
-          <div class="bigTimer" id="bigTimer">10</div>
-          <div class="hint" id="hintText">Hint appears here</div>
-          <div style="width:100%;display:flex;justify-content:center">
-            <button id="nextBtn" class="ghost" style="display:none">Next ➡️</button>
-            <button id="quitBtn" class="ghost" style="display:none;margin-left:8px">Quit</button>
-          </div>
-        </aside>
-      </div>
-
-      <footer>Tip: Screen-record + facecam reaction = highest engagement • Host on GitHub Pages</footer>
+  <div id="app">
+    <h1>😵 The Most Confusing Challenge 😵</h1>
+    <div id="timer">10</div>
+    <div id="question-container">
+      <div class="question" id="question">Press Start to Begin</div>
+      <div class="options" id="options"></div>
     </div>
-
-    <div id="endScreen" style="display:none;margin-top:12px">
-      <div class="card" style="text-align:center;padding:18px">
-        <h2>Finished</h2>
-        <div style="font-size:22px;margin:10px 0"><strong id="finalScore">0 / 15</strong></div>
-        <div id="finalMsg" style="color:var(--muted)">Message</div>
-        <div style="margin-top:12px;display:flex;gap:8px;justify-content:center">
-          <button id="playAgain" class="btn">Play Again</button>
-          <a id="tweet" class="ghost" href="#" target="_blank">Share</a>
-        </div>
-      </div>
-    </div>
-
+    <button id="nextBtn">Next Challenge ➡️</button>
+    <button id="startBtn">Start Challenge</button>
   </div>
 
-<script>
-/* ===== HARD PUZZLES: 15 items =====
- Each puzzle: id, title, options[], answer, hint, render(root,ctx)
-*/
-const PUZZLES = [
-  // 1 Penrose / Impossible attachment (visual recognition)
-  { id:1, title:"Impossible Triangle: Is this object possible in 3D?", options:["Yes","No","Only in art","From one angle"], answer:"No", hint:"Penrose triangle is impossible in real 3D.",
-    render(root){ root.innerHTML = `
-      <svg width="220" height="220" viewBox="0 0 200 200">
-        <defs><linearGradient id="g1"><stop offset="0" stop-color="#ffd6a5"/><stop offset="1" stop-color="#ffafbd"/></linearGradient></defs>
-        <g transform="translate(10,10)">
-          <path d="M60 10 L140 10 L170 80 L100 160 L30 80 Z" fill="none" stroke="url(#g1)" stroke-width="14" stroke-linejoin="round"/>
-          <path d="M60 10 L100 160 L30 80" fill="none" stroke="rgba(255,255,255,0.02)"/>
-        </g>
-      </svg>`; } },
+  <script>
+    const challenges = [
+      { q: "Number Sequence: 2, 4, 8, 16, ?", options: ["18","24","32","64"], answer: "32" },
+      { q: "Hidden Object Puzzle: Where is the KEY? (imagine scene)", options: ["Couch","Table","Shelf","Window"], answer: "Shelf" },
+      { q: "Riddle: I’m tall when young and short when old. What am I?", options: ["Candle","Pencil","Shadow","Tree"], answer: "Candle" },
+      { q: "Math Puzzle: 15 ÷ 3 + 7 × 2 = ?", options: ["17","19","23","29"], answer: "19" },
+      { q: "Memory Words: Apple, Car, Book, Tiger, Moon, Chair, Phone, Water. Which word was NOT shown?", options: ["Tiger","Chair","Sun","Phone"], answer: "Sun" },
+      { q: "Spot the Difference: How many differences can you find?", options: ["1","2","3","4"], answer: "3" },
+      { q: "Pattern: Circle, Square, Triangle, Circle, Square, ?", options: ["Triangle","Circle","Square","Star"], answer: "Triangle" },
+      { q: "Optical Illusion: Do you see a Face or a Vase first?", options: ["Face","Vase","Both","None"], answer: "Both" },
+      { q: "Word Scramble: RAEBN", options: ["BRAIN","BARN","NEAR","RAN"], answer: "BRAIN" },
+      { q: "Final Trick: If you have 3 apples and take away 2, how many do you have?", options: ["1","2","3","5"], answer: "2" },
+    ];
 
-  // 2 Rotating dots illusion (which direction)
-  { id:2, title:"Rotating Dots: Are the outer dots moving clockwise or counter-clockwise?", options:["Clockwise","Counter-clockwise","Stationary","Both"], answer:"Clockwise", hint:"Stare at center to see direction.",
-    render(root){
-      root.innerHTML = `<div style="display:flex;flex-direction:column;align-items:center;gap:8px">
-        <div class="rot" style="width:140px;height:140px;display:flex;align-items:center;justify-content:center;border-radius:50%;position:relative">
-          <div style="position:absolute;width:8px;height:8px;border-radius:50%;background:#ffd6a5;transform:translate(-50px,-50px)"></div>
-          <div style="position:absolute;width:8px;height:8px;border-radius:50%;background:#bde0fe;transform:translate(50px,-50px)"></div>
-          <div style="position:absolute;width:8px;height:8px;border-radius:50%;background:#a0e7e5;transform:translate(60px,20px)"></div>
-          <div style="position:absolute;width:8px;height:8px;border-radius:50%;background:#cdb4db;transform:translate(-60px,20px)"></div>
-        </div>
-        <div style="color:var(--muted);font-size:13px">Stare at the center for 2s</div>
-      </div>`; } },
+    let current = 0;
+    let score = 0;
+    let timer;
+    let timeLeft = 10;
 
-  // 3 Stroop trick (color of the text)
-  { id:3, title:"Stroop: What is the COLOR of this word (not what it reads)?", options:["Red","Blue","Green","Yellow"], answer:"Blue", hint:"Read the color, not the word.",
-    render(root){ root.innerHTML = `<div style="font-size:76px;font-weight:900;color:blue">RED</div>`; } },
+    const questionEl = document.getElementById("question");
+    const optionsEl = document.getElementById("options");
+    const timerEl = document.getElementById("timer");
+    const nextBtn = document.getElementById("nextBtn");
+    const startBtn = document.getElementById("startBtn");
 
-  // 4 Mirror numbers trick
-  { id:4, title:"Mirror numbers: Which digit looks identical in a mirror?", options:["0","3","8","2"], answer:"8", hint:"Symmetric digits remain same in mirror.",
-    render(root){ root.innerHTML = `<div style="display:flex;gap:14px;font-size:48px"><div style="transform:scaleX(-1)">0 3 8 2 5</div></div>`; } },
-
-  // 5 Hidden word scramble (visual letters)
-  { id:5, title:"Hidden Word: Unscramble the letters to find a common 5-letter word", options:["TABLE","BLEAT","LATBE","BETAL"], answer:"TABLE", hint:"Think of furniture.",
-    render(root){ root.innerHTML = `<div style="font-size:52px;letter-spacing:8px">T B A L E</div>`; } },
-
-  // 6 Monopoly lateral-thinking
-  { id:6, title:"A man pushes his car to a hotel and loses his fortune. What happened?", options:["Car broke","Stole money","Playing Monopoly","Insurance"], answer:"Playing Monopoly", hint:"Think board games.",
-    render(root){ root.innerHTML = `<div style="font-size:18px;color:var(--muted)">A lateral-thinking riddle — not real-world literal.</div>`; } },
-
-  // 7 Boat / survivors trick
-  { id:7, title:"You see a boat full of people — it hasn't sunk. Later you see no person on the boat. Why?", options:["They drowned","Invisible","All married","They left"], answer:"All married", hint:"Play on 'single' vs 'not single'.",
-    render(root){ root.innerHTML = `<div style="font-size:16px;color:var(--muted)">Careful with wordplay.</div>`; } },
-
-  // 8 Wordplay / 'Ten' riddle
-  { id:8, title:"What comes before 10 but after 9 and isn't 9.5?", options:["9.9","The word 'Ten'","Nine and a half","Nothing"], answer:"The word 'Ten'", hint:"Think language, not numbers.",
-    render(root){ root.innerHTML = `<div style="font-size:22px">9 — ? — 10</div>`; } },
-
-  // 9 Footsteps classic
-  { id:9, title:"More you take, the more you leave behind. What am I?", options:["Footsteps","Time","Money","Memories"], answer:"Footsteps", hint:"Riddle classic.",
-    render(root){ root.innerHTML = `<div style="font-size:18px;color:var(--muted)">Short riddle — classic answer.</div>`; } },
-
-  // 10 Machines production trick
-  { id:10, title:"If 5 machines take 5 minutes for 5 items, how long for 100 machines to make 100 items?", options:["5 minutes","100 minutes","20 minutes","Can't tell"], answer:"5 minutes", hint:"Rate per machine.",
-    render(root){ root.innerHTML = `<div style="font-size:20px">5 machines → 5 items in 5 mins</div>`; } },
-
-  // 11 Subtle spot-difference (1 difference)
-  { id:11, title:"Spot the Difference: How many differences are there?", options:["1","2","3","4"], answer:"1", hint:"Look for a small extra dot.",
-    render(root){
-      root.innerHTML = '';
-      const left = `<svg width="180" height="140"><rect x=10 y=10 width=160 height=120 rx=12 fill="#122232"/><circle cx=60 cy=60 r=12 fill="#ffa08a"/></svg>`;
-      const right = `<svg width="180" height="140"><rect x=10 y=10 width=160 height=120 rx=12 fill="#122232"/><circle cx=60 cy=60 r=12 fill="#ffa08a"/></svg>`;
-      root.innerHTML = `<div style="display:flex;gap:10px;align-items:center;justify-content:center">${left}${right}</div><div style="font-size:12px;color:var(--muted);margin-top:6px">One tiny dot is missing on the right panel</div>`;
-    } },
-
-  // 12 Paradox: If nothing is impossible...
-  { id:12, title:"Paradox: If nothing is impossible, can something be impossible?", options:["Yes","No","Maybe","Depends"], answer:"Yes", hint:"Paradoxical logic answer.",
-    render(root){ root.innerHTML = `<div style="font-size:18px;color:var(--muted)">This is a self-referential paradox — trick answer.</div>`; } },
-
-  // 13 Flash memory: memorize 6 icons in 3 seconds
-  { id:13, title:"Flash Memory: Which emoji was MISSING?", options:["🍌","🌟","🐶","✏️"], answer:"🍌", hint:"Memorize quickly (3s) then pick missing one.",
-    render(root,ctx){
-      root.innerHTML = '';
-      const seq = ["🐶","🌟","✏️","🚗","📚"]; // missing 🍌
-      const wrap = document.createElement('div'); wrap.style.display='flex';wrap.style.gap='12px';wrap.style.fontSize='36px';
-      seq.forEach(s=>{ const d=document.createElement('div'); d.textContent=s; wrap.appendChild(d); });
-      root.appendChild(wrap);
-      // hide after 3s
-      setTimeout(()=>{ wrap.style.visibility='hidden'; },3000);
-    } },
-
-  // 14 Rotated-digit trap (6 vs 9 orientation)
-  { id:14, title:"Rotated digit: Is this a 6 or a 9?", options:["6","9","Both","Neither"], answer:"9", hint:"Orientation matters.",
-    render(root){ root.innerHTML = `<div style="font-size:120px; transform: rotate(180deg);">6</div>`; } },
-
-  // 15 Final brain-smash paradox (refusal chooses)
-  { id:15, title:"If you must answer YES or NO, and you refuse to answer, did you choose?", options:["Yes","No","Refusal isn't a choice","Trick"], answer:"Yes", hint:"Refusal is a form of choice in this framing.",
-    render(root){ root.innerHTML = `<div style="font-size:16px;color:var(--muted)">Meta / philosophical trap question.</div>`; } }
-];
-
-let current = 0;
-let score = 0;
-let timer = null;
-let timeLeft = 10;
-const total = PUZZLES.length;
-
-/* DOM refs */
-const startBtn = document.getElementById('startBtn');
-const restartBtn = document.getElementById('restartBtn');
-const qidx = document.getElementById('qidx');
-const qTotal = document.getElementById('qTotal');
-const bar = document.getElementById('bar');
-const questionText = document.getElementById('questionText');
-const visualArea = document.getElementById('visualArea');
-const optionsArea = document.getElementById('optionsArea');
-const statusArea = document.getElementById('statusArea');
-const bigTimer = document.getElementById('bigTimer');
-const hintText = document.getElementById('hintText');
-const miniHint = document.getElementById('miniHint');
-const nextBtn = document.getElementById('nextBtn');
-const quitBtn = document.getElementById('quitBtn');
-const scoreSpan = document.getElementById('score');
-const endScreen = document.getElementById('endScreen');
-const finalScore = document.getElementById('finalScore');
-const finalMsg = document.getElementById('finalMsg');
-const playAgain = document.getElementById('playAgain');
-const tweet = document.getElementById('tweet');
-
-document.getElementById('qtot').innerText = total;
-qTotal.innerText = total;
-bar.style.width = '0%';
-scoreSpan.innerText = score;
-
-startBtn.addEventListener('click', startGame);
-restartBtn.addEventListener('click', ()=> location.reload());
-nextBtn.addEventListener('click', ()=> { current++; showPuzzle(); });
-quitBtn.addEventListener('click', endEarly);
-playAgain && playAgain.addEventListener('click', ()=> location.reload());
-
-function startGame(){
-  startBtn.style.display='none';
-  restartBtn.style.display='inline-block';
-  current = 0; score = 0; scoreSpan.innerText = score;
-  showPuzzle();
-}
-
-function showPuzzle(){
-  clearInterval(timer);
-  statusArea.innerText = '';
-  nextBtn.style.display='none';
-  quitBtn.style.display='inline-block';
-  optionsArea.innerHTML = '';
-  visualArea.innerHTML = '<div style="color:var(--muted)">Rendering visual...</div>';
-  const p = PUZZLES[current];
-  qidx.innerText = current+1;
-  questionText.innerText = p.title;
-  hintText.innerText = p.hint || '';
-  miniHint.innerText = (current+1) + ' / ' + total;
-
-  // render visual — some renderers expect ctx object
-  setTimeout(()=>{ try{ p.render(visualArea, {}); } catch(e){ visualArea.innerHTML = '<div style="color:var(--muted)">[Visual]</div>'; } }, 60);
-
-  // render options
-  p.options.forEach(opt => {
-    const b = document.createElement('button');
-    b.className = 'opt';
-    b.innerText = opt;
-    b.onclick = ()=> selectAnswer(opt, b, p);
-    optionsArea.appendChild(b);
-  });
-
-  // timer
-  timeLeft = 10;
-  bigTimer.innerText = timeLeft;
-  timer = setInterval(()=>{
-    timeLeft--;
-    bigTimer.innerText = timeLeft;
-    if(timeLeft<=0){
-      clearInterval(timer);
-      handleTimeout(p);
+    function startGame() {
+      current = 0;
+      score = 0;
+      startBtn.style.display = "none";
+      loadChallenge();
     }
-  },1000);
 
-  bar.style.width = ((current)/total*100) + '%';
-}
+    function loadChallenge() {
+      resetState();
+      let challenge = challenges[current];
+      questionEl.textContent = challenge.q;
+      challenge.options.forEach(opt => {
+        const button = document.createElement("button");
+        button.textContent = opt;
+        button.onclick = () => selectAnswer(opt);
+        optionsEl.appendChild(button);
+      });
+      startTimer();
+    }
 
-function selectAnswer(opt, btnEl, puzzle){
-  clearInterval(timer);
-  const btns = optionsArea.querySelectorAll('button.opt');
-  btns.forEach(b=> b.disabled = true);
-  if(opt === puzzle.answer){
-    btnEl.classList.add('correct');
-    statusArea.innerText = '✅ Correct!';
-    score++; scoreSpan.innerText = score;
-  } else {
-    btnEl.classList.add('wrong');
-    statusArea.innerText = '❌ Wrong!';
-    // highlight correct
-    for(let b of btns) if(b.innerText === puzzle.answer) b.classList.add('correct');
-  }
-  nextBtn.style.display = 'inline-block';
-  bar.style.width = ((current+1)/total*100) + '%';
-}
+    function resetState() {
+      clearInterval(timer);
+      timeLeft = 10;
+      timerEl.textContent = timeLeft;
+      nextBtn.style.display = "none";
+      optionsEl.innerHTML = "";
+    }
 
-function handleTimeout(puzzle){
-  statusArea.innerText = "⏰ Time's up!";
-  const btns = optionsArea.querySelectorAll('button.opt');
-  btns.forEach(b=> { b.disabled = true; if(b.innerText === puzzle.answer) b.classList.add('correct'); });
-  nextBtn.style.display='inline-block';
-  bar.style.width = ((current+1)/total*100) + '%';
-}
+    function startTimer() {
+      timer = setInterval(() => {
+        timeLeft--;
+        timerEl.textContent = timeLeft;
+        if (timeLeft <= 0) {
+          clearInterval(timer);
+          lockOptions();
+          nextBtn.style.display = "block";
+        }
+      }, 1000);
+    }
 
-nextBtn.addEventListener('click', ()=>{
-  current++;
-  if(current>=total){ finish(); } else { showPuzzle(); }
-});
+    function selectAnswer(answer) {
+      let correct = challenges[current].answer;
+      if (answer === correct) {
+        score++;
+        alert("✅ Correct!");
+      } else {
+        alert("❌ Wrong! Correct Answer: " + correct);
+      }
+      lockOptions();
+      clearInterval(timer);
+      nextBtn.style.display = "block";
+    }
 
-function finish(){
-  clearInterval(timer);
-  document.querySelector('.card').scrollIntoView({behavior:'smooth'});
-  endScreen.style.display='block';
-  finalScore.innerText = `${score} / ${total}`;
-  let msg = '';
-  if(score === total) msg = "Insane! Perfect score — share and flex!";
-  else if(score >= Math.ceil(total*0.8)) msg = "Amazing — top tier performance!";
-  else if(score >= Math.ceil(total*0.5)) msg = "Solid — above average.";
-  else msg = "These were brutal — try again and don't overthink!";
-  finalMsg.innerText = msg;
-  const tweetText = encodeURIComponent(`I scored ${score}/${total} on "Only 1% Can Pass This Strange IQ Test — HARD" — can you beat me?`);
-  tweet.href = `https://twitter.com/intent/tweet?text=${tweetText}`;
-  document.querySelector('.card').style.opacity = 0.95;
-}
+    function lockOptions() {
+      Array.from(optionsEl.children).forEach(btn => btn.disabled = true);
+    }
 
-function endEarly(){
-  if(confirm("Quit the challenge? Progress lost.")) finish();
-}
+    nextBtn.addEventListener("click", () => {
+      current++;
+      if (current < challenges.length) {
+        loadChallenge();
+      } else {
+        endGame();
+      }
+    });
 
-/* ensure qTotal set */
-document.getElementById('qTotal').innerText = total;
-</script>
+    function endGame() {
+      questionEl.textContent = `🎉 Challenge Complete! Your Score: ${score}/${challenges.length}`;
+      optionsEl.innerHTML = "";
+      timerEl.textContent = "";
+      nextBtn.style.display = "none";
+      startBtn.style.display = "block";
+    }
+
+    startBtn.addEventListener("click", startGame);
+  </script>
 </body>
 </html>
