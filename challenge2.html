@@ -1,71 +1,53 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-<meta charset="utf-8"/>
-<meta name="viewport" content="width=device-width,initial-scale=1"/>
-<title>The Most Confusing Challenge on YouTube 😵</title>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Only 1% Can Pass This Strange IQ Test — Hard Version</title>
 <style>
   :root{
-    --bg1:#0b1020; --bg2:#07172a;
-    --card:#0f1724; --accent:#ff6b6b; --accent2:#7dd3fc;
-    --muted:#94a3b8; --good:#22c55e; --bad:#ff6b6b;
+    --bg1:#071226; --bg2:#081730;
+    --accent:#ff7a5a; --muted:#9fb0c8; --good:#2dd4bf; --bad:#ff7a5a;
   }
   *{box-sizing:border-box}
-  body{
-    margin:0; min-height:100vh; font-family:Inter,ui-sans-serif,system-ui,Segoe UI,Roboto,"Helvetica Neue",Arial;
-    background: linear-gradient(180deg,var(--bg1),var(--bg2));
-    color:#e6eef8; display:flex; align-items:center; justify-content:center; padding:20px;
-  }
-  .wrap{width:100%; max-width:980px;}
-  .card{
-    background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
-    border-radius:14px; padding:20px; box-shadow: 0 10px 40px rgba(2,6,23,0.6); border:1px solid rgba(255,255,255,0.03);
-  }
-  header{display:flex; align-items:center; justify-content:space-between; gap:12px; margin-bottom:16px}
-  h1{font-size:20px;margin:0;display:flex;align-items:center;gap:10px}
-  .lead{color:var(--muted); margin:6px 0 0; font-size:13px}
-  .controls{display:flex;gap:8px; align-items:center}
-  button.btn{background:linear-gradient(90deg,var(--accent),#ffa08a); border:none; color:#081022; padding:10px 14px; border-radius:10px; font-weight:700; cursor:pointer}
-  button.ghost{background:transparent; border:1px solid rgba(255,255,255,0.04); color:var(--muted); padding:8px 10px; border-radius:8px; cursor:pointer}
-  .stage{display:grid; grid-template-columns:1fr 360px; gap:16px}
-  @media (max-width:900px){ .stage{grid-template-columns:1fr; } .hintBox{order:3} }
-  .main{
-    padding:16px; border-radius:10px; background:rgba(255,255,255,0.01); border:1px solid rgba(255,255,255,0.02);
-  }
-  .metaRow{display:flex; align-items:center; justify-content:space-between; gap:10px; margin-bottom:12px}
-  .progress{height:10px;background:rgba(255,255,255,0.03); border-radius:8px; overflow:hidden; flex:1; margin-left:10px}
-  .progress > i{display:block;height:100%; background:linear-gradient(90deg,var(--accent),var(--accent2)); width:0%}
-  .question{font-size:20px; font-weight:700; margin:8px 0 16px}
-  .timer {font-size:64px; font-weight:900; color:var(--accent); text-align:center; margin:6px 0;}
-  .options{display:flex; flex-direction:column; gap:10px}
-  .opt{background:transparent; border:1px solid rgba(255,255,255,0.06); padding:12px 14px; border-radius:10px; text-align:left; cursor:pointer; font-size:16px; color:#e6eef8}
+  body{margin:0;min-height:100vh;background:linear-gradient(180deg,var(--bg1),var(--bg2));color:#e8f0fb;font-family:Inter,system-ui,Segoe UI,Roboto,Arial;padding:20px;display:flex;align-items:center;justify-content:center}
+  .wrap{width:100%;max-width:980px}
+  .card{background:rgba(255,255,255,0.03);border-radius:14px;padding:18px;border:1px solid rgba(255,255,255,0.03);box-shadow:0 12px 40px rgba(2,6,23,0.6)}
+  header{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:14px}
+  h1{font-size:20px;margin:0}
+  .lead{color:var(--muted);font-size:13px;margin-top:6px}
+  .controls{display:flex;gap:10px;align-items:center}
+  .btn{background:linear-gradient(90deg,var(--accent),#ffa08a);border:none;color:#071022;padding:10px 14px;border-radius:10px;font-weight:700;cursor:pointer}
+  .ghost{background:transparent;border:1px solid rgba(255,255,255,0.04);color:var(--muted);padding:8px 12px;border-radius:8px;cursor:pointer}
+  .stage{display:grid;grid-template-columns:1fr 320px;gap:14px}
+  @media (max-width:900px){.stage{grid-template-columns:1fr;}}
+  .main{padding:12px;border-radius:10px;background:linear-gradient(180deg,rgba(255,255,255,0.01),transparent);border:1px solid rgba(255,255,255,0.02)}
+  .meta{display:flex;justify-content:space-between;align-items:center}
+  .progress{height:10px;background:rgba(255,255,255,0.03);border-radius:8px;overflow:hidden;width:60%}
+  .progress > i{display:block;height:100%;background:linear-gradient(90deg,var(--accent),#ffbe9e);width:0%}
+  .question{font-size:20px;font-weight:800;margin:12px 0}
+  .visual{height:260px;display:flex;align-items:center;justify-content:center;background:rgba(255,255,255,0.01);border-radius:8px;border:1px solid rgba(255,255,255,0.02);overflow:hidden}
+  .timer{font-size:56px;font-weight:900;color:var(--accent);text-align:center;margin:6px 0}
+  .options{display:flex;flex-direction:column;gap:10px;margin-top:12px}
+  .opt{background:transparent;border:1px solid rgba(255,255,255,0.06);padding:12px;border-radius:10px;text-align:left;cursor:pointer;color:#e8f0fb;font-size:16px}
   .opt:hover{border-color:rgba(255,255,255,0.12)}
-  .opt.correct{background:rgba(34,197,94,0.08); border-color:rgba(34,197,94,0.2)}
-  .opt.wrong{background:rgba(255,99,99,0.06); border-color:rgba(255,99,99,0.16)}
-  .status{font-weight:800; margin-top:12px}
-  /* right column */
-  .hintBox{padding:16px; border-radius:10px; background:linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.005)); border:1px solid rgba(255,255,255,0.02);}
-  .bigTimer{font-size:48px; font-weight:900; color:var(--accent); text-align:center}
-  .visual{height:260px; display:flex; align-items:center; justify-content:center}
-  .visual .scene{width:100%; height:100%; display:flex; align-items:center; justify-content:center; position:relative}
-  .tiny{font-size:12px; color:var(--muted)}
-  .nextRow{display:flex;gap:10px; margin-top:12px; align-items:center; justify-content:space-between}
-  .result{font-size:18px; font-weight:800; color:var(--accent)}
-  footer{margin-top:14px; color:var(--muted); font-size:13px; display:flex; justify-content:space-between; align-items:center}
-  /* animations & visuals */
-  .shapes{display:flex; gap:18px; align-items:center; justify-content:center}
-  .shape{width:70px; height:70px; display:flex; align-items:center; justify-content:center; border-radius:12px; font-weight:800; color:#071022}
-  .circle{background:linear-gradient(90deg,#ffd6a5,#ffafbd); border-radius:50%}
+  .opt.correct{background:rgba(45,212,191,0.08);border-color:rgba(45,212,191,0.18)}
+  .opt.wrong{background:rgba(255,122,90,0.06);border-color:rgba(255,122,90,0.18)}
+  .status{margin-top:10px;font-weight:800}
+  .side{padding:12px;border-radius:10px;background:rgba(255,255,255,0.01);border:1px solid rgba(255,255,255,0.02);display:flex;flex-direction:column;align-items:center;gap:12px}
+  .bigTimer{font-size:48px;font-weight:900;color:var(--accent)}
+  .hint{color:var(--muted);font-size:13px;text-align:center}
+  .shape{width:70px;height:70px;display:flex;align-items:center;justify-content:center;border-radius:12px;font-weight:800;color:#071022}
+  .circle{background:linear-gradient(90deg,#ffd6a5,#ffafbd);border-radius:50%}
   .square{background:linear-gradient(90deg,#bde0fe,#a0e7e5)}
-  .triangle{width:0;height:0;border-left:40px solid transparent;border-right:40px solid transparent;border-bottom:70px solid #cdb4db; border-radius:6px}
-  /* moving sequences */
-  .animate-left { animation: moveLeft 1.2s linear infinite; }
-  @keyframes moveLeft { 0%{transform:translateX(-60px);} 50%{transform:translateX(60px);} 100%{transform:translateX(-60px);} }
-  .spinner {width:120px;height:120px;border-radius:50%; border:12px solid rgba(255,255,255,0.06); border-top-color:var(--accent); animation: spin 3s linear infinite;}
+  .triangle{width:0;height:0;border-left:36px solid transparent;border-right:36px solid transparent;border-bottom:70px solid #cdb4db;border-radius:6px}
+  .spinner{width:120px;height:120px;border-radius:50%;border:12px solid rgba(255,255,255,0.04);border-top-color:var(--accent);animation:spin 2s linear infinite}
   @keyframes spin{to{transform:rotate(360deg)}}
-  .penrose{width:200px;height:200px; transform:rotate(0deg)}
-  /* small UI */
-  .scoreBadge{background:rgba(255,255,255,0.02); padding:8px 12px; border-radius:10px; border:1px solid rgba(255,255,255,0.03)}
+  .dots{display:flex;gap:12px;align-items:center}
+  .dot{width:22px;height:22px;border-radius:50%;background:rgba(255,255,255,0.15)}
+  .rot{animation:rot 1.8s linear infinite}
+  @keyframes rot{0%{transform:rotate(0)}100%{transform:rotate(360deg)}}
+  footer{margin-top:12px;color:var(--muted);font-size:13px;display:flex;justify-content:space-between;align-items:center}
 </style>
 </head>
 <body>
@@ -73,75 +55,56 @@
     <div class="card">
       <header>
         <div>
-          <h1>🎯 The Most Confusing Challenge on YouTube 😵</h1>
-          <div class="lead">10 visual puzzles — 10 seconds each. Tap an answer fast. Record your reaction and upload!</div>
+          <h1>Only 1% Can Pass This Strange IQ Test — HARD 🔥</h1>
+          <div class="lead">15 brutal puzzles: visual illusions, paradoxes, and lateral traps. 10 seconds each. Record your reaction!</div>
         </div>
         <div class="controls">
-          <div class="scoreBadge">Score: <strong id="score">0</strong></div>
-          <button id="startBtn" class="btn">Start Challenge</button>
+          <div style="color:var(--muted)">Q: <strong id="qtot">15</strong></div>
+          <div style="color:var(--muted)">Score: <strong id="score">0</strong></div>
+          <button id="startBtn" class="btn">Start</button>
           <button id="restartBtn" class="ghost" style="display:none">Restart</button>
         </div>
       </header>
 
       <div class="stage">
         <div class="main">
-          <div class="metaRow">
-            <div>Question <strong id="qidx">0</strong> / <strong id="qtot">10</strong></div>
-            <div style="display:flex; align-items:center; gap:10px;">
-              <div class="tiny">Progress</div>
-              <div class="progress" style="width:220px"><i id="bar"></i></div>
+          <div class="meta">
+            <div>Question <strong id="qidx">0</strong> / <strong id="qTotal">15</strong></div>
+            <div style="display:flex;align-items:center;gap:10px">
+              <div class="hint" id="miniHint">Press Start</div>
+              <div class="progress"><i id="bar"></i></div>
             </div>
           </div>
 
-          <div class="question" id="questionText">Press Start</div>
+          <div class="question" id="questionText">Press Start to begin the hardest round</div>
+          <div class="visual" id="visualArea"><div style="color:var(--muted)">Visuals appear here</div></div>
 
-          <div class="visual" id="visualArea">
-            <div class="scene" id="sceneRoot">
-              <!-- animated visuals injected here -->
-              <div style="color:var(--muted)">Start to see visual puzzle</div>
-            </div>
-          </div>
+          <div class="options" id="optionsArea"></div>
+          <div class="status" id="statusArea"></div>
 
-          <div class="options" id="options"></div>
-          <div class="status" id="statusText"></div>
-
-          <div class="nextRow">
-            <div class="tiny">Tip: Screen-record this app + facecam reaction for best results</div>
-            <div>
-              <button id="nextBtn" class="ghost" style="display:none">Next Challenge ➡️</button>
-              <button id="quitBtn" class="ghost" style="display:none">Quit</button>
-            </div>
-          </div>
         </div>
 
-        <aside class="hintBox">
-          <div style="display:flex;flex-direction:column;gap:12px;align-items:center">
-            <div class="bigTimer" id="bigTimer">10</div>
-            <div id="tinyHint" class="tiny" style="text-align:center">Visual hint will appear here</div>
-            <div style="width:100%;height:1px;background:rgba(255,255,255,0.02);margin:8px 0"></div>
-            <div style="text-align:center">
-              <div style="font-weight:700">Last Answer</div>
-              <div id="lastRes" class="tiny" style="margin-top:6px">—</div>
-            </div>
+        <aside class="side">
+          <div class="bigTimer" id="bigTimer">10</div>
+          <div class="hint" id="hintText">Hint appears here</div>
+          <div style="width:100%;display:flex;justify-content:center">
+            <button id="nextBtn" class="ghost" style="display:none">Next ➡️</button>
+            <button id="quitBtn" class="ghost" style="display:none;margin-left:8px">Quit</button>
           </div>
         </aside>
       </div>
 
-      <footer>
-        <div class="tiny">Built for quick viral reaction videos — record & post!</div>
-        <div class="tiny">Made with ❤️ — host on GitHub Pages</div>
-      </footer>
+      <footer>Tip: Screen-record + facecam reaction = highest engagement • Host on GitHub Pages</footer>
     </div>
 
-    <!-- end screen -->
-    <div id="endScreen" style="display:none; margin-top:14px;">
-      <div class="card" style="text-align:center; padding:20px;">
-        <h2>Finished the Challenge 🎉</h2>
-        <p style="font-size:22px; margin:6px 0"><strong id="finalScore">0 / 10</strong></p>
-        <p id="finalMsg" class="tiny">Result message</p>
-        <div style="margin-top:12px; display:flex; gap:10px; justify-content:center;">
+    <div id="endScreen" style="display:none;margin-top:12px">
+      <div class="card" style="text-align:center;padding:18px">
+        <h2>Finished</h2>
+        <div style="font-size:22px;margin:10px 0"><strong id="finalScore">0 / 15</strong></div>
+        <div id="finalMsg" style="color:var(--muted)">Message</div>
+        <div style="margin-top:12px;display:flex;gap:8px;justify-content:center">
           <button id="playAgain" class="btn">Play Again</button>
-          <a id="shareTweet" class="ghost" href="#" target="_blank">Share</a>
+          <a id="tweet" class="ghost" href="#" target="_blank">Share</a>
         </div>
       </div>
     </div>
@@ -149,292 +112,119 @@
   </div>
 
 <script>
-/* ====== PUZZLES ======
-We create a list of 10 puzzle objects.
-Each puzzle contains:
-- id, title (question), type, render() function to populate visual area,
-- options (array), answer (string), hint (string)
-- optional beforeShow() for quick animations or timed flashes
+/* ===== HARD PUZZLES: 15 items =====
+ Each puzzle: id, title, options[], answer, hint, render(root,ctx)
 */
-const puzzles = [
-  {
-    id:1,
-    title:"Moving Shapes: Which shape appeared 3 times?",
-    type:"sequence",
-    hint:"Watch the moving shapes carefully!",
-    // sequence produced visually: circle, square, triangle, circle, square, circle (circle x3)
-    options:["Circle","Square","Triangle"],
-    answer:"Circle",
+const PUZZLES = [
+  // 1 Penrose / Impossible attachment (visual recognition)
+  { id:1, title:"Impossible Triangle: Is this object possible in 3D?", options:["Yes","No","Only in art","From one angle"], answer:"No", hint:"Penrose triangle is impossible in real 3D.",
+    render(root){ root.innerHTML = `
+      <svg width="220" height="220" viewBox="0 0 200 200">
+        <defs><linearGradient id="g1"><stop offset="0" stop-color="#ffd6a5"/><stop offset="1" stop-color="#ffafbd"/></linearGradient></defs>
+        <g transform="translate(10,10)">
+          <path d="M60 10 L140 10 L170 80 L100 160 L30 80 Z" fill="none" stroke="url(#g1)" stroke-width="14" stroke-linejoin="round"/>
+          <path d="M60 10 L100 160 L30 80" fill="none" stroke="rgba(255,255,255,0.02)"/>
+        </g>
+      </svg>`; } },
+
+  // 2 Rotating dots illusion (which direction)
+  { id:2, title:"Rotating Dots: Are the outer dots moving clockwise or counter-clockwise?", options:["Clockwise","Counter-clockwise","Stationary","Both"], answer:"Clockwise", hint:"Stare at center to see direction.",
+    render(root){
+      root.innerHTML = `<div style="display:flex;flex-direction:column;align-items:center;gap:8px">
+        <div class="rot" style="width:140px;height:140px;display:flex;align-items:center;justify-content:center;border-radius:50%;position:relative">
+          <div style="position:absolute;width:8px;height:8px;border-radius:50%;background:#ffd6a5;transform:translate(-50px,-50px)"></div>
+          <div style="position:absolute;width:8px;height:8px;border-radius:50%;background:#bde0fe;transform:translate(50px,-50px)"></div>
+          <div style="position:absolute;width:8px;height:8px;border-radius:50%;background:#a0e7e5;transform:translate(60px,20px)"></div>
+          <div style="position:absolute;width:8px;height:8px;border-radius:50%;background:#cdb4db;transform:translate(-60px,20px)"></div>
+        </div>
+        <div style="color:var(--muted);font-size:13px">Stare at the center for 2s</div>
+      </div>`; } },
+
+  // 3 Stroop trick (color of the text)
+  { id:3, title:"Stroop: What is the COLOR of this word (not what it reads)?", options:["Red","Blue","Green","Yellow"], answer:"Blue", hint:"Read the color, not the word.",
+    render(root){ root.innerHTML = `<div style="font-size:76px;font-weight:900;color:blue">RED</div>`; } },
+
+  // 4 Mirror numbers trick
+  { id:4, title:"Mirror numbers: Which digit looks identical in a mirror?", options:["0","3","8","2"], answer:"8", hint:"Symmetric digits remain same in mirror.",
+    render(root){ root.innerHTML = `<div style="display:flex;gap:14px;font-size:48px"><div style="transform:scaleX(-1)">0 3 8 2 5</div></div>`; } },
+
+  // 5 Hidden word scramble (visual letters)
+  { id:5, title:"Hidden Word: Unscramble the letters to find a common 5-letter word", options:["TABLE","BLEAT","LATBE","BETAL"], answer:"TABLE", hint:"Think of furniture.",
+    render(root){ root.innerHTML = `<div style="font-size:52px;letter-spacing:8px">T B A L E</div>`; } },
+
+  // 6 Monopoly lateral-thinking
+  { id:6, title:"A man pushes his car to a hotel and loses his fortune. What happened?", options:["Car broke","Stole money","Playing Monopoly","Insurance"], answer:"Playing Monopoly", hint:"Think board games.",
+    render(root){ root.innerHTML = `<div style="font-size:18px;color:var(--muted)">A lateral-thinking riddle — not real-world literal.</div>`; } },
+
+  // 7 Boat / survivors trick
+  { id:7, title:"You see a boat full of people — it hasn't sunk. Later you see no person on the boat. Why?", options:["They drowned","Invisible","All married","They left"], answer:"All married", hint:"Play on 'single' vs 'not single'.",
+    render(root){ root.innerHTML = `<div style="font-size:16px;color:var(--muted)">Careful with wordplay.</div>`; } },
+
+  // 8 Wordplay / 'Ten' riddle
+  { id:8, title:"What comes before 10 but after 9 and isn't 9.5?", options:["9.9","The word 'Ten'","Nine and a half","Nothing"], answer:"The word 'Ten'", hint:"Think language, not numbers.",
+    render(root){ root.innerHTML = `<div style="font-size:22px">9 — ? — 10</div>`; } },
+
+  // 9 Footsteps classic
+  { id:9, title:"More you take, the more you leave behind. What am I?", options:["Footsteps","Time","Money","Memories"], answer:"Footsteps", hint:"Riddle classic.",
+    render(root){ root.innerHTML = `<div style="font-size:18px;color:var(--muted)">Short riddle — classic answer.</div>`; } },
+
+  // 10 Machines production trick
+  { id:10, title:"If 5 machines take 5 minutes for 5 items, how long for 100 machines to make 100 items?", options:["5 minutes","100 minutes","20 minutes","Can't tell"], answer:"5 minutes", hint:"Rate per machine.",
+    render(root){ root.innerHTML = `<div style="font-size:20px">5 machines → 5 items in 5 mins</div>`; } },
+
+  // 11 Subtle spot-difference (1 difference)
+  { id:11, title:"Spot the Difference: How many differences are there?", options:["1","2","3","4"], answer:"1", hint:"Look for a small extra dot.",
     render(root){
       root.innerHTML = '';
-      const wrapper = document.createElement('div');
-      wrapper.className = 'shapes';
-      // create animated sequence timeline using JS
-      const seq = ['circle','square','triangle','circle','square','circle'];
-      let idx=0;
-      const el = document.createElement('div');
-      el.style.display='flex'; el.style.alignItems='center'; el.style.justifyContent='center'; el.style.gap='18px';
-      wrapper.appendChild(el);
-      // create three placeholders
-      for(let i=0;i<3;i++){
-        const box = document.createElement('div');
-        box.className='shape';
-        box.style.opacity=0.06;
-        box.style.transition='transform 0.3s, opacity 0.3s';
-        el.appendChild(box);
-      }
-      root.appendChild(wrapper);
-      // cycle through sequence, updating boxes
-      const interval = setInterval(()=>{
-        const boxes = el.children;
-        // shift left
-        for(let i=boxes.length-1;i>0;i--) boxes[i].innerHTML = boxes[i-1].innerHTML;
-        // put next
-        const shape = seq[idx % seq.length];
-        boxes[0].innerHTML = '';
-        if(shape==='circle'){ boxes[0].className='shape circle'; boxes[0].textContent=''; }
-        if(shape==='square'){ boxes[0].className='shape square'; boxes[0].textContent=''; }
-        if(shape==='triangle'){ boxes[0].className='shape triangle'; boxes[0].textContent=''; }
-        // highlight active briefly
-        for(let b of boxes){ b.style.opacity=0.15; }
-        boxes[0].style.opacity=1;
-        setTimeout(()=>{ for(let b of boxes){ b.style.opacity=0.12;}},500);
-        idx++;
-        // stop automatically after 6 cycles (sequence length)
-        if(idx>=6){ clearInterval(interval); }
-      },700);
-    }
-  },
+      const left = `<svg width="180" height="140"><rect x=10 y=10 width=160 height=120 rx=12 fill="#122232"/><circle cx=60 cy=60 r=12 fill="#ffa08a"/></svg>`;
+      const right = `<svg width="180" height="140"><rect x=10 y=10 width=160 height=120 rx=12 fill="#122232"/><circle cx=60 cy=60 r=12 fill="#ffa08a"/></svg>`;
+      root.innerHTML = `<div style="display:flex;gap:10px;align-items:center;justify-content:center">${left}${right}</div><div style="font-size:12px;color:var(--muted);margin-top:6px">One tiny dot is missing on the right panel</div>`;
+    } },
 
-  {
-    id:2,
-    title:"Stroop Test: What is the COLOR of this word?",
-    type:"stroop",
-    hint:"Say the color, not the text meaning.",
-    options:["Red","Blue","Green","Yellow"],
-    answer:"Blue",
-    render(root){
-      root.innerHTML = '';
-      const wrap = document.createElement('div');
-      wrap.style.display='flex'; wrap.style.flexDirection='column'; wrap.style.alignItems='center'; wrap.style.justifyContent='center';
-      const word = document.createElement('div');
-      word.textContent='RED';
-      word.style.fontSize='88px';
-      word.style.fontWeight='900';
-      word.style.color='blue'; // text says RED but color blue
-      wrap.appendChild(word);
-      root.appendChild(wrap);
-    }
-  },
+  // 12 Paradox: If nothing is impossible...
+  { id:12, title:"Paradox: If nothing is impossible, can something be impossible?", options:["Yes","No","Maybe","Depends"], answer:"Yes", hint:"Paradoxical logic answer.",
+    render(root){ root.innerHTML = `<div style="font-size:18px;color:var(--muted)">This is a self-referential paradox — trick answer.</div>`; } },
 
-  {
-    id:3,
-    title:"Rotating Number: Is this a 6 or a 9?",
-    type:"rotate",
-    hint:"Look at the orientation.",
-    options:["6","9","Both","Neither"],
-    answer:"9",
-    render(root){
-      root.innerHTML = '';
-      const el = document.createElement('div');
-      el.style.fontSize='140px';
-      el.style.fontWeight='900';
-      el.style.transform='rotate(180deg)'; // show rotated 6 -> appears 9
-      el.style.transition='transform 0.6s';
-      el.textContent='6';
-      root.appendChild(el);
-      // small animation: rotate slightly for confusion
-      setTimeout(()=>{ el.style.transform='rotate(190deg)'; },300);
-      setTimeout(()=>{ el.style.transform='rotate(180deg)'; },700);
-    }
-  },
-
-  {
-    id:4,
-    title:"Hidden Object: Where is the ⭐ hidden?",
-    type:"hidden",
-    hint:"Spot the tiny star among emojis.",
-    options:["Top-left","Top-right","Bottom-left","Bottom-right"],
-    answer:"Top-right",
-    render(root){
-      // render 4x4 emoji grid with a star at top-right
-      root.innerHTML = '';
-      const grid = document.createElement('div');
-      grid.style.display='grid';
-      grid.style.gridTemplateColumns='repeat(4, 50px)';
-      grid.style.gap='8px';
-      grid.style.justifyContent='center';
-      const emojis = ["🍎","🚗","📚","🐶","🌵","🍪","🍌","🌙","🎈","🧩","🔑","🍩","🧸","✏️","⚽️","⭐"];
-      // shuffle slightly but keep star at last -> will be top-right visually depending order; to ensure top-right, place index 3
-      // We'll place star at index 3 (0-based -> top-right)
-      const arranged = ["🍎","🚗","📚","⭐","🐶","🌵","🍪","🍌","🌙","🎈","🧩","🔑","🍩","🧸","✏️","⚽️"];
-      arranged.forEach((em, i)=>{
-        const b = document.createElement('div');
-        b.style.width='50px'; b.style.height='50px'; b.style.display='flex'; b.style.alignItems='center'; b.style.justifyContent='center';
-        b.style.fontSize='26px'; b.style.borderRadius='8px'; b.style.background='rgba(255,255,255,0.01)';
-        b.textContent=em;
-        grid.appendChild(b);
-      });
-      root.appendChild(grid);
-    }
-  },
-
-  {
-    id:5,
-    title:"Flash Memory: Which emoji was MISSING?",
-    type:"flash",
-    hint:"Memorize quickly — you get 3 seconds!",
-    options:["🦊","🐶","🍎","🚀"],
-    answer:"🦊",
+  // 13 Flash memory: memorize 6 icons in 3 seconds
+  { id:13, title:"Flash Memory: Which emoji was MISSING?", options:["🍌","🌟","🐶","✏️"], answer:"🍌", hint:"Memorize quickly (3s) then pick missing one.",
     render(root,ctx){
       root.innerHTML = '';
-      const msg = document.createElement('div');
-      msg.style.fontSize='20px'; msg.style.marginBottom='6px';
-      msg.textContent='Memorize these emojis:';
-      const emwrap = document.createElement('div');
-      emwrap.style.display='flex'; emwrap.style.gap='12px'; emwrap.style.fontSize='36px';
-      // Show set without 🦊 (but options will include 🦊 as missing)
-      const seq = ["🐶","🍎","🚀","🐱","🌟"];
-      seq.forEach(e=> emwrap.appendChild(Object.assign(document.createElement('div'),{textContent:e})));
-      root.appendChild(msg); root.appendChild(emwrap);
-      // store for context that list had no 🦊
-      ctx._flashList = seq.slice();
-      // show for 3 seconds then hide
-      setTimeout(()=>{ emwrap.style.visibility='hidden'; msg.textContent='Now pick which one was MISSING'; },3000);
-    }
-  },
-
-  {
-    id:6,
-    title:"Spot the Difference: How many differences?",
-    type:"spot",
-    hint:"Two panels side-by-side — find the subtle change.",
-    options:["1","2","3","4"],
-    answer:"1",
-    render(root){
-      // simple SVG pair where right panel misses a small dot
-      root.innerHTML = '';
-      const container = document.createElement('div');
-      container.style.display='flex'; container.style.gap='12px'; container.style.alignItems='center';
-      // left
-      const left = document.createElement('svg'); left.setAttribute('width','180'); left.setAttribute('height','140');
-      left.innerHTML = `<rect x=10 y=10 width=160 height=120 rx=12 fill="#142032"/><circle cx=60 cy=60 r=12 fill="#ffa08a"/><rect x=100 y=30 width=40 height=40 rx=6 fill="#7dd3fc"/>`;
-      // right (missing small dot)
-      const right = document.createElement('svg'); right.setAttribute('width','180'); right.setAttribute('height','140');
-      right.innerHTML = `<rect x=10 y=10 width=160 height=120 rx=12 fill="#142032"/><circle cx=60 cy=60 r=12 fill="#ffa08a"/><rect x=100 y=30 width=40 height=40 rx=6 fill="#7dd3fc"/>`;
-      // remove small dot at bottom right on right panel to simulate 1 diff
-      const small = document.createElementNS('http://www.w3.org/2000/svg','circle'); small.setAttribute('cx','140'); small.setAttribute('cy','100'); small.setAttribute('r','6'); small.setAttribute('fill','#ffd6a5');
-      left.appendChild(small);
-      container.appendChild(left); container.appendChild(right);
-      root.appendChild(container);
-    }
-  },
-
-  {
-    id:7,
-    title:"Optical Illusion: Which direction is it rotating?",
-    type:"illusion",
-    hint:"Stare at the center for a beat.",
-    options:["Clockwise","Counter-clockwise","It doesn't rotate","Both"],
-    answer:"Clockwise",
-    render(root){
-      root.innerHTML = '';
-      const ring = document.createElement('div');
-      ring.className='spinner';
-      root.appendChild(ring);
-    }
-  },
-
-  {
-    id:8,
-    title:"Logic Trap: 12 + 6 ÷ 3 × 2 = ?",
-    type:"math",
-    hint:"Apply order of operations (BODMAS/PEDMAS).",
-    options:["16","24","20","18"],
-    answer:"16",
-    render(root){
-      root.innerHTML = '';
-      const el = document.createElement('div');
-      el.style.fontSize='34px'; el.style.fontWeight='800';
-      el.textContent='12 + 6 ÷ 3 × 2 = ?';
-      root.appendChild(el);
-    }
-  },
-
-  {
-    id:9,
-    title:"Impossible Shape: Is this possible in 3D?",
-    type:"penrose",
-    hint:"Looks like a triangle but the join is impossible.",
-    options:["Yes","No","Maybe","Only from one angle"],
-    answer:"No",
-    render(root){
-      // draw a stylized 'impossible triangle' using SVG belts
-      root.innerHTML = '';
-      const svg = document.createElementNS('http://www.w3.org/2000/svg','svg');
-      svg.setAttribute('width','220'); svg.setAttribute('height','220'); svg.setAttribute('viewBox','0 0 200 200');
-      svg.innerHTML = `
-        <defs>
-          <linearGradient id="g1" x1="0" x2="1"><stop offset="0" stop-color="#ffd6a5"/><stop offset="1" stop-color="#ffafbd"/></linearGradient>
-        </defs>
-        <g transform="translate(20,20) scale(0.9)">
-          <path d="M60 10 L140 10 L170 80 L100 160 L30 80 Z" fill="none" stroke="url(#g1)" stroke-width="16" stroke-linejoin="round"/>
-          <path d="M60 10 L100 160 L30 80" fill="none" stroke="rgba(255,255,255,0.03)"/>
-        </g>`;
-      root.appendChild(svg);
-    }
-  },
-
-  {
-    id:10,
-    title:"Hidden Number in Noise: Which digit is visible?",
-    type:"noisy",
-    hint:"Look closely — one digit stands out.",
-    options:["3","7","5","9"],
-    answer:"7",
-    render(root){
-      root.innerHTML = '';
-      // create many digits but highlight one slightly darker
-      const wrap = document.createElement('div');
-      wrap.style.display='grid'; wrap.style.gridTemplateColumns='repeat(9,28px)'; wrap.style.gap='6px'; wrap.style.justifyContent='center';
-      const digits = "01234567890123456789012345678901234567890123456789";
-      // place a '7' among digits and make it darker
-      for(let i=0;i<45;i++){
-        const cell = document.createElement('div');
-        cell.style.width='28px'; cell.style.height='28px'; cell.style.display='flex'; cell.style.alignItems='center'; cell.style.justifyContent='center';
-        cell.style.color='rgba(255,255,255,0.12)'; cell.style.fontSize='16px'; cell.style.fontWeight='700';
-        cell.textContent = digits[i%digits.length];
-        wrap.appendChild(cell);
-      }
-      // pick a random index to place the '7' more visible
-      const targetIdx = 12;
-      wrap.children[targetIdx].textContent='7';
-      wrap.children[targetIdx].style.color='rgba(255,255,255,0.95)';
-      wrap.children[targetIdx].style.background='rgba(255,255,255,0.02)';
-      wrap.children[targetIdx].style.borderRadius='4px';
+      const seq = ["🐶","🌟","✏️","🚗","📚"]; // missing 🍌
+      const wrap = document.createElement('div'); wrap.style.display='flex';wrap.style.gap='12px';wrap.style.fontSize='36px';
+      seq.forEach(s=>{ const d=document.createElement('div'); d.textContent=s; wrap.appendChild(d); });
       root.appendChild(wrap);
-    }
-  }
+      // hide after 3s
+      setTimeout(()=>{ wrap.style.visibility='hidden'; },3000);
+    } },
+
+  // 14 Rotated-digit trap (6 vs 9 orientation)
+  { id:14, title:"Rotated digit: Is this a 6 or a 9?", options:["6","9","Both","Neither"], answer:"9", hint:"Orientation matters.",
+    render(root){ root.innerHTML = `<div style="font-size:120px; transform: rotate(180deg);">6</div>`; } },
+
+  // 15 Final brain-smash paradox (refusal chooses)
+  { id:15, title:"If you must answer YES or NO, and you refuse to answer, did you choose?", options:["Yes","No","Refusal isn't a choice","Trick"], answer:"Yes", hint:"Refusal is a form of choice in this framing.",
+    render(root){ root.innerHTML = `<div style="font-size:16px;color:var(--muted)">Meta / philosophical trap question.</div>`; } }
 ];
 
-// state
-let current = -1;
+let current = 0;
 let score = 0;
 let timer = null;
 let timeLeft = 10;
-const total = puzzles.length;
+const total = PUZZLES.length;
 
 /* DOM refs */
 const startBtn = document.getElementById('startBtn');
 const restartBtn = document.getElementById('restartBtn');
 const qidx = document.getElementById('qidx');
-const qtot = document.getElementById('qtot');
+const qTotal = document.getElementById('qTotal');
 const bar = document.getElementById('bar');
 const questionText = document.getElementById('questionText');
-const sceneRoot = document.getElementById('sceneRoot');
-const optionsArea = document.getElementById('options');
-const statusText = document.getElementById('statusText');
+const visualArea = document.getElementById('visualArea');
+const optionsArea = document.getElementById('optionsArea');
+const statusArea = document.getElementById('statusArea');
 const bigTimer = document.getElementById('bigTimer');
+const hintText = document.getElementById('hintText');
+const miniHint = document.getElementById('miniHint');
 const nextBtn = document.getElementById('nextBtn');
 const quitBtn = document.getElementById('quitBtn');
 const scoreSpan = document.getElementById('score');
@@ -442,56 +232,52 @@ const endScreen = document.getElementById('endScreen');
 const finalScore = document.getElementById('finalScore');
 const finalMsg = document.getElementById('finalMsg');
 const playAgain = document.getElementById('playAgain');
-const shareTweet = document.getElementById('shareTweet');
-const tinyHint = document.getElementById('tinyHint');
-const lastRes = document.getElementById('lastRes');
+const tweet = document.getElementById('tweet');
 
-qtot.innerText = total;
+document.getElementById('qtot').innerText = total;
+qTotal.innerText = total;
 bar.style.width = '0%';
+scoreSpan.innerText = score;
 
-/* event handlers */
 startBtn.addEventListener('click', startGame);
 restartBtn.addEventListener('click', ()=> location.reload());
 nextBtn.addEventListener('click', ()=> { current++; showPuzzle(); });
 quitBtn.addEventListener('click', endEarly);
-playAgain.addEventListener('click', ()=> location.reload());
+playAgain && playAgain.addEventListener('click', ()=> location.reload());
 
 function startGame(){
   startBtn.style.display='none';
   restartBtn.style.display='inline-block';
-  current = 0; score = 0;
-  scoreSpan.innerText = score;
+  current = 0; score = 0; scoreSpan.innerText = score;
   showPuzzle();
 }
 
 function showPuzzle(){
-  // reset UI
   clearInterval(timer);
-  statusText.innerText = '';
-  lastRes.innerText = '—';
+  statusArea.innerText = '';
   nextBtn.style.display='none';
   quitBtn.style.display='inline-block';
   optionsArea.innerHTML = '';
-  sceneRoot.innerHTML = '<div style="color:var(--muted)">Loading visual...</div>';
-  const p = puzzles[current];
+  visualArea.innerHTML = '<div style="color:var(--muted)">Rendering visual...</div>';
+  const p = PUZZLES[current];
   qidx.innerText = current+1;
   questionText.innerText = p.title;
-  tinyHint.innerText = p.hint || '';
-  // render visual
-  setTimeout(()=> {
-    p.render(sceneRoot, { _flashList: [] });
-  }, 80);
+  hintText.innerText = p.hint || '';
+  miniHint.innerText = (current+1) + ' / ' + total;
+
+  // render visual — some renderers expect ctx object
+  setTimeout(()=>{ try{ p.render(visualArea, {}); } catch(e){ visualArea.innerHTML = '<div style="color:var(--muted)">[Visual]</div>'; } }, 60);
 
   // render options
   p.options.forEach(opt => {
     const b = document.createElement('button');
-    b.className='opt';
+    b.className = 'opt';
     b.innerText = opt;
     b.onclick = ()=> selectAnswer(opt, b, p);
     optionsArea.appendChild(b);
   });
 
-  // timer start
+  // timer
   timeLeft = 10;
   bigTimer.innerText = timeLeft;
   timer = setInterval(()=>{
@@ -503,87 +289,62 @@ function showPuzzle(){
     }
   },1000);
 
-  // progress
   bar.style.width = ((current)/total*100) + '%';
 }
 
 function selectAnswer(opt, btnEl, puzzle){
   clearInterval(timer);
-  // disable all options
   const btns = optionsArea.querySelectorAll('button.opt');
   btns.forEach(b=> b.disabled = true);
-  // check
   if(opt === puzzle.answer){
     btnEl.classList.add('correct');
-    statusText.innerText = '✅ Correct!';
-    score++;
-    scoreSpan.innerText = score;
-    lastRes.innerText = 'Correct: ' + puzzle.answer;
+    statusArea.innerText = '✅ Correct!';
+    score++; scoreSpan.innerText = score;
   } else {
     btnEl.classList.add('wrong');
-    statusText.innerText = '❌ Wrong!';
-    // highlight correct button
+    statusArea.innerText = '❌ Wrong!';
+    // highlight correct
     for(let b of btns) if(b.innerText === puzzle.answer) b.classList.add('correct');
-    lastRes.innerText = 'Correct: ' + puzzle.answer;
   }
-  nextBtn.style.display='inline-block';
-  // if flash-type, reveal explanation (optional)
-  if(puzzle.type==='flash'){
-    // if flash list saved earlier, show explanation
-    // nothing extra here
-  }
-  // advance progress
+  nextBtn.style.display = 'inline-block';
   bar.style.width = ((current+1)/total*100) + '%';
 }
 
 function handleTimeout(puzzle){
-  statusText.innerText = "⏰ Time's up!";
-  // disable options & show correct
+  statusArea.innerText = "⏰ Time's up!";
   const btns = optionsArea.querySelectorAll('button.opt');
   btns.forEach(b=> { b.disabled = true; if(b.innerText === puzzle.answer) b.classList.add('correct'); });
-  lastRes.innerText = 'Correct: ' + puzzle.answer;
   nextBtn.style.display='inline-block';
   bar.style.width = ((current+1)/total*100) + '%';
 }
 
-/* next/finish logic */
 nextBtn.addEventListener('click', ()=>{
   current++;
-  if(current>=total){
-    finish();
-  } else{
-    showPuzzle();
-  }
+  if(current>=total){ finish(); } else { showPuzzle(); }
 });
 
 function finish(){
   clearInterval(timer);
   document.querySelector('.card').scrollIntoView({behavior:'smooth'});
   endScreen.style.display='block';
-  document.querySelector('footer').scrollIntoView({behavior:'smooth'});
-  document.getElementById('finalScore').innerText = `${score} / ${total}`;
+  finalScore.innerText = `${score} / ${total}`;
   let msg = '';
-  if(score === total) msg = "Unreal! You aced the confusing challenge — share your score!";
-  else if(score >= Math.ceil(total*0.8)) msg = "Amazing! Top performer — share and challenge friends.";
-  else if(score >= Math.ceil(total*0.5)) msg = "Not bad — decent score. Try again!";
-  else msg = "Tricky stuff! Rethink and replay — practice makes viral videos.";
+  if(score === total) msg = "Insane! Perfect score — share and flex!";
+  else if(score >= Math.ceil(total*0.8)) msg = "Amazing — top tier performance!";
+  else if(score >= Math.ceil(total*0.5)) msg = "Solid — above average.";
+  else msg = "These were brutal — try again and don't overthink!";
   finalMsg.innerText = msg;
-  // prepare tweet link
-  const tweetText = encodeURIComponent(`I scored ${score}/${total} on "The Most Confusing Challenge on YouTube 😵" — can you beat me?`);
-  shareTweet.href = `https://twitter.com/intent/tweet?text=${tweetText}`;
-  // hide main card UI to focus end (optional)
-  document.querySelector('.card').style.opacity = 0.8;
-  // show restart
+  const tweetText = encodeURIComponent(`I scored ${score}/${total} on "Only 1% Can Pass This Strange IQ Test — HARD" — can you beat me?`);
+  tweet.href = `https://twitter.com/intent/tweet?text=${tweetText}`;
+  document.querySelector('.card').style.opacity = 0.95;
 }
 
 function endEarly(){
-  if(confirm("Quit challenge? Your progress will be lost.")){
-    finish();
-  }
+  if(confirm("Quit the challenge? Progress lost.")) finish();
 }
 
-/* ensure first screen shows total */
-document.getElementById('qtot').innerText = total;
+/* ensure qTotal set */
+document.getElementById('qTotal').innerText = total;
 </script>
 </body>
 </html>
