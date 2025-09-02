@@ -2,44 +2,116 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>IQ Challenge</title>
+  <title>Brain Power Challenge</title>
   <style>
-    body { font-family: Arial, sans-serif; text-align: center; padding: 40px; }
-    .timer { font-size: 24px; color: red; margin: 20px; }
-    .question { font-size: 22px; margin: 20px; }
-    button { padding: 10px 20px; margin: 10px; font-size: 18px; cursor: pointer; }
+    body { font-family: Arial, sans-serif; text-align: center; background: #f4f4f4; }
+    #game-container { max-width: 700px; margin: auto; padding: 30px; background: white; border-radius: 15px; box-shadow: 0 0 20px rgba(0,0,0,0.1);}
+    h1 { color: #333; }
+    .timer { font-size: 50px; font-weight: bold; color: red; margin: 20px 0; }
+    .question { font-size: 22px; margin: 20px 0; }
+    button { padding: 12px 25px; font-size: 18px; margin: 10px; cursor: pointer; border: none; border-radius: 8px; background: #007bff; color: white; }
+    button:hover { background: #0056b3; }
+    #result { font-size: 20px; margin: 20px; font-weight: bold; }
   </style>
 </head>
 <body>
-  <h1>Only 1% Can Pass This IQ Challenge!</h1>
-  <div id="game">
-    <div class="question">What comes next in this sequence: 2, 6, 12, 20, ?</div>
-    <div class="timer" id="timer">10</div>
-    <button onclick="checkAnswer('30')">30</button>
-    <button onclick="checkAnswer('28')">28</button>
-    <button onclick="checkAnswer('24')">24</button>
-    <div id="result"></div>
+  <div id="game-container">
+    <h1>🧠 Brain Power Challenge</h1>
+    <div id="intro">
+      <p>Test your IQ with 10 fun puzzles. You have <b>10 seconds</b> for each!</p>
+      <button onclick="startGame()">Start Challenge</button>
+    </div>
+
+    <div id="game" style="display:none;">
+      <div class="question" id="question"></div>
+      <div class="timer" id="timer">10</div>
+      <div id="options"></div>
+      <div id="result"></div>
+      <button id="next-btn" onclick="nextQuestion()" style="display:none;">Next Challenge ➡️</button>
+    </div>
+
+    <div id="end" style="display:none;">
+      <h2>🎉 Challenge Completed!</h2>
+      <p id="score"></p>
+      <button onclick="location.reload()">Play Again</button>
+    </div>
   </div>
 
-  <script>
-    let time = 10;
-    let countdown = setInterval(() => {
-      document.getElementById("timer").innerText = time;
-      if (time === 0) {
-        clearInterval(countdown);
-        document.getElementById("result").innerHTML = "⏰ Time's up!";
-      }
-      time--;
-    }, 1000);
+<script>
+const challenges = [
+  { q: "Number Sequence Puzzle → 2, 6, 12, 20, ?", options:["24","28","30"], answer:"30" },
+  { q: "Hidden Object Puzzle → Find the hidden star in this picture.", options:["Left Corner","Middle","Right Corner"], answer:"Middle" },
+  { q: "Riddle → I speak without a mouth and hear without ears. What am I?", options:["Echo","Shadow","Wind"], answer:"Echo" },
+  { q: "Math Puzzle → 12 + 18 ÷ 3 × 2 = ?", options:["24","30","36"], answer:"24" },
+  { q: "Pattern Puzzle → Circle, Square, Triangle, Circle, Square, ?", options:["Triangle","Circle","Hexagon"], answer:"Triangle" },
+  { q: "Word Puzzle → Unscramble this word: TBAEL", options:["Table","Bleat","Ablet"], answer:"Table" },
+  { q: "Memory Challenge → Memorize: Sun, Dog, Car, Pen, Tree, Book. What was the 3rd word?", options:["Car","Pen","Tree"], answer:"Car" },
+  { q: "Spot the Difference → Two images, find 3 differences.", options:["Hat, Shirt, Shoes","Eyes, Nose, Mouth","Sky, Tree, House"], answer:"Hat, Shirt, Shoes" },
+  { q: "Optical Illusion → What animal do you see first?", options:["Duck","Rabbit","Both"], answer:"Both" },
+  { q: "Final Trick Question → If you have 3 apples and take away 2, how many do you have?", options:["1","2","3"], answer:"2" }
+];
 
-    function checkAnswer(ans) {
-      clearInterval(countdown);
-      if (ans === "30") {
-        document.getElementById("result").innerHTML = "✅ Correct! The answer is 30.";
-      } else {
-        document.getElementById("result").innerHTML = "❌ Wrong! The correct answer is 30.";
-      }
+let current = 0;
+let score = 0;
+let timer;
+let timeLeft = 10;
+
+function startGame(){
+  document.getElementById("intro").style.display = "none";
+  document.getElementById("game").style.display = "block";
+  loadChallenge();
+}
+
+function loadChallenge(){
+  let c = challenges[current];
+  document.getElementById("question").innerText = c.q;
+  let optionsHTML = "";
+  c.options.forEach(opt=>{
+    optionsHTML += `<button onclick="checkAnswer('${opt}')">${opt}</button>`;
+  });
+  document.getElementById("options").innerHTML = optionsHTML;
+  document.getElementById("result").innerHTML = "";
+  document.getElementById("next-btn").style.display = "none";
+
+  timeLeft = 10;
+  document.getElementById("timer").innerText = timeLeft;
+  timer = setInterval(()=>{
+    timeLeft--;
+    document.getElementById("timer").innerText = timeLeft;
+    if(timeLeft <= 0){
+      clearInterval(timer);
+      document.getElementById("result").innerHTML = "⏰ Time's up!";
+      document.getElementById("next-btn").style.display = "block";
     }
-  </script>
+  },1000);
+}
+
+function checkAnswer(ans){
+  clearInterval(timer);
+  let c = challenges[current];
+  if(ans === c.answer){
+    document.getElementById("result").innerHTML = "✅ Correct!";
+    score++;
+  } else {
+    document.getElementById("result").innerHTML = "❌ Wrong! Correct: " + c.answer;
+  }
+  document.getElementById("next-btn").style.display = "block";
+}
+
+function nextQuestion(){
+  current++;
+  if(current < challenges.length){
+    loadChallenge();
+  } else {
+    endGame();
+  }
+}
+
+function endGame(){
+  document.getElementById("game").style.display = "none";
+  document.getElementById("end").style.display = "block";
+  document.getElementById("score").innerText = `You got ${score} out of ${challenges.length} correct!`;
+}
+</script>
 </body>
 </html>
