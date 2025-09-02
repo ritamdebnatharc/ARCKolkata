@@ -1,116 +1,270 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Brain Power Challenge</title>
-  <style>
-    body { font-family: Arial, sans-serif; text-align: center; background: #f4f4f4; }
-    #game-container { max-width: 700px; margin: auto; padding: 30px; background: white; border-radius: 15px; box-shadow: 0 0 20px rgba(0,0,0,0.1);}
-    h1 { color: #333; }
-    .timer { font-size: 50px; font-weight: bold; color: red; margin: 20px 0; }
-    .question { font-size: 22px; margin: 20px 0; }
-    button { padding: 12px 25px; font-size: 18px; margin: 10px; cursor: pointer; border: none; border-radius: 8px; background: #007bff; color: white; }
-    button:hover { background: #0056b3; }
-    #result { font-size: 20px; margin: 20px; font-weight: bold; }
-  </style>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Only 1% Can Pass This Strange IQ Test 🤯</title>
+<style>
+  :root{
+    --bg:#0f1724;
+    --card:#0b1220;
+    --accent:#ff6b6b;
+    --muted:#94a3b8;
+    --good:#38d39f;
+    --bad:#ff6b6b;
+  }
+  html,body{height:100%;margin:0;font-family:Inter,system-ui,Segoe UI,Roboto,"Helvetica Neue",Arial;}
+  body{background:linear-gradient(180deg,#081028 0%, #071422 100%);display:flex;align-items:center;justify-content:center;padding:24px;color:#e6eef8;}
+  .container{max-width:900px;width:100%;background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));border-radius:14px;padding:28px;box-shadow:0 10px 40px rgba(2,6,23,0.6);border:1px solid rgba(255,255,255,0.03);}
+  h1{margin:0 0 6px;font-size:24px;display:flex;align-items:center;gap:10px}
+  p.lead{margin:6px 0 18px;color:var(--muted);}
+  .top-row{display:flex;gap:12px;align-items:center;justify-content:space-between;margin-bottom:18px;}
+  .meta{display:flex;gap:12px;align-items:center;}
+  .btn{background:var(--accent);border:none;color:white;padding:12px 16px;border-radius:10px;font-weight:600;cursor:pointer;}
+  .btn.secondary{background:transparent;border:1px solid rgba(255,255,255,0.06);color:var(--muted);}
+  .card{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));padding:20px;border-radius:12px;border:1px solid rgba(255,255,255,0.02);}
+  .question{font-size:20px;margin-bottom:16px;}
+  .timer{font-size:56px;font-weight:800;color:var(--accent);text-align:center;padding:6px 0;margin-bottom:12px;}
+  .options{display:flex;flex-direction:column;gap:10px;}
+  .option-btn{background:transparent;border:1px solid rgba(255,255,255,0.06);padding:12px 14px;border-radius:10px;text-align:left;color:#e6eef8;cursor:pointer;font-size:16px;}
+  .option-btn:hover{border-color:rgba(255,255,255,0.12);}
+  .option-btn.correct{background:linear-gradient(90deg, rgba(56,211,159,0.12), rgba(56,211,159,0.06));border-color:rgba(56,211,159,0.2);}
+  .option-btn.wrong{background:linear-gradient(90deg, rgba(255,107,107,0.08), rgba(255,107,107,0.04));border-color:rgba(255,107,107,0.18);}
+  .status{margin-top:12px;font-weight:700;}
+  .progress{height:10px;background:rgba(255,255,255,0.03);border-radius:6px;overflow:hidden;margin-bottom:12px;}
+  .progress > i{display:block;height:100%;background:linear-gradient(90deg,var(--accent),#ffa08a);width:0%;}
+  .footer{display:flex;gap:10px;align-items:center;justify-content:space-between;margin-top:18px;}
+  .result-badge{font-size:18px;padding:8px 14px;border-radius:10px;background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.03);}
+  .big-score{font-size:28px;font-weight:800;color:var(--accent);}
+  .explain{color:var(--muted);margin-top:8px;}
+  @media (max-width:640px){
+    .timer{font-size:42px;}
+    .question{font-size:18px;}
+  }
+</style>
 </head>
 <body>
-  <div id="game-container">
-    <h1>🧠 Brain Power Challenge</h1>
-    <div id="intro">
-      <p>Test your IQ with 10 fun puzzles. You have <b>10 seconds</b> for each!</p>
-      <button onclick="startGame()">Start Challenge</button>
+  <div class="container">
+    <div class="top-row">
+      <div>
+        <h1>Only 1% Can Pass This Strange IQ Test 🤯</h1>
+        <p class="lead">15 weird, mind-twisting questions. 10 seconds each. No overthinking — answer fast. Good luck!</p>
+      </div>
+      <div class="meta">
+        <div class="result-badge">Questions: <strong id="total">15</strong></div>
+        <button id="startBtn" class="btn">Start Challenge</button>
+      </div>
     </div>
 
-    <div id="game" style="display:none;">
-      <div class="question" id="question"></div>
-      <div class="timer" id="timer">10</div>
-      <div id="options"></div>
-      <div id="result"></div>
-      <button id="next-btn" onclick="nextQuestion()" style="display:none;">Next Challenge ➡️</button>
+    <div id="gameArea" style="display:none;">
+      <div class="card">
+        <div class="progress" aria-hidden="true"><i id="progressBar"></i></div>
+        <div style="display:flex;align-items:center;justify-content:space-between;">
+          <div style="font-weight:700">Question <span id="qIndex">1</span> / <span id="qTotal">15</span></div>
+          <div class="timer" id="bigTimer">10</div>
+        </div>
+
+        <div class="question" id="questionText">Question text goes here</div>
+
+        <div class="options" id="optionsArea">
+          <!-- buttons will appear here -->
+        </div>
+
+        <div class="status" id="statusText" aria-live="polite"></div>
+        <div class="explain" id="explainText"></div>
+
+        <div class="footer">
+          <div>
+            <button id="nextBtn" class="btn secondary" style="display:none;">Next Challenge ➡️</button>
+            <button id="quitBtn" class="btn secondary" style="display:inline-block;margin-left:8px;">Quit</button>
+          </div>
+          <div>Score: <span id="scoreDisplay">0</span></div>
+        </div>
+      </div>
     </div>
 
-    <div id="end" style="display:none;">
-      <h2>🎉 Challenge Completed!</h2>
-      <p id="score"></p>
-      <button onclick="location.reload()">Play Again</button>
+    <div id="endArea" style="display:none;margin-top:18px;text-align:center">
+      <h2 id="finalTitle">Finished!</h2>
+      <p class="big-score" id="finalScore">You got 0 / 15</p>
+      <p class="explain" id="finalMessage">Final message</p>
+      <div style="margin-top:14px">
+        <button id="retryBtn" class="btn">Play Again</button>
+        <a id="shareLink" class="btn secondary" href="#" target="_blank" style="margin-left:8px">Share</a>
+      </div>
     </div>
   </div>
 
 <script>
-const challenges = [
-  { q: "Number Sequence Puzzle → 2, 6, 12, 20, ?", options:["24","28","30"], answer:"30" },
-  { q: "Hidden Object Puzzle → Find the hidden star in this picture.", options:["Left Corner","Middle","Right Corner"], answer:"Middle" },
-  { q: "Riddle → I speak without a mouth and hear without ears. What am I?", options:["Echo","Shadow","Wind"], answer:"Echo" },
-  { q: "Math Puzzle → 12 + 18 ÷ 3 × 2 = ?", options:["24","30","36"], answer:"24" },
-  { q: "Pattern Puzzle → Circle, Square, Triangle, Circle, Square, ?", options:["Triangle","Circle","Hexagon"], answer:"Triangle" },
-  { q: "Word Puzzle → Unscramble this word: TBAEL", options:["Table","Bleat","Ablet"], answer:"Table" },
-  { q: "Memory Challenge → Memorize: Sun, Dog, Car, Pen, Tree, Book. What was the 3rd word?", options:["Car","Pen","Tree"], answer:"Car" },
-  { q: "Spot the Difference → Two images, find 3 differences.", options:["Hat, Shirt, Shoes","Eyes, Nose, Mouth","Sky, Tree, House"], answer:"Hat, Shirt, Shoes" },
-  { q: "Optical Illusion → What animal do you see first?", options:["Duck","Rabbit","Both"], answer:"Both" },
-  { q: "Final Trick Question → If you have 3 apples and take away 2, how many do you have?", options:["1","2","3"], answer:"2" }
+/*
+  Strange IQ Test - 15 questions
+  Each item: q, options, answer (exact text), explanation (optional)
+*/
+const QUESTIONS = [
+  { q: "If you throw a red stone into a blue sea, what will it become?", options:["Blue","Wet","Red","Invisible"], answer:"Wet", explain:"It becomes wet — trick riddle." },
+  { q: "Which is heavier: 1 kg of feathers or 1 kg of iron?", options:["Feathers","Iron","They weigh the same","Cannot tell"], answer:"They weigh the same", explain:"Both are 1 kilogram." },
+  { q: "If 5 cats catch 5 mice in 5 minutes, how long does 1 cat take to catch 1 mouse?", options:["1 minute","5 minutes","25 minutes","Cannot determine"], answer:"5 minutes", explain:"Each cat catches one mouse in 5 minutes." },
+  { q: "If you take 3 apples from a pile of 10, how many do you have?", options:["7","3","10","None"], answer:"3", explain:"You took 3 — you have 3." },
+  { q: "What has keys but can't open doors?", options:["A Piano","A Car","A Map","An Answer"], answer:"A Piano", explain:"Classic riddle." },
+  { q: "If a plane crashes exactly on the border between two countries, where do you bury the survivors?", options:["Either country","Both countries","Nowhere","Depends"], answer:"Nowhere", explain:"You don't bury survivors." },
+  { q: "Which month has 28 days?", options:["February","All of them","Only Feb in leap years","None"], answer:"All of them", explain:"Every month has at least 28 days." },
+  { q: "You are running a race and you pass the person in second place. What place are you in?", options:["First","Second","Third","Cannot say"], answer:"Second", explain:"If you pass second, you take second place." },
+  { q: "If an electric train is moving north at 100mph and the wind is blowing to the west, which way does the smoke blow?", options:["North","West","There is no smoke","South"], answer:"There is no smoke", explain:"Electric trains don't emit smoke." },
+  { q: "Which weighs more: a pound of gold or a pound of lead?", options:["Gold","Lead","Same weight","Gold in special units"], answer:"Same weight", explain:"Both are one pound." },
+  { q: "I speak without a mouth and hear without ears. What am I?", options:["Echo","Shadow","Wind","Thought"], answer:"Echo", explain:"Classic riddle answer: echo." },
+  { q: "What goes up but never comes down?", options:["Smoke","Age","Balloon","Temperature"], answer:"Age", explain:"Your age only increases." },
+  { q: "If you have 3 apples and you take away 2, how many do you have?", options:["1","2","3","0"], answer:"2", explain:"You took 2, so you have 2." },
+  { q: "If a rooster lays an egg on a roof, which side does it roll?", options:["Left","Right","Either","Rooster doesn't lay eggs"], answer:"Rooster doesn't lay eggs", explain:"Roosters are male — they don't lay eggs." },
+  { q: "If nothing is impossible, can something be impossible?", options:["Yes","No","Maybe","Depends"], answer:"Yes", explain:"Paradox: if nothing is impossible then 'something impossible' contradicts — intended to trigger thinking." }
 ];
 
-let current = 0;
+let currentIndex = 0;
 let score = 0;
-let timer;
+let timerInterval = null;
 let timeLeft = 10;
 
-function startGame(){
-  document.getElementById("intro").style.display = "none";
-  document.getElementById("game").style.display = "block";
-  loadChallenge();
+const startBtn = document.getElementById('startBtn');
+const gameArea = document.getElementById('gameArea');
+const endArea = document.getElementById('endArea');
+const questionText = document.getElementById('questionText');
+const optionsArea = document.getElementById('optionsArea');
+const bigTimer = document.getElementById('bigTimer');
+const statusText = document.getElementById('statusText');
+const explainText = document.getElementById('explainText');
+const qIndex = document.getElementById('qIndex');
+const qTotal = document.getElementById('qTotal');
+const scoreDisplay = document.getElementById('scoreDisplay');
+const progressBar = document.getElementById('progressBar');
+const nextBtn = document.getElementById('nextBtn');
+const quitBtn = document.getElementById('quitBtn');
+const finalScore = document.getElementById('finalScore');
+const finalMessage = document.getElementById('finalMessage');
+const retryBtn = document.getElementById('retryBtn');
+const shareLink = document.getElementById('shareLink');
+
+const total = QUESTIONS.length;
+document.getElementById('total').innerText = total;
+qTotal.innerText = total;
+
+startBtn.addEventListener('click', startGame);
+nextBtn.addEventListener('click', () => { currentIndex++; showQuestion(); });
+quitBtn.addEventListener('click', endEarly);
+retryBtn.addEventListener('click', () => location.reload());
+
+function startGame() {
+  startBtn.style.display = 'none';
+  document.getElementById('intro')?.remove?.(); // safe removal if exists
+  gameArea.style.display = 'block';
+  currentIndex = 0;
+  score = 0;
+  scoreDisplay.innerText = score;
+  showQuestion();
 }
 
-function loadChallenge(){
-  let c = challenges[current];
-  document.getElementById("question").innerText = c.q;
-  let optionsHTML = "";
-  c.options.forEach(opt=>{
-    optionsHTML += `<button onclick="checkAnswer('${opt}')">${opt}</button>`;
+function showQuestion() {
+  // reset UI
+  clearInterval(timerInterval);
+  statusText.innerText = '';
+  explainText.innerText = '';
+  nextBtn.style.display = 'none';
+
+  if (currentIndex >= total) {
+    finish();
+    return;
+  }
+
+  const item = QUESTIONS[currentIndex];
+  qIndex.innerText = currentIndex + 1;
+  questionText.innerText = item.q;
+
+  // render options
+  optionsArea.innerHTML = '';
+  item.options.forEach(opt => {
+    const btn = document.createElement('button');
+    btn.className = 'option-btn';
+    btn.innerText = opt;
+    btn.onclick = () => answerSelected(opt, btn);
+    optionsArea.appendChild(btn);
   });
-  document.getElementById("options").innerHTML = optionsHTML;
-  document.getElementById("result").innerHTML = "";
-  document.getElementById("next-btn").style.display = "none";
 
+  // timer
   timeLeft = 10;
-  document.getElementById("timer").innerText = timeLeft;
-  timer = setInterval(()=>{
+  bigTimer.innerText = timeLeft;
+  progressBar.style.width = ((currentIndex)/total*100) + '%';
+  timerInterval = setInterval(() => {
     timeLeft--;
-    document.getElementById("timer").innerText = timeLeft;
-    if(timeLeft <= 0){
-      clearInterval(timer);
-      document.getElementById("result").innerHTML = "⏰ Time's up!";
-      document.getElementById("next-btn").style.display = "block";
+    bigTimer.innerText = timeLeft;
+    if (timeLeft <= 0) {
+      clearInterval(timerInterval);
+      handleTimeout();
     }
-  },1000);
+  }, 1000);
 }
 
-function checkAnswer(ans){
-  clearInterval(timer);
-  let c = challenges[current];
-  if(ans === c.answer){
-    document.getElementById("result").innerHTML = "✅ Correct!";
+function answerSelected(selected, buttonEl) {
+  clearInterval(timerInterval);
+  const item = QUESTIONS[currentIndex];
+  const buttons = document.querySelectorAll('.option-btn');
+  buttons.forEach(b=> b.disabled = true);
+
+  if (selected === item.answer) {
+    // correct
+    buttonEl.classList.add('correct');
+    statusText.innerHTML = '✅ Correct!';
     score++;
+    scoreDisplay.innerText = score;
   } else {
-    document.getElementById("result").innerHTML = "❌ Wrong! Correct: " + c.answer;
+    // wrong
+    buttonEl.classList.add('wrong');
+    statusText.innerHTML = '❌ Wrong!';
+    // highlight correct
+    for (let b of buttons) {
+      if (b.innerText === item.answer) {
+        b.classList.add('correct');
+      }
+    }
   }
-  document.getElementById("next-btn").style.display = "block";
+
+  explainText.innerText = item.explain || '';
+  nextBtn.style.display = 'inline-block';
+  progressBar.style.width = ((currentIndex+1)/total*100) + '%';
 }
 
-function nextQuestion(){
-  current++;
-  if(current < challenges.length){
-    loadChallenge();
-  } else {
-    endGame();
-  }
+function handleTimeout() {
+  const item = QUESTIONS[currentIndex];
+  // disable options
+  const buttons = document.querySelectorAll('.option-btn');
+  buttons.forEach(b=> {
+    b.disabled = true;
+    if (b.innerText === item.answer) b.classList.add('correct');
+  });
+  statusText.innerText = "⏰ Time's up!";
+  explainText.innerText = item.explain || '';
+  nextBtn.style.display = 'inline-block';
+  progressBar.style.width = ((currentIndex+1)/total*100) + '%';
 }
 
-function endGame(){
-  document.getElementById("game").style.display = "none";
-  document.getElementById("end").style.display = "block";
-  document.getElementById("score").innerText = `You got ${score} out of ${challenges.length} correct!`;
+function endEarly() {
+  if (!confirm("Quit the challenge? Your progress will be lost.")) return;
+  clearInterval(timerInterval);
+  finish();
+}
+
+function finish() {
+  clearInterval(timerInterval);
+  gameArea.style.display = 'none';
+  endArea.style.display = 'block';
+  finalScore.innerText = `You got ${score} / ${total}`;
+  let msg = '';
+  if (score === total) msg = "Unbelievable! You answered everything correctly — a true outlier!";
+  else if (score >= Math.ceil(total*0.8)) msg = "Amazing! You're in the top 20% — well played.";
+  else if (score >= Math.ceil(total*0.5)) msg = "Nice job — average to above average. Try again to beat your score.";
+  else msg = "Ouch — these were tricky! Try again and don't overthink.";
+
+  finalMessage.innerText = msg;
+
+  // prepare share link (twitter style)
+  const text = encodeURIComponent(`I scored ${score}/${total} on "Only 1% Can Pass This Strange IQ Test 🤯" — Can you beat me?`);
+  shareLink.href = `https://twitter.com/intent/tweet?text=${text}`;
 }
 </script>
 </body>
