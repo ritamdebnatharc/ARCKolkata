@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Impossible Choices</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f0f4f8;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            color: #333;
+        }
+        .container {
+            background-color: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            max-width: 600px;
+            width: 90%;
+        }
+        h1 {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            color: #4a90e2;
+        }
+        #question {
+            font-size: 1.5em;
+            margin-bottom: 30px;
+            animation: fadeIn 1s ease-in-out;
+        }
+        .options {
+            display: flex;
+            justify-content: space-around;
+            margin-bottom: 30px;
+        }
+        .option-btn {
+            background-color: #4a90e2;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 1.2em;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: transform 0.3s, background-color 0.3s;
+        }
+        .option-btn:hover {
+            transform: scale(1.05);
+            background-color: #357bd8;
+        }
+        #timer {
+            height: 10px;
+            background-color: #e0e0e0;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+        #timer-bar {
+            height: 100%;
+            width: 100%;
+            background-color: #4a90e2;
+            animation: timerAnimation 10s linear forwards;
+        }
+        #progress {
+            margin-top: 20px;
+            font-size: 1em;
+            color: #666;
+        }
+        #start-btn {
+            background-color: #27ae60;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 1.2em;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+        #start-btn:hover {
+            transform: scale(1.05);
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes timerAnimation {
+            from { width: 100%; }
+            to { width: 0%; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Impossible Choices</h1>
+        <div id="game" style="display: none;">
+            <div id="question"></div>
+            <div class="options">
+                <button id="option1" class="option-btn"></button>
+                <button id="option2" class="option-btn"></button>
+            </div>
+            <div id="timer"><div id="timer-bar"></div></div>
+            <div id="progress"></div>
+        </div>
+        <button id="start-btn">Start Challenge</button>
+    </div>
+
+    <script>
+        const challenges = [
+            {
+                question: "Would you rather know the date of your death or the cause of your death?",
+                option1: "Date of death",
+                option2: "Cause of death"
+            },
+            {
+                question: "Would you rather lose all your old memories or never be able to make new ones?",
+                option1: "Lose old memories",
+                option2: "Never make new ones"
+            },
+            {
+                question: "Which weighs more: 1,000 feathers or 1 brick of gold?",
+                option1: "1,000 feathers",
+                option2: "1 brick of gold"
+            },
+            {
+                question: "Would you rather be able to talk to animals or speak all human languages?",
+                option1: "Talk to animals",
+                option2: "Speak all languages"
+            },
+            {
+                question: "Would you rather see 10 minutes into the future or 150 years into the future?",
+                option1: "10 minutes",
+                option2: "150 years"
+            },
+            {
+                question: "Would you rather have telekinesis or telepathy?",
+                option1: "Telekinesis (move things)",
+                option2: "Telepathy (read minds)"
+            },
+            {
+                question: "Would you rather be in jail for 5 years or in a coma for 10 years?",
+                option1: "Jail for 5 years",
+                option2: "Coma for 10 years"
+            },
+            {
+                question: "Would you rather have a pause button or a rewind button for your life?",
+                option1: "Pause button",
+                option2: "Rewind button"
+            },
+            {
+                question: "Would you rather always be 10 minutes late or 20 minutes early?",
+                option1: "10 minutes late",
+                option2: "20 minutes early"
+            },
+            {
+                question: "Would you rather lose the ability to read or to speak?",
+                option1: "Lose reading",
+                option2: "Lose speaking"
+            },
+            {
+                question: "Would you rather have unlimited money or unlimited love?",
+                option1: "Unlimited money",
+                option2: "Unlimited love"
+            },
+            {
+                question: "Would you rather control fire or water?",
+                option1: "Control fire",
+                option2: "Control water"
+            },
+            {
+                question: "Would you rather live without internet or without AC/heating?",
+                option1: "No internet",
+                option2: "No AC/heating"
+            },
+            {
+                question: "Would you rather detect any lie or get away with any lie?",
+                option1: "Detect lies",
+                option2: "Get away with lies"
+            },
+            {
+                question: "Would you rather forget who you are or who everyone else is?",
+                option1: "Forget self",
+                option2: "Forget others"
+            }
+        ];
+
+        let currentIndex = 0;
+        let timerId;
+        const timeLimit = 10000; // 10 seconds
+
+        const questionEl = document.getElementById('question');
+        const option1Btn = document.getElementById('option1');
+        const option2Btn = document.getElementById('option2');
+        const timerBar = document.getElementById('timer-bar');
+        const progressEl = document.getElementById('progress');
+        const gameDiv = document.getElementById('game');
+        const startBtn = document.getElementById('start-btn');
+
+        startBtn.addEventListener('click', () => {
+            startBtn.style.display = 'none';
+            gameDiv.style.display = 'block';
+            showNextChallenge();
+        });
+
+        function showNextChallenge() {
+            if (currentIndex >= challenges.length) {
+                questionEl.textContent = "Challenge Complete!";
+                option1Btn.style.display = 'none';
+                option2Btn.style.display = 'none';
+                timer.style.display = 'none';
+                progressEl.textContent = '';
+                return;
+            }
+
+            const challenge = challenges[currentIndex];
+            questionEl.textContent = challenge.question;
+            option1Btn.textContent = challenge.option1;
+            option2Btn.textContent = challenge.option2;
+            progressEl.textContent = `Challenge ${currentIndex + 1} of ${challenges.length}`;
+
+            // Reset and start timer animation
+            timerBar.style.width = '100%';
+            timerBar.style.animation = `timerAnimation ${timeLimit / 1000}s linear forwards`;
+
+            timerId = setTimeout(handleTimeout, timeLimit);
+        }
+
+        function handleChoice(choice) {
+            clearTimeout(timerId);
+            timerBar.style.animation = 'none'; // Stop animation
+            alert(`You chose: ${choice}`);
+            currentIndex++;
+            showNextChallenge();
+        }
+
+        function handleTimeout() {
+            alert("Time's up! No choice made.");
+            currentIndex++;
+            showNextChallenge();
+        }
+
+        option1Btn.addEventListener('click', () => handleChoice(option1Btn.textContent));
+        option2Btn.addEventListener('click', () => handleChoice(option2Btn.textContent));
+    </script>
+</body>
+</html>
