@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>IQ Challenge</title>
+  <style>
+    body { font-family: Arial, sans-serif; text-align: center; padding: 40px; }
+    .timer { font-size: 24px; color: red; margin: 20px; }
+    .question { font-size: 22px; margin: 20px; }
+    button { padding: 10px 20px; margin: 10px; font-size: 18px; cursor: pointer; }
+  </style>
+</head>
+<body>
+  <h1>Only 1% Can Pass This IQ Challenge!</h1>
+  <div id="game">
+    <div class="question">What comes next in this sequence: 2, 6, 12, 20, ?</div>
+    <div class="timer" id="timer">10</div>
+    <button onclick="checkAnswer('30')">30</button>
+    <button onclick="checkAnswer('28')">28</button>
+    <button onclick="checkAnswer('24')">24</button>
+    <div id="result"></div>
+  </div>
+
+  <script>
+    let time = 10;
+    let countdown = setInterval(() => {
+      document.getElementById("timer").innerText = time;
+      if (time === 0) {
+        clearInterval(countdown);
+        document.getElementById("result").innerHTML = "⏰ Time's up!";
+      }
+      time--;
+    }, 1000);
+
+    function checkAnswer(ans) {
+      clearInterval(countdown);
+      if (ans === "30") {
+        document.getElementById("result").innerHTML = "✅ Correct! The answer is 30.";
+      } else {
+        document.getElementById("result").innerHTML = "❌ Wrong! The correct answer is 30.";
+      }
+    }
+  </script>
+</body>
+</html>
